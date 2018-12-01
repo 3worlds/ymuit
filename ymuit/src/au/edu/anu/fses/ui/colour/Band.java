@@ -48,10 +48,9 @@ public class Band {
 	 * @param     max: max RBG values
 	 * @param     flipx: flip result around the x axis
 	 * @param     flipy: flip result around the y axis
-	 * @param     fts: list of functions to map x to y. If mor than one function,
-	 *            the y values are averaged
+	 * @param     ft: function to map x to y. 
 	 */
-	public Band(double min, double max, boolean flipx, boolean flipy, FunctionTypes... fts) {
+	public Band(double min, double max, boolean flipx, boolean flipy, FunctionTypes ft) {
 		values = new double[Function.length];
 
 		for (int i = 0; i < Function.length; i++) {
@@ -60,24 +59,23 @@ public class Band {
 				x = ((Function.length - 1) - i) / (double) (Function.length - 1);
 			else
 				x = i / (double) (Function.length - 1);
-			double sumY = 0;
-			for (FunctionTypes ft : fts) {
-				Function func = ft.getFunction();
-				double y;
-				if (flipy)
-					y = 1.0 - func.getY(x);
-				else
-					y = func.getY(x);
 
-				y = scale(y, min, max);
-				sumY += y;
-			}
-			values[i] = sumY / fts.length;
+			Function func = ft.getFunction();
+			double y;
+			if (flipy)
+				y = 1.0 - func.getY(x);
+			else
+				y = func.getY(x);
+
+			y = scale(y, min, max);
+
+			values[i] = y;
 		}
 	}
 
 	/**
 	 * Scale y be within the range max - min
+	 * 
 	 * @param y
 	 * @param min
 	 * @param max
