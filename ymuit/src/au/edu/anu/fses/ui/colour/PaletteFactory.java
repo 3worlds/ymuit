@@ -70,33 +70,33 @@ public class PaletteFactory {
 		return new Palette(red, green, blue, 1.0);
 	}
 
-//	public static Palette blueGreenRed() {
-//		Band red = new Band(0, 1, false, false, LINE3);
-//		Band green = new Band(0, 1, false, false, TRIANGLEWAVE21);
-//		Band blue = new Band(0, 1, true, false, POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static Palette redGreenBlue() {
-//		Band red = new Band(0, 1, true, false, LINE3);
-//		Band green = new Band(0, 1, false, false, TRIANGLEWAVE21);
-//		Band blue = new Band(0, 1, false, false, POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static Palette brownYellowLightBlue() {
-//		Band red = new Band(0, 1, true, false, INTERSECT2B);
-//		Band green = new Band(0, 1, false, false, INTERSECT2B);
-//		Band blue = new Band(0, 1, false, false, POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static Palette lightBlueYellowBrown() {
-//		Band red = new Band(0, 1, false, false,INTERSECT2B);
-//		Band green = new Band(0, 1, true, false, INTERSECT2B);
-//		Band blue = new Band(0, 1, true, false, POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
+	public static Palette blueGreenRed() {
+		Band red = new Band(0, 1, false, false, LINE3);
+		Band green = new Band(0, 1, false, false, TRIANGLE21);
+		Band blue = new Band(0, 1, true, false, POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static Palette redGreenBlue() {
+		Band red = new Band(0, 1, true, false, LINE3);
+		Band green = new Band(0, 1, false, false, TRIANGLE21);
+		Band blue = new Band(0, 1, false, false, POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static Palette brownYellowLightBlue() {
+		Band red = new Band(0, 1, true, false, INTERSECT2B);
+		Band green = new Band(0, 1, false, false, INTERSECT2B);
+		Band blue = new Band(0, 1, false, false, POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static Palette lightBlueYellowBrown() {
+		Band red = new Band(0, 1, false, false,INTERSECT2B);
+		Band green = new Band(0, 1, true, false, INTERSECT2B);
+		Band blue = new Band(0, 1, true, false, POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
 //
 //	public static Palette purpleYellowGreenRed() {
 //		Band red = new Band(0.5, 1, true, false, SINC);
@@ -112,33 +112,33 @@ public class PaletteFactory {
 //		return new Palette(red, green, blue, 1.0);
 //	}
 //
-//	public static  Palette greenWhiteBrown() {
-//		Band red = new Band(0, 1, false, false,INTERSECT2B);
-//		Band green = new Band(0, 1, true, false,INTERSECT2B);
-//		Band blue = new Band(0, 1, false, false, SINEWAVE11);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static  Palette brownWhiteGreen() {
-//		Band red = new Band(0, 1, true, false, INTERSECT2B);
-//		Band green = new Band(0, 1, false, false, INTERSECT2B);
-//		Band blue = new Band(0, 1, false, false, SINEWAVE11);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static  Palette blueLimeRed() {
-//		Band red = new Band(0, 1, true, true, LOGISTIC2A);
-//		Band green = new Band(0, 1, false, false, TRIANGLEWAVE31);
-//		Band blue = new Band(0, 1, true, false,POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
-//
-//	public static  Palette redLimeBlue() {
-//		Band red = new Band(0, 1, false, true, LOGISTIC2A);
-//		Band green = new Band(0, 1, false, false, TRIANGLEWAVE31);
-//		Band blue = new Band(0, 1, false, false, POWER2);
-//		return new Palette(red, green, blue, 1.0);
-//	}
+	public static  Palette greenWhiteBrown() {
+		Band red = new Band(0, 1, false, false,INTERSECT2B);
+		Band green = new Band(0, 1, true, false,INTERSECT2B);
+		Band blue = new Band(0, 1, false, false, SINE11);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static  Palette brownWhiteGreen() {
+		Band red = new Band(0, 1, true, false, INTERSECT2B);
+		Band green = new Band(0, 1, false, false, INTERSECT2B);
+		Band blue = new Band(0, 1, false, false, SINE11);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static  Palette blueLimeRed() {
+		Band red = new Band(0, 1, true, true, LOGISTIC2A);
+		Band green = new Band(0, 1, false, false, TRIANGLE31);
+		Band blue = new Band(0, 1, true, false,POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
+
+	public static  Palette redLimeBlue() {
+		Band red = new Band(0, 1, false, true, LOGISTIC2A);
+		Band green = new Band(0, 1, false, false, TRIANGLE31);
+		Band blue = new Band(0, 1, false, false, POWER2);
+		return new Palette(red, green, blue, 1.0);
+	}
 
 	public static  Palette randomPalette() {
 		Random rnd = new Random();

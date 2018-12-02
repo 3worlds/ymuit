@@ -35,53 +35,53 @@ package au.edu.anu.fses.ui.colour.functions;
  */
 // Pre-defined parameterised functions for generating palettes
 public enum FunctionTypes {
-//	GAUSSIAN/*-       */(new Gaussian()), //
+	GAUSSIAN/*-       */(new Gaussian()), //
 	INTERSECT1A/*-    */(new Intersect(4, -1.0 / 3.0, 13.0 / 12.0)), //
 	INTERSECT1B/*-    */(new Intersect(4, -2.0 / 3.0, 7.0 / 6.0)), //
 	INTERSECT1C/*-    */(new Intersect(4, -1, 5.0 / 4.0)), //
 	INTERSECT2A/*-    */(new Intersect(2, -1.0 / 2.0, 5.0 / 4.0)), //
 	INTERSECT2B/*-    */(new Intersect(2, -1.0, 3.0 / 2.0)), //
-	INTERSECT2C/*-    */(new Intersect(2, -3.0/2.0, 7.0 / 4.0)), //
-	INTERSECT3A/*-    */(new Intersect(4.0/3.0, -1.0, 7.0 / 4.0)), //
-	INTERSECT3B/*-    */(new Intersect(4.0/3.0, -2.0,5.0 / 2.0)), //
-	INTERSECT3C/*-    */(new Intersect(4.0/3.0, -3.0,13.0 / 4.0)), //
-    LINE1/*-          */(new Line(4)), //
+	INTERSECT2C/*-    */(new Intersect(2, -3.0 / 2.0, 7.0 / 4.0)), //
+	INTERSECT3A/*-    */(new Intersect(4.0 / 3.0, -1.0, 7.0 / 4.0)), //
+	INTERSECT3B/*-    */(new Intersect(4.0 / 3.0, -2.0, 5.0 / 2.0)), //
+	INTERSECT3C/*-    */(new Intersect(4.0 / 3.0, -3.0, 13.0 / 4.0)), //
+	LINE1/*-          */(new Line(4)), //
 	LINE2/*-          */(new Line(2)), //
-	LINE3/*-          */(new Line(4.0/3.0)), //
+	LINE3/*-          */(new Line(4.0 / 3.0)), //
 	LINE4/*-          */(new Line(1)), //
 //	LOG/*-            */(new Log()), //
-//	LOGISTIC1A/*-     */(new Logistic(0.25, 1.0)), //
-//	LOGISTIC2A/*-     */(new Logistic(0.5, 1.0)), //
-//	LOGISTIC3A/*-     */(new Logistic(0.75, 1.0)), //
-//	LOGISTIC1B/*-     */(new Logistic(0.25, 2.0)), //
-//	LOGISTIC2B/*-     */(new Logistic(0.5, 2.0)), //
-//	LOGISTIC3B/*-     */(new Logistic(0.75, 2.0)), //
-//	POWER2/*-         */(new Power()), //
-//	POWER4/*-         */(new Power(4)), //
-//	POWER6/*-         */(new Power(6)), //
-//	POWER8/*-         */(new Power(8)), //
-//	POWER16/*-        */(new Power(16)), //	
+	LOGISTIC1A/*-     */(new Logistic(0.25, 1.0)), //
+	LOGISTIC2A/*-     */(new Logistic(0.5, 1.0)), //
+	LOGISTIC3A/*-     */(new Logistic(0.75, 1.0)), //
+	LOGISTIC1B/*-     */(new Logistic(0.25, 2.0)), //
+	LOGISTIC2B/*-     */(new Logistic(0.5, 2.0)), //
+	LOGISTIC3B/*-     */(new Logistic(0.75, 2.0)), //
+	POWER2/*-         */(new Power()), //
+	POWER4/*-         */(new Power(4)), //
+	POWER6/*-         */(new Power(6)), //
+	POWER8/*-         */(new Power(8)), //
+	POWER16/*-        */(new Power(16)), //
 //	SINC/*-           */(new Sinc()),
-//	SINEWAVE11/*-     */(new SineWave(4.0 / 1.0, 1.0)), //
-//	SINEWAVE21/*-     */(new SineWave(4.0 / 2.0, 1.0)), //
-//	SINEWAVE31/*-     */(new SineWave(4.0 / 3.0, 1.0)), //
-//	SINEWAVE41/*-     */(new SineWave(4.0 / 4.0, 1.0)), //
-//	SINEWAVE12/*-     */(new SineWave(4.0 / 1.0, 2.0)), //
-//	SINEWAVE22/*-     */(new SineWave(4.0 / 2.0, 2.0)), //
-//	SINEWAVE32/*-     */(new SineWave(4.0 / 3.0, 2.0)), //
-//	SINEWAVE42/*-     */(new SineWave(4.0 / 4.0, 2.0)), //
-//	SQUAREWAVE2/*-    */(new SquareWave(4.0 / 1.0, 256.0 / 2.0)), //
-//	SQUAREWAVE4/*-    */(new SquareWave(4.0 / 1.0, 256.0 / 4.0)), //
-//	SQUAREWAVE8/*-    */(new SquareWave(4.0 / 1.0, 256.0 / 8.0)), //
-//	SQUAREWAVE16/*-   */(new SquareWave(4.0 / 1.0, 256.0 / 16.0)), //
-//	TRIANGLEWAVE11/*- */(new TriangleWave(4.0 / 1.0, 1.0)), //
-//	TRIANGLEWAVE21/*- */(new TriangleWave(4.0 / 2.0, 1.0)), //
-//	TRIANGLEWAVE31/*- */(new TriangleWave(4.0 / 3.0, 1.0)), //
-//	TRIANGLEWAVE41/*- */(new TriangleWave(4.0 / 4.0, 1.0)), //
-//	TRIANGLEWAVE12/*- */(new TriangleWave(4.0 / 1.0, 2.0)), //
-//	TRIANGLEWAVE22/*- */(new TriangleWave(4.0 / 2.0, 2.0)), //
-//	TRIANGLEWAVE32/*- */(new TriangleWave(4.0 / 3.0, 2.0)), //
-//	TRIANGLEWAVE42/*- */(new TriangleWave(4.0 / 4.0, 2.0)), //
+	SINE11/*-     */(new Sine(4.0 / 1.0, 1.0)), //
+	SINE21/*-     */(new Sine(4.0 / 2.0, 1.0)), //
+	SINE31/*-     */(new Sine(4.0 / 3.0, 1.0)), //
+	SINE41/*-     */(new Sine(4.0 / 4.0, 1.0)), //
+	SINE12/*-     */(new Sine(4.0 / 1.0, 2.0)), //
+	SINE22/*-     */(new Sine(4.0 / 2.0, 2.0)), //
+	SINE32/*-     */(new Sine(4.0 / 3.0, 2.0)), //
+	SINE42/*-     */(new Sine(4.0 / 4.0, 2.0)), //
+	SQUARE2/*-    */(new Square(4.0 / 1.0, 256.0 / 2.0)), //
+	SQUARE4/*-    */(new Square(4.0 / 1.0, 256.0 / 4.0)), //
+	SQUARE8/*-    */(new Square(4.0 / 1.0, 256.0 / 8.0)), //
+	SQUARE16/*-   */(new Square(4.0 / 1.0, 256.0 / 16.0)), //
+	TRIANGLE11/*- */(new Triangle(4.0 / 1.0, 1.0)), //
+	TRIANGLE21/*- */(new Triangle(4.0 / 2.0, 1.0)), //
+	TRIANGLE31/*- */(new Triangle(4.0 / 3.0, 1.0)), //
+	TRIANGLE41/*- */(new Triangle(4.0 / 4.0, 1.0)), //
+	TRIANGLE12/*- */(new Triangle(4.0 / 1.0, 2.0)), //
+	TRIANGLE22/*- */(new Triangle(4.0 / 2.0, 2.0)), //
+	TRIANGL32/*- */(new Triangle(4.0 / 3.0, 2.0)), //
+	TRIANGL42/*- */(new Triangle(4.0 / 4.0, 2.0)), //
 	;
 	private final Function func;
 
