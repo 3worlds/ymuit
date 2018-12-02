@@ -29,60 +29,35 @@
 package au.edu.anu.fses.ui.colour;
 
 import au.edu.anu.fses.ui.colour.functions.Function;
-import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
+import javafx.scene.paint.Color;
 
 /**
  * @author Ian Davies
- * @date 28 Nov. 2018
  *
+ * @Date 2 Dec. 2018
  */
+public class Palette {
+	private Color[] palette;
 
-public class Band {
-	private double[] values;
-
-	/**
-	 * Array colour (RG or B) values (0.0..1.0) Ultimately, a colour c is
-	 * made from three of these bands.
-	 * 
-	 * @param min : mim RGB value
-	 * @param     max: max RBG values
-	 * @param     flipx: flip result around the x axis
-	 * @param     flipy: flip result around the y axis
-	 * @param     ft: function to map x to y. 
-	 */
-	public Band(double min, double max, boolean flipx, boolean flipy, FunctionTypes ft) {
-		values = new double[Function.length];
-
-		for (int i = 0; i < Function.length; i++) {
-			double x= i / (double) (Function.length - 1);
-			if (flipx)
-				x = 1.0-x;		
-			double y=ft.getFunction().ofX(x);
-			if (flipy)
-				y = 1.0 - y;
-			y = scale(y, min, max);
-			values[i] = y;
-		}
+	public Palette(Band red, Band green, Band blue, double opacity) {
+		palette = new Color[Function.length];
+		for (int i = 0; i < Function.length; i++)
+			palette[i] = Color.color(red.getValueAt(i), green.getValueAt(i), blue.getValueAt(i), opacity);
 	}
 
-	/**
-	 * Scale y be within the range max - min assuming y 0.0..1.0
-	 * 
-	 * @param y
-	 * @param min
-	 * @param max
-	 * @return
-	 */
-	private double scale(double y, double min, double max) {
-		assert(max>=min);
+	public Color getColour(double v, double min, double max) {
+		int idx = getIndex(v, min, max);
+		return palette[idx];
+	}
+
+	private int getIndex(double v, double min, double max) {
+		v = Math.min(max, Math.max(v, min));
 		double r = max - min;
-		if (r <= 0.0)
-			return min;
-		return r * y + min;
-	}
-
-	public double getValueAt(int idx) {
-		return values[idx];
+		if (r <= 0)
+			return 0;
+		double p = (v-min) / r;
+		double p1 = Math.round(p * (Function.length - 1));
+		return (int) p1;
 	}
 
 }

@@ -51,13 +51,11 @@ public class Intersect implements Function {
 	}
 
 	@Override
-	public double getY(double x) {
-		x = clamp(x);
+	public double ofX(double x) {
 		double y1 = m1 * x;
 		double y2 = m2 * x + b2;
 		double y = Math.min(y1, y2);
 		return clamp(y);
-
 	}
 
 }

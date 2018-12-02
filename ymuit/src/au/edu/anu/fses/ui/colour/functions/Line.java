@@ -46,8 +46,7 @@ public class Line implements Function {
 	}
 
 	@Override
-	public double getY(double x) {
-		x = clamp(x);
+	public double ofX(double x) {
 		double y = x * m;
 		return clamp(y);
 	}

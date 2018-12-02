@@ -37,7 +37,7 @@ package au.edu.anu.fses.ui.colour.functions;
 public interface Function {
 	public static final int length = 256;
 
-	public double getY(double x);
+	public double ofX(double x);
 
 	default public double clamp(double x) {
 		return Math.min(1.0, Math.max(x, 0));
