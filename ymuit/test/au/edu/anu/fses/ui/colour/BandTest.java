@@ -26,23 +26,72 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.fses.ui.colour;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import au.edu.anu.fses.ui.colour.functions.Function;
+import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
+import au.edu.anu.fses.ui.colour.functions.Line;
 
 /**
  * @author Ian Davies
  *
  * @Date 2 Dec. 2018
  */
-// smooth curve symmetrical about x = 0.5
-public class Gaussian implements Function{
-	private static double d = Math.sqrt(2 * Math.PI);
-	private static double m = 1.0/0.4;
+class BandTest {
 
-	@Override
-	public double ofX(double x) {
-		x = (x-0.5)*6;
-		double r= Math.exp(-x*x / 2.0) / d;	
-		return clamp(r*m);
+	@Test
+	void test() {
+		Band b = new Band(0.0, 1.0, false, false, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.0);
+		assertEquals(b.getValueAt(153), 0.36);
+		assertEquals(b.getValueAt(255), 1.0);
+
+		b = new Band(0.0, 1.0, true, false, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 1.0);
+		assertEquals(b.getValueAt(102), 0.36);
+		assertEquals(b.getValueAt(255), 0.0);
+
+		b = new Band(0.0, 1.0, false, true, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 1.0);
+		assertEquals(b.getValueAt(51), 0.96);
+		assertEquals(b.getValueAt(102), 0.84);
+		assertEquals(b.getValueAt(153), 0.64);
+		assertEquals(b.getValueAt(255), 0.0);
+
+		b = new Band(0.0, 1.0, true, true, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.0);
+		assertEquals(b.getValueAt(102), 0.64);
+		assertEquals(b.getValueAt(153), 0.84);
+		assertEquals(b.getValueAt(204), 0.96);
+		assertEquals(b.getValueAt(255), 1.0);
+
+		b = new Band(0.25, 0.75, false, false, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.25);
+		assertEquals(b.getValueAt(51), 0.27);
+		assertEquals(b.getValueAt(102), 0.33);
+		assertEquals(b.getValueAt(153), 0.43);
+		assertEquals(b.getValueAt(255), 0.75);
+
+		b = new Band(0.25, 0.75, true, false, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.75);
+		assertEquals(b.getValueAt(102), 0.43);
+		assertEquals(b.getValueAt(153), 0.33);
+		assertEquals(b.getValueAt(204), 0.27);
+		assertEquals(b.getValueAt(255), 0.25);
+
+		b = new Band(0.25, 0.75, false, true, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.75);
+		assertEquals(b.getValueAt(51), 0.73);
+		assertEquals(b.getValueAt(255), 0.25);
+
+		b = new Band(0.25, 0.75, true, true, FunctionTypes.POWER2);
+		assertEquals(b.getValueAt(0), 0.25);
+		assertEquals(b.getValueAt(204), 0.73);
+		assertEquals(b.getValueAt(255), 0.75);
 	}
 
 }
