@@ -33,31 +33,35 @@ import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
 
 /**
  * @author Ian Davies
- * @date 28 Nov. 2018
+ * 
+ * @Date 28 Nov. 2018
  *
  */
 
 public class Band {
+	
 	private double[] values;
 
 	/**
-	 * Array colour (RG or B) values (0.0..1.0) Ultimately, a colour c is
-	 * made from three of these bands.
+	 * A Band is an array of colour (RG or B) values. Three of these bands are used
+	 * by a Palette to create a colour. A function supplies the band range values
+	 * over a domain of 0.0 to 1.0. The function can be compressed between two
+	 * values (min,max) and flipped around either or both the x and y axis.
 	 * 
-	 * @param min : mim RGB value
-	 * @param     max: max RBG values
-	 * @param     flipx: flip result around the x axis
-	 * @param     flipy: flip result around the y axis
-	 * @param     ft: function to map x to y. 
+	 * @param min   minimum RGB value
+	 * @param max   maximum RBG values
+	 * @param flipx flip result around the x axis
+	 * @param flipy flip result around the y axis
+	 * @param ft    The function used to map x to y.
 	 */
 	public Band(double min, double max, boolean flipx, boolean flipy, FunctionTypes ft) {
 		values = new double[Function.length];
 
 		for (int i = 0; i < Function.length; i++) {
-			double x= i / (double) (Function.length - 1);
+			double x = i / (double) (Function.length - 1);
 			if (flipx)
-				x = 1.0-x;		
-			double y=ft.getFunction().ofX(x);
+				x = 1.0 - x;
+			double y = ft.getFunction().ofX(x);
 			if (flipy)
 				y = 1.0 - y;
 			y = scale(y, min, max);
@@ -66,7 +70,7 @@ public class Band {
 	}
 
 	/**
-	 * Scale y be within the range max - min assuming y 0.0..1.0
+	 * Scales y to be within the range max - min assuming y is within 0.0 - 1.0
 	 * 
 	 * @param y
 	 * @param min
@@ -74,13 +78,19 @@ public class Band {
 	 * @return
 	 */
 	private double scale(double y, double min, double max) {
-		assert(max>=min);
+		assert (max >= min);
 		double r = max - min;
 		if (r <= 0.0)
 			return min;
 		return r * y + min;
 	}
 
+	/**
+	 * Returns the value of a colour band in the range 0.0 - 1.0 at the given index
+	 * 
+	 * @param idx (0..255)
+	 * @return band value (0.0..1.0) at index idx
+	 */
 	public double getValueAt(int idx) {
 		return values[idx];
 	}

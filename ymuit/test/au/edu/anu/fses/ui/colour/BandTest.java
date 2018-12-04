@@ -32,9 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import au.edu.anu.fses.ui.colour.functions.Function;
 import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
-import au.edu.anu.fses.ui.colour.functions.Line;
 
 /**
  * @author Ian Davies

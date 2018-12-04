@@ -44,7 +44,7 @@ class ColourContrastTest {
 		int n = 2*2*2;
 //		String[] names = ColourContrast.allContrastingColourNames(bkg, n);
 		Map<String, Color> res = ColourContrast.allContrastingColours(bkg, n);
-		double min = Double.MAX_VALUE;
+//		double min = Double.MAX_VALUE;
 		assertTrue(res.size() <= n);
 		for (Map.Entry<String, Color> e1 : res.entrySet()) {
 			Color c1 = e1.getValue();
