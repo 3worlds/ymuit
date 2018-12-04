@@ -108,6 +108,7 @@ public class VersionManager {
 	 * 
 	 */
 	private static String[][] DEPS = { 
+			{"fr.cnrs.iees", "uit", "+"}
 	};
 	// ============================================================================================
 	
