@@ -160,7 +160,7 @@ public class ColourContrast {
 	}
 
 	/**
-	 * @param x: array of pairs: 1 pair = 1 dim, 2 pairs = 2 dim etc
+	 * @param x: array of pairs: 1 pair = 1 dim, 2 pairs = 2 dim etc...
 	 * @return distance between two points in n Dim space.
 	 */
 	private static double distance(double... x) {
@@ -178,7 +178,7 @@ public class ColourContrast {
 	}
 
 	/**
-	 * Distance between colours in RGB 3 dim space.
+	 * Distance between colours in RGB 3D space.
 	 * 
 	 * @param c1
 	 * @param c2
