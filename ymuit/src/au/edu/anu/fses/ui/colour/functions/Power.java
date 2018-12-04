@@ -46,7 +46,7 @@ public class Power implements Function {
 	/**
 	 * Power function with radical r
 	 * 
-	 * @param i
+	 * @param r power radical
 	 */
 	public Power(double r) {
 		radical = r;

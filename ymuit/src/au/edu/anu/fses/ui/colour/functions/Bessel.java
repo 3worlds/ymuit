@@ -29,48 +29,38 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * Author Ian Davies Date 28 Nov. 2018
+ * Author Ian Davies
  *
+ * Date Dec 5, 2018
  */
-public class Line implements Function {
+public class Bessel implements Function {
+	private static final double minimum = -0.2172268187;
+	private static final double range = 1.2171760499;
+	private double domain;
 
-	private double m;
-	private double b;
+	public Bessel() {
+		this(7.0 / 3.0);
+	}
 
-	/**
-	 * Default constructor (m=1; b=0)
-	 */
-	public Line() {
-		this(1, 0);
+	public Bessel(double p) {
+		domain = Math.PI * p;
 	}
 
 	/**
-	 * Parameterised constructor.
-	 * 
-	 * 
-	 * @param m
-	 *            slope
-	 * @param b
-	 *            intercept (0.0..1.0)
-	 */
-	public Line(double m, double b) {
-		this.m = m;
-		this.b = b;
-	}
-
-	/**
-	 * Line with slope m and intersection 0.0
-	 * 
-	 * y = mx + b
+	 * A Bessel like wave function with variable number of waves
 	 * 
 	 * @param x
-	 *            0.0 - 1.0
-	 * @return f(x) 0.0 - 1.0
+	 *            domain 0.0..1.0
+	 * 
 	 */
 	@Override
 	public double ofX(double x) {
-		double y = x * m + b;
-		return clamp(y);
+		if (x <= 0.0)
+			return 1.0;
+		double x1 = domain * x;
+		double s = Math.sin(x1) / x1;
+		double result = (s - minimum) / range;
+		return clamp(result);
 	}
 
 }
