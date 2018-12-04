@@ -29,8 +29,8 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
- * @date 28 Nov. 2018
+ * Author Ian Davies
+ * Date 28 Nov. 2018
  *
  */
 // Pre-defined parameterised functions for generating palettes

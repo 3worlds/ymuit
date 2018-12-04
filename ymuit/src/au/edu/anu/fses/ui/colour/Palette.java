@@ -32,19 +32,34 @@ import au.edu.anu.fses.ui.colour.functions.Function;
 import javafx.scene.paint.Color;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 public class Palette {
 	private Color[] palette;
 
+	/**
+	 * Creates a palette of 256 colours based on functions contained within each Band.
+	 * 
+	 * @param red red band
+	 * @param green geen band
+	 * @param blue blue band
+	 * @param opacity (0.0 - 1.0)
+	 */
 	public Palette(Band red, Band green, Band blue, double opacity) {
 		palette = new Color[Function.length];
 		for (int i = 0; i < Function.length; i++)
 			palette[i] = Color.color(red.getValueAt(i), green.getValueAt(i), blue.getValueAt(i), opacity);
 	}
 
+	/**
+	 * Returns the palette colour for the value v. v is assumed to be within the range min to max
+	 * @param v value 
+	 * @param min minimum value of v
+	 * @param max maximum value of v
+	 * @return colour for value v
+	 */
 	public Color getColour(double v, double min, double max) {
 		int idx = getIndex(v, min, max);
 		return palette[idx];

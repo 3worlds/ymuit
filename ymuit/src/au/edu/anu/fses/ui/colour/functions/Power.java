@@ -29,21 +29,35 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 public class Power implements Function {
 	double radical;
 
+	/**
+	 * Power function with radical 2
+	 */
 	public Power() {
 		this(2);
 	}
 
-	public Power(double i) {
-		radical = i;
+	/**
+	 * Power function with radical r
+	 * 
+	 * @param i
+	 */
+	public Power(double r) {
+		radical = r;
 	}
 
+	/**
+	 * power function
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return x^radical
+	 */
 	@Override
 	public double ofX(double x) {
 		double result = Math.pow(x, radical);

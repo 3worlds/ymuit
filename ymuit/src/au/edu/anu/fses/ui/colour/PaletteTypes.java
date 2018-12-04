@@ -26,28 +26,39 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.fses.ui.colour;
+
+import static au.edu.anu.fses.ui.colour.PaletteFactory.*;
 
 /**
  * Author Ian Davies
  *
- * Date 2 Dec. 2018
+ * Date 4 Dec. 2018
  */
-// smooth curve symmetrical about x = 0.5
-public class Gaussian implements Function{
-	private static double d = Math.sqrt(2 * Math.PI);
-	private static double m = 1.0/0.4;
+public enum PaletteTypes {
+	BLACKWHITE/*-           */(blackWhite()), //
+	WHITEBLACK/*-           */(whiteBlack()), //
+	BLUEGREENRED/*-         */(blueGreenRed()), //
+	REDGREENBLUE/*-         */(redGreenBlue()), //
+	BROWNYELLOWLIGHTBLUE/*- */(brownYellowLightBlue()), //
+	LIGHTBLUEYELLOWBROWN/*- */(lightBlueYellowBrown()), //
+	BROWNYELLOWGREEN/*-     */(brownYellowGreen()), //
+	GREENYELLOWBROWN/*-     */(greenYellowBrown()), //
+//	PURPLEYELLOWGREENRED/*- */(purpleYellowGreenRed()), //
+//	REDGREENYELLOWPURPLE/*- */(redGreenYellowPurple()), //
+	GREENWHITEBROWN/*-      */(greenWhiteBrown()), //
+	BROWNWHITEGREEN/*-      */(brownWhiteGreen()), //
+	BLUELIMERED/*-          */(blueLimeRed()), //
+	REDLIMEBLUE/*-          */(redLimeBlue()), //
+	RANDOM/*-               */(randomPalette()),//
+	;
+	private final Palette palette;
 
-	/** 
-	 * smooth bell curve symmetrical about x = 0.5
-	 * @param x  0.0 - 1.0
-	 * @return  f(x) 0.0 - 1.0
-	 */
-	@Override
-	public double ofX(double x) {
-		x = (x-0.5)*6;
-		double r= Math.exp(-x*x / 2.0) / d;	
-		return clamp(r*m);
+	private PaletteTypes(Palette palette) {
+		this.palette = palette;
 	}
 
+	public Palette getPalette() {
+		return palette;
+	}
 }

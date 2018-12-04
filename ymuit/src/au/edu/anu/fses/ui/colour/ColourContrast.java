@@ -39,9 +39,9 @@ import fr.cnrs.iees.uit.space.Point;
 import javafx.scene.paint.Color;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 /**
  * https://docs.oracle.com/javase/8/javafx/api/javafx/scene/paint/Color.html
@@ -65,13 +65,14 @@ public class ColourContrast {
 	}
 
 	/**
-	 * Creates a list of named colours that contrast with the given background
-	 * colour up to a maximum of maxChoices. Use these colour names to set the css
-	 * style sheet of the scene.node in question.
+	 * Creates a map of colour names and colours that contrast with the given
+	 * background colour up to a maximum of maxChoices. Use these colour names to
+	 * set the css style sheet of the scene.node in question.
 	 * 
-	 * @param bkg
-	 * @param maxChoices
-	 * @return Array of strings of contrasting colours.
+	 * @param bkg        background colour
+	 * @param maxChoices maximum number of colours. The more colours requested, the
+	 *                   less contrast there will be between them.
+	 * @return Map of colour names and colours.
 	 */
 	public static Map<String, Color> allContrastingColours(Color bkg, int maxChoices) {
 		Map<String, Color> res = new HashMap<>();
@@ -95,6 +96,16 @@ public class ColourContrast {
 		return res;
 	}
 
+	/**
+	 * Creates a list of named colours that contrast with the given background
+	 * colour up to a maximum of maxChoices. Use these colour names to set the css
+	 * style sheet of the scene.node in question.
+	 * 
+	 * @param bkg        background colour
+	 * @param maxChoices maximum number of colours. The more colours requested, the
+	 *                   less contrast there will be between them.
+	 * @return Array of strings of contrasting colours.
+	 */
 	public static String[] allContrastingColourNames(Color bkg, int maxChoices) {
 		Map<String, Color> colours = allContrastingColours(bkg, maxChoices);
 		colours.keySet();
@@ -134,7 +145,7 @@ public class ColourContrast {
 	}
 
 	/**
-	 * https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
+	 * From: https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
 	 * 
 	 * Finds all named colours in javaFx through reflection
 	 * 
@@ -178,9 +189,9 @@ public class ColourContrast {
 	/**
 	 * Distance between colours in RGB 3D space.
 	 * 
-	 * @param c1
-	 * @param c2
-	 * @return distance in RGB space between colours c1 and c2
+	 * @param c1 first colour
+	 * @param c2 second colour
+	 * @return distance in RGB space between colours c1 and c2 assuming a unit cube
 	 */
 	public static double colourDistance(Color c1, Color c2) {
 		return distance(c1.getRed(), c2.getRed(), c1.getGreen(), c2.getGreen(), c1.getBlue(), c2.getBlue());

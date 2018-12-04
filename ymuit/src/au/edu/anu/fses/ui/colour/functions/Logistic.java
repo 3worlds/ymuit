@@ -29,24 +29,40 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 public class Logistic implements Function {
 	private double x0;// inflexion point
 	private double k;// gradient
 	private static double l = 1;// amplitude
 
+	/**
+	 * Logistic curve with inflexion point of 0.5 and gradient of 1.0
+	 */
 	public Logistic() {
 		this(0.5, 1.0);
 	}
+
+	/**
+	 * Logistic curve
+	 * 
+	 * @param x0 inflexion point
+	 * @param k  gradient
+	 */
 
 	public Logistic(double x0, double k) {
 		this.x0 = x0;
 		this.k = k;
 	}
 
+	/**
+	 * logistic function
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
 	@Override
 	public double ofX(double x) {
 		x = (x - x0) * 12;

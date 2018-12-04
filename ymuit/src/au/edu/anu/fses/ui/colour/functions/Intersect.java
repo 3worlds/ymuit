@@ -29,27 +29,45 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 1 Dec. 2018
+ * Date 1 Dec. 2018
  */
-//The minimum of two intersecting lines
+//
 public class Intersect implements Function {
 	double m1;
 	double m2;
 	double b2;
 
-	// Default is a triangle
+	/**
+	 * Asymmetrical triangle
+	 * 
+	 * @param Slope line 1 =2, intersection = 0
+	 * @param m2    Slope line 2 = -1
+	 * @param b2    Intersection of second line = 1.5
+	 */
 	public Intersect() {
 		this(2, -1, 1.5);
 	}
 
+	/**
+	 * 
+	 * @param m1 Slope of first line (intersect = 0)
+	 * @param m2 Slope of second line (opposite sign to first line)
+	 * @param b2 Intersection of second line
+	 */
 	public Intersect(double m1, double m2, double b2) {
 		this.m1 = m1;
 		this.m2 = m2;
 		this.b2 = b2;
 	}
 
+	/**
+	 * The minimum of two intersecting lines
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
 	@Override
 	public double ofX(double x) {
 		double y1 = m1 * x;

@@ -35,9 +35,9 @@ import org.junit.jupiter.api.Test;
 import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 class BandTest {
 

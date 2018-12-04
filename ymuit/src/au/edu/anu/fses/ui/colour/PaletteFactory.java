@@ -29,9 +29,9 @@
 package au.edu.anu.fses.ui.colour;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 import static au.edu.anu.fses.ui.colour.functions.FunctionTypes.*;
 

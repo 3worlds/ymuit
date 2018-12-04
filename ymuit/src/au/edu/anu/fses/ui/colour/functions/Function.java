@@ -29,8 +29,8 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
- * @date 28 Nov. 2018
+ * Author Ian Davies
+ * Date 28 Nov. 2018
  *
  */
 // Functions with domain and range: 0.0..1.0

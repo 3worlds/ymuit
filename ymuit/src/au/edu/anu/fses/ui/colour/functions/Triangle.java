@@ -29,20 +29,37 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 // Triangle wave 
 public class Triangle extends Sine {
 	private static double twoOnPi = 2 / Math.PI;
+
+	/**
+	 * Triangle wave function with offset 4/3 and 1 cycle over domain 0..255
+	 */
 	public Triangle() {
-		this(4.0/3.0,1.0);
-	}
-	public Triangle(double offsetPar,double nCycles) {
-		super (offsetPar,nCycles);
+		this(4.0 / 3.0, 1.0);
 	}
 
+	/**
+	 * Triangle wave function
+	 * 
+	 * @param offsetPar phase = 2PI/offset
+	 * @param nCycles   frequency = 2PI * nCycles
+	 */
+	public Triangle(double offsetPar, double nCycles) {
+		super(offsetPar, nCycles);
+	}
+
+	/**
+	 * Triangle wave function // https://en.wikipedia.org/wiki/Triangle_wave
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
 	@Override
 	public double ofX(double x) {
 		// https://en.wikipedia.org/wiki/Triangle_wave

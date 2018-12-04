@@ -29,20 +29,36 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
 // Square wave - useful for adding strips to a colour gradiant
 public class Square extends Sine {
+	/**
+	 * Square wave function with starting at 0 with one cycle over domain 0..255
+	 */
 	public Square() {
 		this(4.0 / 3.0, 1.0);
 	}
+
+	/**
+	 * Square wave function
+	 * 
+	 * @param offsetPar phase = 2PI/offset
+	 * @param nCycles   frequency = 2PI * nCycles
+	 */
 
 	public Square(double offsetPar, double nCycles) {
 		super(offsetPar, nCycles);
 	}
 
+	/**
+	 * Square wave function
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 | 1.0
+	 */
 	@Override
 	public double ofX(double x) {
 		double s = Math.sin(x * frequency + phase);

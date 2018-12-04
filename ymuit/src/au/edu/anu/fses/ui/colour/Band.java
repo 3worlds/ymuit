@@ -32,9 +32,9 @@ import au.edu.anu.fses.ui.colour.functions.Function;
 import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  * 
- * @Date 28 Nov. 2018
+ * Date 28 Nov. 2018
  *
  */
 

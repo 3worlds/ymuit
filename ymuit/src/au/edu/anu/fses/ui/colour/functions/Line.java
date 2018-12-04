@@ -29,8 +29,8 @@
 package au.edu.anu.fses.ui.colour.functions;
 
 /**
- * @author Ian Davies
- * @date 28 Nov. 2018
+ * Author Ian Davies
+ * Date 28 Nov. 2018
  *
  */
 public class Line implements Function {
@@ -45,6 +45,12 @@ public class Line implements Function {
 		this.m = m;
 	}
 
+	/**
+	 * Line with slope m and intersection 0.0
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
 	@Override
 	public double ofX(double x) {
 		double y = x * m;
