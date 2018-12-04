@@ -49,14 +49,14 @@ class LineTest {
 	@Test
 	@DisplayName("Line(m) with slope 2 and 0.5")
 	void testLineDouble() {
-		Function f = new Line(2);
+		Function f = new Line(2,0);
 		assertEquals(f.ofX(0.0),0.0);
 		assertEquals(f.ofX(0.25),0.5);
 		assertEquals(f.ofX(0.5),1.0);
 		assertEquals(f.ofX(0.75),1.0);
 		assertEquals(f.ofX(1.0),1.0);
 		
-		f = new Line(0.5);
+		f = new Line(0.5,0);
 		assertEquals(f.ofX(0.0),0.0);
 		assertEquals(f.ofX(0.25),0.125);
 		assertEquals(f.ofX(0.5),0.25);
