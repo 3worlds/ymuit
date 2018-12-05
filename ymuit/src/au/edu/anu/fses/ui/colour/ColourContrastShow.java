@@ -28,28 +28,47 @@
 
 package au.edu.anu.fses.ui.colour;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
-
+import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-class ColourContrastTest {
+public class ColourContrastShow extends Application {
+	private static Map<Color, RegionIndexingTree<String>> colourQts;
 
-	@Test
-	void test() {
-		Color bkg = Color.WHITE;
-		int n = 2 * 2 * 2;
-		Map<String, Color> res = ColourContrast.allContrastingColours(bkg, n);
-		assertTrue(res.size() <= n);
-		for (Map.Entry<String, Color> e1 : res.entrySet()) {
-			Color c1 = e1.getValue();
-			double d1 = ColourContrast.colourDistance(bkg, c1);
-			assertTrue(d1 >= ColourContrast.distanceFromBkg());
-		}
-		ColourContrast.show();
+	public static void setData(Map<Color, RegionIndexingTree<String>> cq) {
+		colourQts = cq;
 	}
 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Contrasting colours");
+		// Set up a gridpane with scrollpanes with lines drawn each each colour.
+		Button btn = new Button();
+		btn.setText("Say 'Hello World'");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Hello World!");
+			}
+		});
+
+		StackPane root = new StackPane();
+		root.getChildren().add(btn);
+		primaryStage.setScene(new Scene(root, 300, 250));
+		primaryStage.show();
+
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

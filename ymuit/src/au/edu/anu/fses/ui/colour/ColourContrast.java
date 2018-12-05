@@ -69,9 +69,11 @@ public class ColourContrast {
 	 * background colour up to a maximum of maxChoices. Use these colour names to
 	 * set the css style sheet of the scene.node in question.
 	 * 
-	 * @param bkg        background colour
-	 * @param maxChoices maximum number of colours. The more colours requested, the
-	 *                   less contrast there will be between them.
+	 * @param bkg
+	 *            background colour
+	 * @param maxChoices
+	 *            maximum number of colours. The more colours requested, the less
+	 *            contrast there will be between them.
 	 * @return Map of colour names and colours.
 	 */
 	public static Map<String, Color> allContrastingColours(Color bkg, int maxChoices) {
@@ -101,9 +103,11 @@ public class ColourContrast {
 	 * colour up to a maximum of maxChoices. Use these colour names to set the css
 	 * style sheet of the scene.node in question.
 	 * 
-	 * @param bkg        background colour
-	 * @param maxChoices maximum number of colours. The more colours requested, the
-	 *                   less contrast there will be between them.
+	 * @param bkg
+	 *            background colour
+	 * @param maxChoices
+	 *            maximum number of colours. The more colours requested, the less
+	 *            contrast there will be between them.
 	 * @return Array of strings of contrasting colours.
 	 */
 	public static String[] allContrastingColourNames(Color bkg, int maxChoices) {
@@ -131,7 +135,7 @@ public class ColourContrast {
 			for (Map.Entry<String, Color> entry : colourMap.entrySet()) {
 				Color c = entry.getValue();
 				double d = colourDistance(key, c);
-//				System.out.println("bkg:\t" + key + "\tcolour:\t" + c + "\tdistance:\t" + d);
+				// System.out.println("bkg:\t" + key + "\tcolour:\t" + c + "\tdistance:\t" + d);
 				if ((d > distanceFromBackground) && (!entry.getKey().contains("TRANSPARENT"))) {
 					Point p = Point.newPoint(c.getRed(), c.getGreen(), c.getBlue());
 					q.insert(entry.getKey(), p);
@@ -145,7 +149,8 @@ public class ColourContrast {
 	}
 
 	/**
-	 * From: https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
+	 * From:
+	 * https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
 	 * 
 	 * Finds all named colours in javaFx through reflection
 	 * 
@@ -169,7 +174,8 @@ public class ColourContrast {
 	}
 
 	/**
-	 * @param x: array of pairs: 1 pair = 1 dim, 2 pairs = 2 dim etc...
+	 * @param x:
+	 *            array of pairs: 1 pair = 1 dim, 2 pairs = 2 dim etc...
 	 * @return distance between two points in n Dim space.
 	 */
 	private static double distance(double... x) {
@@ -187,14 +193,27 @@ public class ColourContrast {
 	}
 
 	/**
-	 * Distance between colours in RGB 3D space.
+	 * Distance between colours in RGB 3D space assuming a unit cube.
 	 * 
-	 * @param c1 first colour
-	 * @param c2 second colour
-	 * @return distance in RGB space between colours c1 and c2 assuming a unit cube
+	 * @param c1
+	 *            first colour
+	 * @param c2
+	 *            second colour
+	 * @return distance in RGB space between colours c1 and c2 
 	 */
 	public static double colourDistance(Color c1, Color c2) {
 		return distance(c1.getRed(), c2.getRed(), c1.getGreen(), c2.getGreen(), c1.getBlue(), c2.getBlue());
 	}
 
+	/**
+	 * If this class has been used then display a panel in the background colour
+	 * with all selected colours.. but how many?
+	 */
+	public static void show() {
+		if (colourQts.isEmpty())
+			return;// nothing to show
+		ColourContrastShow.setData(colourQts);
+		ColourContrastShow.main(new String[0]);
+
+	}
 }
