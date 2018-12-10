@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,36 +22,58 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour;
+package au.edu.anu.ymuit.ui.colour;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
+import au.edu.anu.ymuit.ui.colour.functions.Function;
 import javafx.scene.paint.Color;
 
 /**
- * @author Ian Davies
+ * Author Ian Davies
  *
- * @Date 2 Dec. 2018
+ * Date 2 Dec. 2018
  */
-class PaletteTest {
+public class Palette {
+	private Color[] palette;
 
-	@Test
-	void test() {
-		Palette p = PaletteFactory.blackWhite();
-		assertEquals(p.getColour(0, 0,1),Color.BLACK);
-		assertEquals(p.getColour(1, 0,1),Color.WHITE);
-		assertEquals(p.getColour(0.375, 0,1),Color.GRAY);		
-		
-		p = PaletteFactory.whiteBlack();
-		assertEquals(p.getColour(0, 0,1),Color.WHITE);
-		assertEquals(p.getColour(1, 0,1),Color.BLACK);
-		assertEquals(p.getColour(1.0-0.375, 0,1),Color.GRAY);		
+	/**
+	 * Creates a palette of 256 colours based on functions contained within each Band.
+	 * 
+	 * @param red red band
+	 * @param green geen band
+	 * @param blue blue band
+	 * @param opacity (0.0 - 1.0)
+	 */
+	public Palette(Band red, Band green, Band blue, double opacity) {
+		palette = new Color[Function.length];
+		for (int i = 0; i < Function.length; i++)
+			palette[i] = Color.color(red.getValueAt(i), green.getValueAt(i), blue.getValueAt(i), opacity);
+	}
+
+	/**
+	 * Returns the palette colour for the value v. v is assumed to be within the range min to max
+	 * @param v value 
+	 * @param min minimum value of v
+	 * @param max maximum value of v
+	 * @return colour for value v
+	 */
+	public Color getColour(double v, double min, double max) {
+		int idx = getIndex(v, min, max);
+		return palette[idx];
+	}
+
+	private int getIndex(double v, double min, double max) {
+		v = Math.min(max, Math.max(v, min));
+		double r = max - min;
+		if (r <= 0)
+			return 0;
+		double p = (v-min) / r;
+		double p1 = Math.round(p * (Function.length - 1));
+		return (int) p1;
 	}
 
 }

@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,43 +22,25 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour;
-
-import static au.edu.anu.fses.ui.colour.PaletteFactory.*;
+package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
  * Author Ian Davies
+ * Date 28 Nov. 2018
  *
- * Date 4 Dec. 2018
  */
-public enum PaletteTypes {
-	BLACKWHITE/*-           */(blackWhite()), //
-	WHITEBLACK/*-           */(whiteBlack()), //
-	BLUEGREENRED/*-         */(blueGreenRed()), //
-	REDGREENBLUE/*-         */(redGreenBlue()), //
-	BROWNYELLOWLIGHTBLUE/*- */(brownYellowLightBlue()), //
-	LIGHTBLUEYELLOWBROWN/*- */(lightBlueYellowBrown()), //
-	BROWNYELLOWGREEN/*-     */(brownYellowGreen()), //
-	GREENYELLOWBROWN/*-     */(greenYellowBrown()), //
-//	PURPLEYELLOWGREENRED/*- */(purpleYellowGreenRed()), //
-//	REDGREENYELLOWPURPLE/*- */(redGreenYellowPurple()), //
-	GREENWHITEBROWN/*-      */(greenWhiteBrown()), //
-	BROWNWHITEGREEN/*-      */(brownWhiteGreen()), //
-	BLUELIMERED/*-          */(blueLimeRed()), //
-	REDLIMEBLUE/*-          */(redLimeBlue()), //
-	RANDOM/*-               */(randomPalette()),//
-	;
-	private final Palette palette;
+// Functions with domain and range: 0.0..1.0
+public interface Function {
+	public static final int length = 256;
 
-	private PaletteTypes(Palette palette) {
-		this.palette = palette;
-	}
+	public double ofX(double x);
 
-	public Palette getPalette() {
-		return palette;
+	default public double clamp(double x) {
+		return Math.min(1.0, Math.max(x, 0));
 	}
 }

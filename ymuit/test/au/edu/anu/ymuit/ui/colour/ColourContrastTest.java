@@ -26,45 +26,31 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour;
 
-/**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
- */
-// Triangle wave 
-public class Triangle extends Sine {
-	private static double twoOnPi = 2 / Math.PI;
+import static org.junit.jupiter.api.Assertions.*;
 
-	/**
-	 * Triangle wave function with offset 4/3 and 1 cycle over domain 0..255
-	 */
-	public Triangle() {
-		this(4.0 / 3.0, 1.0);
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+import au.edu.anu.ymuit.ui.colour.ColourContrast;
+import javafx.scene.paint.Color;
+
+class ColourContrastTest {
+
+	@Test
+	void test() {
+		Color bkg = Color.WHITE;
+		int n = 2 * 2 * 2;
+		Map<String, Color> res = ColourContrast.allContrastingColours(bkg, n);
+		assertTrue(res.size() <= n);
+		for (Map.Entry<String, Color> e1 : res.entrySet()) {
+			Color c1 = e1.getValue();
+			double d1 = ColourContrast.colourDistance(bkg, c1);
+			assertTrue(d1 >= ColourContrast.distanceFromBkg());
+		}
+		ColourContrast.show();
 	}
 
-	/**
-	 * Triangle wave function
-	 * 
-	 * @param offsetPar phase = 2PI/offset
-	 * @param nCycles   frequency = 2PI * nCycles
-	 */
-	public Triangle(double offsetPar, double nCycles) {
-		super(offsetPar, nCycles);
-	}
-
-	/**
-	 * Triangle wave function // https://en.wikipedia.org/wiki/Triangle_wave
-	 * 
-	 * @param x 0.0 - 1.0
-	 * @return f(x) 0.0 - 1.0
-	 */
-	@Override
-	public double ofX(double x) {
-		// https://en.wikipedia.org/wiki/Triangle_wave
-		double y = (twoOnPi * Math.asin(Math.sin(frequency * x + phase)) + 1.0) / 2.0;
-		return clamp(y);
-
-	}
 }

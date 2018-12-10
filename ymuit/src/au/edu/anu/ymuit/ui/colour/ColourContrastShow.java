@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,57 +22,54 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour;
+package au.edu.anu.ymuit.ui.colour;
 
-import au.edu.anu.fses.ui.colour.functions.Function;
+import java.util.Map;
+
+import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-/**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
- */
-public class Palette {
-	private Color[] palette;
+public class ColourContrastShow extends Application {
+	private static Map<Color, RegionIndexingTree<String>> colourQts;
 
-	/**
-	 * Creates a palette of 256 colours based on functions contained within each Band.
-	 * 
-	 * @param red red band
-	 * @param green geen band
-	 * @param blue blue band
-	 * @param opacity (0.0 - 1.0)
-	 */
-	public Palette(Band red, Band green, Band blue, double opacity) {
-		palette = new Color[Function.length];
-		for (int i = 0; i < Function.length; i++)
-			palette[i] = Color.color(red.getValueAt(i), green.getValueAt(i), blue.getValueAt(i), opacity);
+	public static void setData(Map<Color, RegionIndexingTree<String>> cq) {
+		colourQts = cq;
 	}
 
-	/**
-	 * Returns the palette colour for the value v. v is assumed to be within the range min to max
-	 * @param v value 
-	 * @param min minimum value of v
-	 * @param max maximum value of v
-	 * @return colour for value v
-	 */
-	public Color getColour(double v, double min, double max) {
-		int idx = getIndex(v, min, max);
-		return palette[idx];
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Contrasting colours");
+		// Set up a gridpane with scrollpanes with lines drawn each each colour.
+		Button btn = new Button();
+		btn.setText("Say 'Hello World'");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Hello World!");
+			}
+		});
+
+		StackPane root = new StackPane();
+		root.getChildren().add(btn);
+		primaryStage.setScene(new Scene(root, 300, 250));
+		primaryStage.show();
+
 	}
 
-	private int getIndex(double v, double min, double max) {
-		v = Math.min(max, Math.max(v, min));
-		double r = max - min;
-		if (r <= 0)
-			return 0;
-		double p = (v-min) / r;
-		double p1 = Math.round(p * (Function.length - 1));
-		return (int) p1;
+	public static void main(String[] args) {
+		launch(args);
 	}
-
 }

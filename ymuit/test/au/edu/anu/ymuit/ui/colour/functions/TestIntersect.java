@@ -26,12 +26,15 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour.functions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import au.edu.anu.ymuit.ui.colour.functions.Function;
+import au.edu.anu.ymuit.ui.colour.functions.Intersect;
 
 class TestIntersect {
 

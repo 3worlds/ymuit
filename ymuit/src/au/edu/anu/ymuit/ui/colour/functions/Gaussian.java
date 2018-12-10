@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,45 +22,33 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
  * Author Ian Davies
  *
- * Date Dec 5, 2018
+ * Date 2 Dec. 2018
  */
-public class Bessel implements Function {
-	private static final double minimum = -0.2172268187;
-	private static final double range = 1.2171760499;
-	private double domain;
+// smooth curve symmetrical about x = 0.5
+public class Gaussian implements Function{
+	private static double d = Math.sqrt(2 * Math.PI);
+	private static double m = 1.0/0.4;
 
-	public Bessel() {
-		this(7.0 / 3.0);
-	}
-
-	public Bessel(double p) {
-		domain = Math.PI * p;
-	}
-
-	/**
-	 * A Bessel like wave function with variable number of waves
-	 * 
-	 * @param x
-	 *            domain 0.0..1.0
-	 * 
+	/** 
+	 * smooth bell curve symmetrical about x = 0.5
+	 * @param x  0.0 - 1.0
+	 * @return  f(x) 0.0 - 1.0
 	 */
 	@Override
 	public double ofX(double x) {
-		if (x <= 0.0)
-			return 1.0;
-		double x1 = domain * x;
-		double s = Math.sin(x1) / x1;
-		double result = (s - minimum) / range;
-		return clamp(result);
+		x = (x-0.5)*6;
+		double r= Math.exp(-x*x / 2.0) / d;	
+		return clamp(r*m);
 	}
 
 }

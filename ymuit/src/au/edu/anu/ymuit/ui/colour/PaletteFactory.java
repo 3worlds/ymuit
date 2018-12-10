@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,22 +22,18 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour;
+package au.edu.anu.ymuit.ui.colour;
 
-/**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
- */
-import static au.edu.anu.fses.ui.colour.functions.FunctionTypes.*;
+import static au.edu.anu.ymuit.ui.colour.functions.FunctionTypes.*;
 
 import java.util.Random;
 
-import au.edu.anu.fses.ui.colour.functions.FunctionTypes;
+import au.edu.anu.ymuit.ui.colour.functions.FunctionTypes;
 
 // Pre-defined palettes built with a viewer.
 public class PaletteFactory {

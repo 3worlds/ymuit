@@ -1,6 +1,5 @@
-package au.edu.anu.fses.ui.colour.functions;
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -12,7 +11,7 @@ package au.edu.anu.fses.ui.colour.functions;
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -23,58 +22,56 @@ package au.edu.anu.fses.ui.colour.functions;
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.*;
+package au.edu.anu.ymuit.ui.colour.functions;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import au.edu.anu.fses.ui.colour.functions.Function;
+/**
+ * Author Ian Davies
+ *
+ * Date 2 Dec. 2018
+ */
 
-class LineTest {
+// sine wave with frequency and phase
+public class Sine implements Function {
+	double phase;
+	double frequency;
 
-	@Test
-	@DisplayName("Line() - default constructor")
-	void testLine() {
-		Function f = new Line();
-		assertEquals(f.ofX(0.0),0.0);
-		assertEquals(f.ofX(0.25),0.25);
-		assertEquals(f.ofX(0.5),0.5);
-		assertEquals(f.ofX(0.75),0.75);
-		assertEquals(f.ofX(1.0),1.0);
+	/**
+	 * Sine wave function with offset 4/3 and 1 cycle over domain 0..255
+	 */
+	public Sine() {
+		// 4.0/1.0 -ve min at x= 0.5
+		// 4.0/2.0 90 deg -starts -ve
+		// 4.0/3.0 180 +ve max at x=0.5
+		// 4.0/4.0 270 deg starts +ve
+		this(4.0 / 3.0, 1.0);
 	}
 
-	@Test
-	@DisplayName("Line(m) with slope 2 and 0.5")
-	void testLineDouble() {
-		Function f = new Line(2,0);
-		assertEquals(f.ofX(0.0),0.0);
-		assertEquals(f.ofX(0.25),0.5);
-		assertEquals(f.ofX(0.5),1.0);
-		assertEquals(f.ofX(0.75),1.0);
-		assertEquals(f.ofX(1.0),1.0);
-		
-		f = new Line(0.5,0);
-		assertEquals(f.ofX(0.0),0.0);
-		assertEquals(f.ofX(0.25),0.125);
-		assertEquals(f.ofX(0.5),0.25);
-		assertEquals(f.ofX(0.75),0.375);
-		assertEquals(f.ofX(1.0),0.5);
+	/**
+	 * Sine wave function
+	 * 
+	 * @param offsetPar phase = 2PI/offset
+	 * @param nCycles   frequency = 2PI * nCycles
+	 */
+	public Sine(double offsetPar, double nCycles) {
+		this.phase = 2 * Math.PI / offsetPar;
+		this.frequency = 2 * Math.PI * nCycles;
 	}
 
-	@Test
-	@DisplayName("Line getY all values with default slope (1.0)")
-	void testGetY() {
-		Function f = new Line();
-		for (int i = 0 ; i<Function.length;i++) {
-			double x = (double)i/(double)(Function.length-1);
-			assertEquals(f.ofX(x),x);
-			assertTrue(f.ofX(x)>=0.0);
-			assertTrue(f.ofX(x)<=1.0);		
-		}
+	/**
+	 * Sine function
+	 * 
+	 * @param x 0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
+	@Override
+	public double ofX(double x) {
+		double y = (Math.sin(x * frequency + phase) + 1.0) / 2.0;
+		return clamp(y);
 	}
-
 
 }

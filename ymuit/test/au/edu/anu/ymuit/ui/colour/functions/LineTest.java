@@ -1,3 +1,4 @@
+package au.edu.anu.ymuit.ui.colour.functions;
 /**************************************************************************
  *  YMUIT - Yet More User-Interface Tools                                       *
  *                                                                        *
@@ -26,30 +27,56 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Map;
-
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.paint.Color;
+import au.edu.anu.ymuit.ui.colour.functions.Function;
+import au.edu.anu.ymuit.ui.colour.functions.Line;
 
-class ColourContrastTest {
+class LineTest {
 
 	@Test
-	void test() {
-		Color bkg = Color.WHITE;
-		int n = 2 * 2 * 2;
-		Map<String, Color> res = ColourContrast.allContrastingColours(bkg, n);
-		assertTrue(res.size() <= n);
-		for (Map.Entry<String, Color> e1 : res.entrySet()) {
-			Color c1 = e1.getValue();
-			double d1 = ColourContrast.colourDistance(bkg, c1);
-			assertTrue(d1 >= ColourContrast.distanceFromBkg());
-		}
-		ColourContrast.show();
+	@DisplayName("Line() - default constructor")
+	void testLine() {
+		Function f = new Line();
+		assertEquals(f.ofX(0.0),0.0);
+		assertEquals(f.ofX(0.25),0.25);
+		assertEquals(f.ofX(0.5),0.5);
+		assertEquals(f.ofX(0.75),0.75);
+		assertEquals(f.ofX(1.0),1.0);
 	}
+
+	@Test
+	@DisplayName("Line(m) with slope 2 and 0.5")
+	void testLineDouble() {
+		Function f = new Line(2,0);
+		assertEquals(f.ofX(0.0),0.0);
+		assertEquals(f.ofX(0.25),0.5);
+		assertEquals(f.ofX(0.5),1.0);
+		assertEquals(f.ofX(0.75),1.0);
+		assertEquals(f.ofX(1.0),1.0);
+		
+		f = new Line(0.5,0);
+		assertEquals(f.ofX(0.0),0.0);
+		assertEquals(f.ofX(0.25),0.125);
+		assertEquals(f.ofX(0.5),0.25);
+		assertEquals(f.ofX(0.75),0.375);
+		assertEquals(f.ofX(1.0),0.5);
+	}
+
+	@Test
+	@DisplayName("Line getY all values with default slope (1.0)")
+	void testGetY() {
+		Function f = new Line();
+		for (int i = 0 ; i<Function.length;i++) {
+			double x = (double)i/(double)(Function.length-1);
+			assertEquals(f.ofX(x),x);
+			assertTrue(f.ofX(x)>=0.0);
+			assertTrue(f.ofX(x)<=1.0);		
+		}
+	}
+
 
 }

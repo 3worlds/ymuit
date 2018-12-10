@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,55 +22,44 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour;
+
+import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
 
 /**
- * Author Ian Davies Date 28 Nov. 2018
+ * Author Ian Davies
  *
+ * Date 4 Dec. 2018
  */
-public class Line implements Function {
+public enum PaletteTypes {
+	BLACKWHITE/*-           */(blackWhite()), //
+	WHITEBLACK/*-           */(whiteBlack()), //
+	BLUEGREENRED/*-         */(blueGreenRed()), //
+	REDGREENBLUE/*-         */(redGreenBlue()), //
+	BROWNYELLOWLIGHTBLUE/*- */(brownYellowLightBlue()), //
+	LIGHTBLUEYELLOWBROWN/*- */(lightBlueYellowBrown()), //
+	BROWNYELLOWGREEN/*-     */(brownYellowGreen()), //
+	GREENYELLOWBROWN/*-     */(greenYellowBrown()), //
+//	PURPLEYELLOWGREENRED/*- */(purpleYellowGreenRed()), //
+//	REDGREENYELLOWPURPLE/*- */(redGreenYellowPurple()), //
+	GREENWHITEBROWN/*-      */(greenWhiteBrown()), //
+	BROWNWHITEGREEN/*-      */(brownWhiteGreen()), //
+	BLUELIMERED/*-          */(blueLimeRed()), //
+	REDLIMEBLUE/*-          */(redLimeBlue()), //
+	RANDOM/*-               */(randomPalette()),//
+	;
+	private final Palette palette;
 
-	private double m;
-	private double b;
-
-	/**
-	 * Default constructor (m=1; b=0)
-	 */
-	public Line() {
-		this(1, 0);
+	private PaletteTypes(Palette palette) {
+		this.palette = palette;
 	}
 
-	/**
-	 * Parameterised constructor.
-	 * 
-	 * 
-	 * @param m
-	 *            slope
-	 * @param b
-	 *            intercept (0.0..1.0)
-	 */
-	public Line(double m, double b) {
-		this.m = m;
-		this.b = b;
+	public Palette getPalette() {
+		return palette;
 	}
-
-	/**
-	 * Line with slope m and intersection 0.0
-	 * 
-	 * y = mx + b
-	 * 
-	 * @param x
-	 *            0.0 - 1.0
-	 * @return f(x) 0.0 - 1.0
-	 */
-	@Override
-	public double ofX(double x) {
-		double y = x * m + b;
-		return clamp(y);
-	}
-
 }

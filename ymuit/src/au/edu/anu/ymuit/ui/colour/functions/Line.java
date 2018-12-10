@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -27,3 +27,51 @@
  *                                                                        *
  **************************************************************************/
 
+package au.edu.anu.ymuit.ui.colour.functions;
+
+/**
+ * Author Ian Davies Date 28 Nov. 2018
+ *
+ */
+public class Line implements Function {
+
+	private double m;
+	private double b;
+
+	/**
+	 * Default constructor (m=1; b=0)
+	 */
+	public Line() {
+		this(1, 0);
+	}
+
+	/**
+	 * Parameterised constructor.
+	 * 
+	 * 
+	 * @param m
+	 *            slope
+	 * @param b
+	 *            intercept (0.0..1.0)
+	 */
+	public Line(double m, double b) {
+		this.m = m;
+		this.b = b;
+	}
+
+	/**
+	 * Line with slope m and intersection 0.0
+	 * 
+	 * y = mx + b
+	 * 
+	 * @param x
+	 *            0.0 - 1.0
+	 * @return f(x) 0.0 - 1.0
+	 */
+	@Override
+	public double ofX(double x) {
+		double y = x * m + b;
+		return clamp(y);
+	}
+
+}

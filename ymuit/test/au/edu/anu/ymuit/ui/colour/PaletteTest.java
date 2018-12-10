@@ -26,20 +26,34 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import au.edu.anu.ymuit.ui.colour.Palette;
+import au.edu.anu.ymuit.ui.colour.PaletteFactory;
+import javafx.scene.paint.Color;
 
 /**
- * Author Ian Davies
- * Date 28 Nov. 2018
+ * @author Ian Davies
  *
+ * @Date 2 Dec. 2018
  */
-// Functions with domain and range: 0.0..1.0
-public interface Function {
-	public static final int length = 256;
+class PaletteTest {
 
-	public double ofX(double x);
-
-	default public double clamp(double x) {
-		return Math.min(1.0, Math.max(x, 0));
+	@Test
+	void test() {
+		Palette p = PaletteFactory.blackWhite();
+		assertEquals(p.getColour(0, 0,1),Color.BLACK);
+		assertEquals(p.getColour(1, 0,1),Color.WHITE);
+		assertEquals(p.getColour(0.375, 0,1),Color.GRAY);		
+		
+		p = PaletteFactory.whiteBlack();
+		assertEquals(p.getColour(0, 0,1),Color.WHITE);
+		assertEquals(p.getColour(1, 0,1),Color.BLACK);
+		assertEquals(p.getColour(1.0-0.375, 0,1),Color.GRAY);		
 	}
+
 }

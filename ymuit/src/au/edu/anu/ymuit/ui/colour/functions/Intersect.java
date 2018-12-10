@@ -1,5 +1,5 @@
 /**************************************************************************
- *  YMUIT - Yet More User-Interface Tools                                       *
+ *  YMUIT - Yet More User-Interface Tools                                 *
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
@@ -11,7 +11,7 @@
  **************************************************************************                                       
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
- *  UIT is free software: you can redistribute it and/or modify           *
+ *  YMUIT is free software: you can redistribute it and/or modify         *
  *  it under the terms of the GNU General Public License as published by  *
  *  the Free Software Foundation, either version 3 of the License, or     *
  *  (at your option) any later version.                                   *
@@ -22,46 +22,59 @@
  *  GNU General Public License for more details.                          *                         
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
+ *  along with YMUIT.                                                     *
+ *  If not, see <https://www.gnu.org/licenses/gpl.html>.                  *
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.fses.ui.colour.functions;
+package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
  * Author Ian Davies
  *
- * Date 2 Dec. 2018
+ * Date 1 Dec. 2018
  */
-public class Power implements Function {
-	double radical;
+//
+public class Intersect implements Function {
+	double m1;
+	double m2;
+	double b2;
 
 	/**
-	 * Power function with radical 2
-	 */
-	public Power() {
-		this(2);
-	}
-
-	/**
-	 * Power function with radical r
+	 * Asymmetrical triangle
 	 * 
-	 * @param r power radical
+	 * @param Slope line 1 =2, intersection = 0
+	 * @param m2    Slope line 2 = -1
+	 * @param b2    Intersection of second line = 1.5
 	 */
-	public Power(double r) {
-		radical = r;
+	public Intersect() {
+		this(2, -1, 1.5);
 	}
 
 	/**
-	 * power function
+	 * 
+	 * @param m1 Slope of first line (intersect = 0)
+	 * @param m2 Slope of second line (opposite sign to first line)
+	 * @param b2 Intersection of second line
+	 */
+	public Intersect(double m1, double m2, double b2) {
+		this.m1 = m1;
+		this.m2 = m2;
+		this.b2 = b2;
+	}
+
+	/**
+	 * The minimum of two intersecting lines
 	 * 
 	 * @param x 0.0 - 1.0
-	 * @return x^radical
+	 * @return f(x) 0.0 - 1.0
 	 */
 	@Override
 	public double ofX(double x) {
-		double result = Math.pow(x, radical);
-		return clamp(result);
+		double y1 = m1 * x;
+		double y2 = m2 * x + b2;
+		double y = Math.min(y1, y2);
+		return clamp(y);
 	}
 
 }
