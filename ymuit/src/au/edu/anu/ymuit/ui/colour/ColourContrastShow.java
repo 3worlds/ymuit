@@ -41,7 +41,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Author Ian Davies
+ *
+ * Date 17 Dec. 2018
+ */
+//TODO dialog to show contrasting colours
 public class ColourContrastShow extends Application {
+	@SuppressWarnings("unused")
 	private static Map<Color, RegionIndexingTree<String>> colourQts;
 
 	public static void setData(Map<Color, RegionIndexingTree<String>> cq) {
