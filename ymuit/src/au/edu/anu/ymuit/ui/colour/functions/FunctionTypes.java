@@ -38,9 +38,10 @@ package au.edu.anu.ymuit.ui.colour.functions;
 /**
  * 
  * Pre-defined parameterised functions for generating palettes.
- * Naming convention function<first par><second par>
+ * 
  * 
  */
+//Naming convention is function+integer+alpha to categorise first and second parameters
 public enum FunctionTypes {
 	GAUSSIAN/*-       */(new Gaussian()), //
 	INTERSECT1A/*-    */(new Intersect(4, -1.0 / 3.0, 13.0 / 12.0)), //
@@ -67,10 +68,10 @@ public enum FunctionTypes {
 	POWER6/*-         */(new Power(6)), //
 	POWER8/*-         */(new Power(8)), //
 	POWER16/*-        */(new Power(16)), //
-	BESSEL1/*-        */(new Bessel(7.0/3.0)), // 2
-	BESSEL2/*-        */(new Bessel(7.0/1.6)), // 3
-	BESSEL3/*-        */(new Bessel(7.0/1.08)), // 4
-	BESSEL4/*-        */(new Bessel(7.0/0.82)), // 5
+	BESSEL1/*-        */(new Bessel(7.0 / 3.0)), // 2
+	BESSEL2/*-        */(new Bessel(7.0 / 1.6)), // 3
+	BESSEL3/*-        */(new Bessel(7.0 / 1.08)), // 4
+	BESSEL4/*-        */(new Bessel(7.0 / 0.82)), // 5
 	SINE11/*-         */(new Sine(4.0 / 1.0, 1.0)), //
 	SINE21/*-         */(new Sine(4.0 / 2.0, 1.0)), //
 	SINE31/*-         */(new Sine(4.0 / 3.0, 1.0)), //
