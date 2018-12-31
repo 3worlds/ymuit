@@ -1,5 +1,5 @@
 <!--===================================================================================
- ant and ivy scripts for project <ymuit> version 0.1.1 (Mon Dec 31 15:31:30 AEDT 2018)
+ ant and ivy scripts for project <ymuit> version 0.1.0 (Tue Dec 04 14:12:38 AEDT 2018)
  author: Jacques Gignoux <jacques.gignoux@upmc.fr>
 
  CAUTION: this file is generated - DO NOT EDIT!
@@ -12,7 +12,7 @@
 
 	<info	organisation="au.edu.anu.fses"
 			module="ymuit"
-			revision="0.1.1"
+			revision="0.1.0"
 			status="integration">
 		<license name="gpl3" url="https://www.gnu.org/licenses/gpl-3.0.txt"/>
 		<description>This module contains generic, all-purpose, basic utilities for almost any java project.</description>
@@ -29,7 +29,6 @@
 	</publications>
 
 	<dependencies>
-		<dependency org="fr.ens.biologie" name="generics" rev="+"/>
 		<dependency org="fr.cnrs.iees" name="uit" rev="+"/>
 	</dependencies>
 
