@@ -33,6 +33,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.math.util.MathUtils;
+
 import fr.cnrs.iees.uit.indexing.BoundedRegionIndexingTree;
 import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
 import fr.cnrs.iees.uit.space.Box;
@@ -175,25 +177,6 @@ public class ColourContrast {
 	}
 
 	/**
-	 * @param x:
-	 *            array of pairs: 1 pair = 1 dim, 2 pairs = 2 dim etc...
-	 * @return distance between two points in n Dim space.
-	 */
-	private static double distance(double... x) {
-		assert (x.length % 2 == 0);
-		double sum = 0;
-		for (int c = 1; c < x.length; c += 2) {
-			double x1 = x[c - 1];
-			double x2 = x[c];
-			double dx = x2 - x1;
-			sum += (dx * dx);
-		}
-		if (sum > 0)
-			return Math.sqrt(sum);
-		return 0;
-	}
-
-	/**
 	 * Distance between colours in RGB 3D space assuming a unit cube.
 	 * 
 	 * @param c1
@@ -203,7 +186,9 @@ public class ColourContrast {
 	 * @return distance in RGB space between colours c1 and c2 
 	 */
 	public static double colourDistance(Color c1, Color c2) {
-		return distance(c1.getRed(), c2.getRed(), c1.getGreen(), c2.getGreen(), c1.getBlue(), c2.getBlue());
+		double [] p1 = {c1.getRed(),c1.getGreen(),c1.getBlue()};
+		double [] p2 = {c2.getRed(),c2.getGreen(),c2.getBlue()};
+		return MathUtils.distance(p1,p2);
 	}
 
 	/**
