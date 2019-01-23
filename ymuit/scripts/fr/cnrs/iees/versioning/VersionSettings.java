@@ -43,7 +43,8 @@ public class VersionSettings {
 	 */
 	protected static String[][] DEPS = { 
 			{"fr.ens.biologie", "generics", "+"},
-			{"fr.cnrs.iees", "uit", "+"}
+			{"fr.cnrs.iees", "uit", "+"},
+			{"org.apache.commons" ,"commons-math","2.+"}
 	};
 
 }
