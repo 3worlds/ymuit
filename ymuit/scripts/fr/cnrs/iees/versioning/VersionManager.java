@@ -1,32 +1,3 @@
-/**************************************************************************
- *  OMHTK - One More Handy Tool Kit                                       *
- *                                                                        *
- *  Copyright 2018: Shayne FLint, Jacques Gignoux & Ian D. Davies         *
- *       shayne.flint@anu.edu.au                                          *
- *       jacques.gignoux@upmc.fr                                          *
- *       ian.davies@anu.edu.au                                            * 
- *                                                                        *
- *  OMHTK is a bunch of useful, very generic interfaces for designing     *
- *  consistent, plus some other utilities. The kind of things you need    *
- *  in all software projects and keep rebuilding all the time.            *
- *                                                                        *
- **************************************************************************                                       
- *  This file is part of OMHTK (One More Handy Tool Kit).                 *
- *                                                                        *
- *  OMHTK is free software: you can redistribute it and/or modify         *
- *  it under the terms of the GNU General Public License as published by  *
- *  the Free Software Foundation, either version 3 of the License, or     *
- *  (at your option) any later version.                                   *
- *                                                                        *
- *  OMHTK is distributed in the hope that it will be useful,              *
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *  GNU General Public License for more details.                          *                         
- *                                                                        *
- *  You should have received a copy of the GNU General Public License     *
- *  along with UIT.  If not, see <https://www.gnu.org/licenses/gpl.html>. *
- *                                                                        *
- **************************************************************************/
 package fr.cnrs.iees.versioning;
 
 import java.io.BufferedReader;
@@ -132,7 +103,22 @@ public class VersionManager {
 	"\t\t<ivy:retrieve pattern=\"${ivy.retrieve.pattern}\" conf=\"${ivy.configurations}\"/>\n" +
 	"\t</target>\n\n" +
 	"\t<target name=\"makeJar\" description=\"pack as a jar library\" depends=\"makeArtifactDir,resolve\">\n" +
-	"\t\t<jar destfile=\"${jarlib}/${project}.jar\" basedir=\"bin\" excludes=\"**/VersionManager.*,**/LicenseManager.*,**/current-version.txt\"/>\n" +
+	"\t\t<jar destfile=\"${jarlib}/${project}.jar\">\n" + 
+	"\t\t\t<fileset dir=\"bin\" \n" + 
+	"\t\t\t\texcludes=\"**/VersionManager.*,**/LicenseManager.*,**/current-version.txt,**/*.xml,**/*Test.class\"/>\n" + 
+	"\t\t\t<fileset dir=\"src\"/>\n" + 
+	"\t\t\t<manifest>\n" + 
+	"\t\t\t\t<attribute name=\"Implementation-Vendor\" value=\"CNRS/ANU\"/>\n" + 
+	"\t\t\t\t<attribute name=\"Implementation-Title\" value=\"" + ORG + "\"/>\n" + 
+	"\t\t\t\t<attribute name=\"Implementation-Version\" value=\"";
+	// here comes the version number
+	private static String build2 = "\"/>\n" + 
+	"\t\t\t\t<attribute name=\"Built-By\" value=\"${user.name}\"/>\n ";
+	// here comes the main class, if not null
+	// Nb in the future there may be a classpath attribute: Class-Path: .3w/tw-dep.jar .3w/threeWorlds.jar
+	private static String build3 =
+	"\t\t\t</manifest>\n" + 
+	"\t\t</jar>\n" + 
 	"\t</target>\n\n" +
 	"\t<target name=\"publishJar\" description=\"make jar library available to others\" depends=\"makeJar\">\n" +
 	"\t\t<ivy:publish resolver=\"local\" overwrite=\"true\"  forcedeliver=\"true\">\n" +
@@ -261,7 +247,10 @@ public class VersionManager {
 		File ivyFile = Paths.get(workDir, "ivy.xml").toFile();
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(ivyFile));
-			fw.write(headComment1+version.toString()+headComment2+ivy1+version.toString()+ivy2+buildDependencyList()+ivy3);
+			fw.write(headComment1+version.toString()+
+				headComment2+ivy1+version.toString()+
+				ivy2+buildDependencyList()+
+				ivy3);
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -271,7 +260,13 @@ public class VersionManager {
 		File antFile = Paths.get(workDir, "build.xml").toFile();
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(antFile));
-			fw.write(headComment1+version.toString()+headComment2+build1);
+			String mainClass =""; 
+			if (MAINCLASS!=null) 
+				mainClass = "\t\t\t\t<attribute name=\"Main-Class\" value=\"" + MAINCLASS + "\"/>\n";
+			fw.write(headComment1+version.toString()+
+				headComment2+build1+version.toString()+
+				build2+mainClass+
+				build3);
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();

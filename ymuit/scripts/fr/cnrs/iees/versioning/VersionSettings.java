@@ -46,5 +46,12 @@ public class VersionSettings {
 			{"fr.cnrs.iees", "uit", "+"},
 			{"org.apache.commons" ,"commons-math","2.+"}
 	};
+	
+	/** The name of the main class to put in the jar manifest, if any. This enables users to
+	 * run the jar using this class as the entry point. Of course this must be a fully qualified
+	 * valid java class name found in the jar. 
+	 */
+	protected static String MAINCLASS = null;
+
 
 }
