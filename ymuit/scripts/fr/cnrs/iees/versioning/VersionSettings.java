@@ -53,5 +53,4 @@ public class VersionSettings {
 	 */
 	protected static String MAINCLASS = null;
 
-
 }
