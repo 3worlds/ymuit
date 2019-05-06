@@ -1,5 +1,5 @@
 <!--===================================================================================
- ant and ivy scripts for project <ymuit> version 0.1.5 (Mon May 06 15:26:03 CEST 2019)
+ ant and ivy scripts for project <ymuit> version 0.1.4 (Mon May 06 13:47:13 CEST 2019)
  author: Jacques Gignoux <jacques.gignoux@upmc.fr>
 
  CAUTION: this file is generated - DO NOT EDIT!
@@ -47,7 +47,7 @@
 			<manifest>
 				<attribute name="Implementation-Vendor" value="CNRS/ANU"/>
 				<attribute name="Implementation-Title" value="au.edu.anu.ymuit"/>
-				<attribute name="Implementation-Version" value="0.1.5"/>
+				<attribute name="Implementation-Version" value="0.1.4"/>
 				<attribute name="Built-By" value="${user.name}"/>
  			</manifest>
 		</jar>
