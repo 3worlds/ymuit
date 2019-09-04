@@ -54,7 +54,7 @@ public class VersionSettings {
 	 * 
 	 */
 	protected static String[][] DEPS = { 
-			{"fr.ens.biologie", "generics", "[0.1.0,)", null},
+			{"fr.ens.biologie", "generics", "[0.1.10,)", null},
 			{"fr.cnrs.iees", "uit", "[0.1.0,)", null},
 			{"org.apache.commons" ,"commons-math","2.+", null},
 			{"org.openjfx", "javafx-fxml", "11+", "_os"},
