@@ -49,6 +49,7 @@ class ColourContrastTest {
 			Color c1 = e1.getValue();
 			double d1 = ColourContrast.colourDistance(bkg, c1);
 			assertTrue(d1 >= ColourContrast.distanceFromBkg());
+			System.out.println(c1);
 		}
 		ColourContrast.show();
 	}
