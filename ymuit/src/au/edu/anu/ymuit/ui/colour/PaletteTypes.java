@@ -62,4 +62,8 @@ public enum PaletteTypes {
 	public Palette getPalette() {
 		return palette;
 	}
+
+	public static PaletteTypes getDefault() {
+		return BLUELIMERED;
+	}
 }

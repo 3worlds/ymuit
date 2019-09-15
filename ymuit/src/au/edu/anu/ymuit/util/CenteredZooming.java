@@ -27,7 +27,7 @@
  *                                                                        *
  **************************************************************************/
 
-package au.edu.anu.ymuit.scrolling;
+package au.edu.anu.ymuit.util;
 
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
