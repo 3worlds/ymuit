@@ -163,7 +163,7 @@ public class ColourContrast {
 	 */
 	private static Map<String, Color> getNamedColourMap() throws ClassNotFoundException, IllegalAccessException {
 		Map<String, Color> map = new HashMap<>();
-		Class<?> clazz = Class.forName("javafx.scene.paint.Color");
+		Class<?> clazz = Class.forName("javafx.scene.paint.Color",true,Thread.currentThread().getContextClassLoader());
 		if (clazz != null) {
 			Field[] field = clazz.getFields();
 			for (int i = 0; i < field.length; i++) {
