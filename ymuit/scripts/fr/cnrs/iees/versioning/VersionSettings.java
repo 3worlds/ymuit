@@ -61,9 +61,9 @@ public class VersionSettings {
 			{"org.openjfx", "javafx-controls", "11+", "_os"},
 			{"org.openjfx", "javafx-graphics", "11+", "_os"},
 			{"org.openjfx", "javafx-base", "11+", "_os"},
-			{"org.openjfx", "javafx-web", "11+", "_os"},
-			{"org.openjfx", "javafx-media", "11+", "_os"},
-			{"org.openjfx", "javafx-swing", "11+", "_os"},
+			//{"org.openjfx", "javafx-web", "11+", "_os"},
+			//{"org.openjfx", "javafx-media", "11+", "_os"},
+			//{"org.openjfx", "javafx-swing", "11+", "_os"},
 
 	};
 	
