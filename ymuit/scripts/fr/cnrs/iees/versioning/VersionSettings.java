@@ -57,13 +57,13 @@ public class VersionSettings {
 			{"fr.ens.biologie", "generics", "[0.1.12,)", null},
 			{"fr.cnrs.iees", "uit", "[0.1.0,)", null},
 			{"org.apache.commons" ,"commons-math","2.+", null},
-			{"org.openjfx", "javafx-fxml", "11+", "_os"},
-			{"org.openjfx", "javafx-controls", "11+", "_os"},
-			{"org.openjfx", "javafx-graphics", "11+", "_os"},
-			{"org.openjfx", "javafx-base", "11+", "_os"},
-			//{"org.openjfx", "javafx-web", "11+", "_os"},
-			//{"org.openjfx", "javafx-media", "11+", "_os"},
-			//{"org.openjfx", "javafx-swing", "11+", "_os"},
+			{"org.openjfx", "javafx-fxml", "[11,)", "_os"},
+			{"org.openjfx", "javafx-controls", "[11,)", "_os"},
+			{"org.openjfx", "javafx-graphics", "[11,)", "_os"},
+			{"org.openjfx", "javafx-base", "[11,)", "_os"},
+			//{"org.openjfx", "javafx-web", "[11,)", "_os"},
+			//{"org.openjfx", "javafx-media", "[11,)", "_os"},
+			//{"org.openjfx", "javafx-swing", "[11,)", "_os"},
 
 	};
 	
