@@ -33,10 +33,10 @@
 		<dependency org="fr.ens.biologie" name="generics" rev="[0.1.12,)"/>
 		<dependency org="fr.cnrs.iees" name="uit" rev="[0.1.0,)"/>
 		<dependency org="org.apache.commons" name="commons-math" rev="2.+"/>
-		<dependency org="org.openjfx" name="javafx-fxml" rev="14-ea+6" m:classifier="linux"/>
-		<dependency org="org.openjfx" name="javafx-controls" rev="14-ea+6" m:classifier="linux"/>
-		<dependency org="org.openjfx" name="javafx-graphics" rev="14-ea+6" m:classifier="linux"/>
-		<dependency org="org.openjfx" name="javafx-base" rev="14-ea+6" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-fxml" rev="[11,)" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-controls" rev="[11,)" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-graphics" rev="[11,)" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-base" rev="[11,)" m:classifier="linux"/>
 <!--===================================================================================
 		<dependency org="org.openjfx" name="javafx-web" rev="11+" m:classifier="linux"/>
 		<dependency org="org.openjfx" name="javafx-media" rev="11+" m:classifier="linux"/>
