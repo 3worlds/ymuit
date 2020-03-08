@@ -30,7 +30,9 @@
 package au.edu.anu.ymuit.ui.colour;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.math.util.MathUtils;
@@ -39,6 +41,7 @@ import fr.cnrs.iees.uit.indexing.BoundedRegionIndexingTree;
 import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
 import fr.cnrs.iees.uit.space.Box;
 import fr.cnrs.iees.uit.space.Point;
+import fr.ens.biologie.generic.utils.Duple;
 import javafx.scene.paint.Color;
 
 /**
@@ -68,56 +71,41 @@ public class ColourContrast {
 	}
 
 	/**
-	 * Creates a map of colour names and colours that contrast with the given
-	 * background colour up to a maximum of maxChoices. Use these colour names to
-	 * set the css style sheet of the scene.node in question.
-	 * 
-	 * @param bkg
-	 *            background colour
-	 * @param maxChoices
-	 *            maximum number of colours. The more colours requested, the less
-	 *            contrast there will be between them.
-	 * @return Map of colour names and colours.
-	 */
-	public static Map<String, Color> allContrastingColours(Color bkg, int maxChoices) {
-		Map<String, Color> res = new HashMap<>();
-		int dim = (int) Math.cbrt(maxChoices);
-		double separation = 1.0 / (double) dim;
-		RegionIndexingTree<String> qt = getKTree(bkg);
-		int size = (int) (1.0 / separation);
-		for (int x = 0; x < size; x++) {
-			double px = x * separation + separation / 2.0;
-			for (int y = 0; y < size; y++) {
-				double py = y * separation + separation / 2.0;
-				for (int z = 0; z < size; z++) {
-					double pz = z * separation + separation / 2.0;
-					Point p = Point.newPoint(px, py, pz);
-					String name = qt.getNearestItem(p);
-					if (!res.containsKey(name))
-						res.put(name, colourMap.get(name));
-				}
-			}
-		}
-		return res;
-	}
-
-	/**
 	 * Creates a list of named colours that contrast with the given background
 	 * colour up to a maximum of maxChoices. Use these colour names to set the css
 	 * style sheet of the scene.node in question.
 	 * 
-	 * @param bkg
-	 *            background colour
-	 * @param maxChoices
-	 *            maximum number of colours. The more colours requested, the less
-	 *            contrast there will be between them.
+	 * @param bkg        background colour
+	 * @param maxChoices maximum number of colours. The more colours requested, the
+	 *                   less contrast there will be between them.
 	 * @return Array of strings of contrasting colours.
 	 */
-	public static String[] allContrastingColourNames(Color bkg, int maxChoices) {
-		Map<String, Color> colours = allContrastingColours(bkg, maxChoices);
+	public static String[] getContrastingColourNames(Color bkg, int maxChoices) {
+		Map<String, Duple<Integer, Color>> colours = _getContrastingColoursMap(bkg, maxChoices);
 		colours.keySet();
-		String[] res = colours.keySet().toArray(new String[0]);
-		return res;
+		String[] result = new String[colours.size()];
+		colours.forEach((k, v) -> {
+			result[v.getFirst()]=k;
+		});
+		return result;
+	}
+
+	public static List<Color> getContrastingColours(Color bkg, int maxChoices) {
+		Map<String, Duple<Integer, Color>> colours = _getContrastingColoursMap(bkg, maxChoices);
+		List<Color> result = new ArrayList<>();
+		colours.forEach((k, v) -> {
+			result.add(v.getSecond());
+		});
+		return result;
+	}
+
+	public static Map<String, Color> getContrastingColoursMap(Color bkg, int maxChoices) {
+		Map<String, Color> result = new HashMap<>();
+		Map<String, Duple<Integer, Color>> colours = _getContrastingColoursMap(bkg, maxChoices);
+		colours.forEach((k, v) -> {
+			result.put(k, v.getSecond());
+		});
+		return result;
 	}
 
 	private static RegionIndexingTree<String> getKTree(Color key) {
@@ -129,9 +117,9 @@ public class ColourContrast {
 
 	private static RegionIndexingTree<String> createKTree(Color key) {
 		Box limits = Box.boundingBox(Point.newPoint(0, 0, 0), Point.newPoint(1, 1, 1));
-		RegionIndexingTree<String> q = new BoundedRegionIndexingTree<>(limits);
-		q.setOptimisation(true);
-		colourQts.put(key, q);
+		RegionIndexingTree<String> result = new BoundedRegionIndexingTree<>(limits);
+		result.setOptimisation(true);
+		colourQts.put(key, result);
 		try {
 			if (colourMap.isEmpty())
 				colourMap = getNamedColourMap();
@@ -141,14 +129,14 @@ public class ColourContrast {
 				// System.out.println("bkg:\t" + key + "\tcolour:\t" + c + "\tdistance:\t" + d);
 				if ((d > distanceFromBackground) && (!entry.getKey().contains("TRANSPARENT"))) {
 					Point p = Point.newPoint(c.getRed(), c.getGreen(), c.getBlue());
-					q.insert(entry.getKey(), p);
+					result.insert(entry.getKey(), p);
 				}
 			}
 		} catch (ClassNotFoundException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return q;
+		return result;
 	}
 
 	/**
@@ -163,7 +151,8 @@ public class ColourContrast {
 	 */
 	private static Map<String, Color> getNamedColourMap() throws ClassNotFoundException, IllegalAccessException {
 		Map<String, Color> map = new HashMap<>();
-		Class<?> clazz = Class.forName("javafx.scene.paint.Color",true,Thread.currentThread().getContextClassLoader());
+		Class<?> clazz = Class.forName("javafx.scene.paint.Color", true,
+				Thread.currentThread().getContextClassLoader());
 		if (clazz != null) {
 			Field[] field = clazz.getFields();
 			for (int i = 0; i < field.length; i++) {
@@ -179,16 +168,14 @@ public class ColourContrast {
 	/**
 	 * Distance between colours in RGB 3D space assuming a unit cube.
 	 * 
-	 * @param c1
-	 *            first colour
-	 * @param c2
-	 *            second colour
-	 * @return distance in RGB space between colours c1 and c2 
+	 * @param c1 first colour
+	 * @param c2 second colour
+	 * @return distance in RGB space between colours c1 and c2
 	 */
 	public static double colourDistance(Color c1, Color c2) {
-		double [] p1 = {c1.getRed(),c1.getGreen(),c1.getBlue()};
-		double [] p2 = {c2.getRed(),c2.getGreen(),c2.getBlue()};
-		return MathUtils.distance(p1,p2);
+		double[] p1 = { c1.getRed(), c1.getGreen(), c1.getBlue() };
+		double[] p2 = { c2.getRed(), c2.getGreen(), c2.getBlue() };
+		return MathUtils.distance(p1, p2);
 	}
 
 	/**
@@ -202,4 +189,41 @@ public class ColourContrast {
 		ColourContrastShow.main(new String[0]);
 
 	}
+
+	/**
+	 * Creates a map of colour names and colours that contrast with the given
+	 * background colour up to a maximum of maxChoices. Use these colour names to
+	 * set the css style sheet of the scene.node in question. The value is a duple
+	 * with first entry an index. This is used to maintain consistent order
+	 * 
+	 * @param bkg        background colour
+	 * @param maxChoices maximum number of colours. The more colours requested, the
+	 *                   less contrast there will be between them.
+	 * @return Map of colour names and colours.
+	 */
+	private static Map<String, Duple<Integer, Color>> _getContrastingColoursMap(Color bkg, int maxChoices) {
+		Map<String, Duple<Integer, Color>> res = new HashMap<>();
+		int dim = (int) Math.cbrt(maxChoices);
+		double separation = 1.0 / (double) dim;
+		RegionIndexingTree<String> qt = getKTree(bkg);
+		int size = (int) (1.0 / separation);
+		int count = 0;
+		for (int x = 0; x < size; x++) {
+			double px = x * separation + separation / 2.0;
+			for (int y = 0; y < size; y++) {
+				double py = y * separation + separation / 2.0;
+				for (int z = 0; z < size; z++) {
+					double pz = z * separation + separation / 2.0;
+					Point p = Point.newPoint(px, py, pz);
+					String name = qt.getNearestItem(p);
+					if (!res.containsKey(name)) {
+						res.put(name, new Duple<Integer, Color>(count, colourMap.get(name)));
+						count++;
+					}
+				}
+			}
+		}
+		return res;
+	}
+
 }

@@ -43,7 +43,7 @@ class ColourContrastTest {
 	void test() {
 		Color bkg = Color.WHITE;
 		int n = 2 * 2 * 2;
-		Map<String, Color> res = ColourContrast.allContrastingColours(bkg, n);
+		Map<String, Color> res = ColourContrast.getContrastingColoursMap(bkg, n);
 		assertTrue(res.size() <= n);
 		for (Map.Entry<String, Color> e1 : res.entrySet()) {
 			Color c1 = e1.getValue();
