@@ -52,13 +52,18 @@ import javafx.scene.paint.Color;
 /**
  * https://docs.oracle.com/javase/8/javafx/api/javafx/scene/paint/Color.html
  * 
- * 1) Add all colours to an indexer that are a sufficient distance (3d space)
- * from the background.
+ * 1) Add all javafx named colours to an indexer that are a sufficient distance
+ * (3d space) from the background. They need to be from the set of named colours
+ * because for css we just use names rather than colours.
  * 
  * 2) Divide the space into n voxels and select one colour nearest to the center
  * of each voxel.
  * 
  * 3) Add to list of contrasting colours
+ * 
+ * But all this needs correcting : blues and red should be in a different range
+ * relative to green (most sensitive) cf:
+ * https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
  */
 
 public class ColourContrast {
@@ -85,7 +90,7 @@ public class ColourContrast {
 		colours.keySet();
 		String[] result = new String[colours.size()];
 		colours.forEach((k, v) -> {
-			result[v.getFirst()]=k;
+			result[v.getFirst()] = k;
 		});
 		return result;
 	}
@@ -173,6 +178,8 @@ public class ColourContrast {
 	 * @return distance in RGB space between colours c1 and c2
 	 */
 	public static double colourDistance(Color c1, Color c2) {
+		// TODO reds and blues need to be further apart
+		// https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
 		double[] p1 = { c1.getRed(), c1.getGreen(), c1.getBlue() };
 		double[] p2 = { c2.getRed(), c2.getGreen(), c2.getBlue() };
 		return MathUtils.distance(p1, p2);

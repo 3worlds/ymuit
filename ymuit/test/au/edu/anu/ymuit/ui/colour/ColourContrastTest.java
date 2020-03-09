@@ -30,6 +30,7 @@ package au.edu.anu.ymuit.ui.colour;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -42,16 +43,24 @@ class ColourContrastTest {
 	@Test
 	void test() {
 		Color bkg = Color.WHITE;
-		int n = 2 * 2 * 2;
+		int n = 2 * 2 * 2 * 2 * 2;
 		Map<String, Color> res = ColourContrast.getContrastingColoursMap(bkg, n);
 		assertTrue(res.size() <= n);
 		for (Map.Entry<String, Color> e1 : res.entrySet()) {
 			Color c1 = e1.getValue();
 			double d1 = ColourContrast.colourDistance(bkg, c1);
 			assertTrue(d1 >= ColourContrast.distanceFromBkg());
-			System.out.println(c1);
+			System.out.println("Distance: " + d1 + " > " + ColourContrast.distanceFromBkg() + "\t: " + e1.getKey());
 		}
-		ColourContrast.show();
+		System.out.println("--------------getContrastingColourNames");
+		String[] names = ColourContrast.getContrastingColourNames(bkg, n);
+		for (String name : names)
+			System.out.println(name);
+		System.out.println("--------------getContrastingColourNames");
+		List<Color> colours = ColourContrast.getContrastingColours(bkg, n);
+		for (Color colour : colours)
+			System.out.println(colour);
+		// ColourContrast.show();
 	}
 
 }
