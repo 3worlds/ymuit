@@ -64,6 +64,9 @@ import javafx.scene.paint.Color;
  * But all this needs correcting : blues and red should be in a different range
  * relative to green (most sensitive) cf:
  * https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
+ * 
+ * For just colours without names see:
+ * Colour displays for categorical images: C.A. Glasbey 2006
  */
 
 public class ColourContrast {
