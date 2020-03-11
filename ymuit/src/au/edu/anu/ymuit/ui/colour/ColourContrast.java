@@ -42,6 +42,8 @@ import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
 import fr.cnrs.iees.uit.space.Box;
 import fr.cnrs.iees.uit.space.Point;
 import fr.ens.biologie.generic.utils.Duple;
+import fr.ens.biologie.generic.utils.Tuple;
+import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
 /**
@@ -65,8 +67,8 @@ import javafx.scene.paint.Color;
  * relative to green (most sensitive) cf:
  * https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
  * 
- * For just colours without names see:
- * Colour displays for categorical images: C.A. Glasbey 2006
+ * For just colours without names see: Colour displays for categorical images:
+ * C.A. Glasbey 2006
  */
 
 public class ColourContrast {
@@ -211,9 +213,11 @@ public class ColourContrast {
 	 *                   less contrast there will be between them.
 	 * @return Map of colour names and colours.
 	 */
-	private static Map<String, Duple<Integer, Color>> _getContrastingColoursMap(Color bkg, int maxChoices) {
+	private static int minColourChoices = 2 * 2 * 2;
+
+	private static Map<String, Duple<Integer, Color>> _getContrastingColoursMap(Color bkg, int nColours) {
+		int dim = (int) Math.cbrt(nextPerfectCube(Math.max(nColours, minColourChoices)));
 		Map<String, Duple<Integer, Color>> res = new HashMap<>();
-		int dim = (int) Math.cbrt(maxChoices);
 		double separation = 1.0 / (double) dim;
 		RegionIndexingTree<String> qt = getKTree(bkg);
 		int size = (int) (1.0 / separation);
@@ -234,6 +238,75 @@ public class ColourContrast {
 			}
 		}
 		return res;
+	}
+
+	// waste of time doing this by digital sums!
+	private static int nextPerfectCube(int p) {
+		int t = (int) Math.cbrt(p);
+		int p1 = t * t * t;
+		if (p1 == p)
+			return p;
+		else
+			return nextPerfectCube(p + 1);
+	}
+
+	private static double sRGBtoLinear(double colorChannel) {
+		// Send this function a decimal sRGB gamma encoded color value
+		// between 0.0 and 1.0, and it returns a linearized value.
+
+		if (colorChannel <= 0.04045) {
+			return colorChannel / 12.92;
+		} else {
+			double t = ((colorChannel + 0.055) / 1.055);
+			return Math.pow(t, 2.4);
+		}
+	}
+
+	private static double luminance(Color c) {
+		return (0.2126 * sRGBtoLinear(c.getRed()) + 0.7152 * sRGBtoLinear(c.getGreen())
+				+ 0.0722 * sRGBtoLinear(c.getBlue()));
+	}
+
+	private static double YtoLstar(double lum) {
+		// Send this function a luminance value between 0.0 and 1.0,
+		// and it returns L* which is "perceptual lightness"
+		/*
+		 * L* is a value from 0 (black) to 100 (white) where 50 is the perceptual
+		 * "middle grey". L* = 50 is the equivalent of Y = 18.4, or in other words an
+		 * 18% grey card, representing the middle of a photographic exposure (Ansel
+		 * Adams zone V).
+		 */
+
+		if (lum <= (216.0 / 24389.0)) { // The CIE standard states 0.008856 but 216/24389 is the intent for
+										// 0.008856451679036
+			return lum * (24389.0 / 27.0); // The CIE standard states 903.3, but 24389/27 is the intent, making
+											// 903.296296296296296
+		} else {
+			return Math.pow(lum, (1.0 / 3.0)) * 116 - 16;
+		}
+	}
+	
+	private static Color adjustedColour(Color c) {
+		return new Color(0.2126 * c.getRed(),0.7152 * c.getGreen() , 0.0722 * c.getBlue(),c.getBrightness());
+	}
+
+	public static void main(String[] args) {
+		Color c = Color.GRAY;
+
+		
+		System.out.println("R: " + c.getRed() + ",\tLin: " + sRGBtoLinear(c.getRed()));
+		System.out.println("G: " + c.getGreen() + ",\tLin: " + sRGBtoLinear(c.getGreen()));
+		System.out.println("B: " + c.getBlue() + ",\tLin: " + sRGBtoLinear(c.getBlue()));
+		double Y = luminance(c);
+		System.out.println("Luminance: " + Y);
+		System.out.println("Percived lightness: " + YtoLstar(Y));
+		Color b = adjustedColour(c);
+		System.out.println("Orig: "+c+" Adj: "+b);
+//		for (int i = 1; i<100;i++) {
+//			int nc= nextPerfectCube(i);
+//			System.out.println("Next perfect cube root of "+i +" = " +nc);
+//			//System.out.println("Digital sum of "+i +" = " +getDigitalRoot(i));
+//		}
 	}
 
 }
