@@ -29,15 +29,20 @@
 
 package au.edu.anu.ymuit.ui.colour;
 
-import java.util.Map;
-
-import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
+import java.util.List;
+import fr.ens.biologie.generic.utils.Duple;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -48,30 +53,77 @@ import javafx.stage.Stage;
  */
 //TODO dialog to show contrasting colours
 public class ColourContrastShow extends Application {
-	@SuppressWarnings("unused")
-	private static Map<Color, RegionIndexingTree<String>> colourQts;
-
-	public static void setData(Map<Color, RegionIndexingTree<String>> cq) {
-		colourQts = cq;
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Contrasting colours");
+		BorderPane root = new BorderPane();
+		HBox top = new HBox();
+		root.setTop(top);
+		Canvas canvas = new Canvas();
+		canvas.setWidth(800);
+		canvas.setHeight(800);
+		ScrollPane sp = new ScrollPane(canvas);
+		root.setCenter(sp);
 		// Set up a gridpane with scrollpanes with lines drawn each each colour.
-		Button btn = new Button();
-		btn.setText("Say 'Hello World'");
+		Button btn = new Button("Show 1");
+		Button btn2 = new Button("Show 2");
+
+		TextField contrast = new TextField("0.1");
+		final ColorPicker colorPicker = new ColorPicker(Color.WHITE);
+
+		top.getChildren().addAll(btn, btn2, contrast, colorPicker);
+
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("Hello World!");
+				GraphicsContext gc = canvas.getGraphicsContext2D();
+				gc.setFill(colorPicker.getValue());
+				gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				List<Color> colours = ColourContrast.getContrastingColours64(colorPicker.getValue(),
+						Double.parseDouble(contrast.getText()));
+
+				double s = canvas.getWidth() / 8.0;
+				for (int i = 0; i < colours.size(); i++) {
+					int x = i / 8;
+					int y = i % 8;
+					gc.setFill(colours.get(i));
+					gc.fillRect(x * s + 10, y * s + 10, 30, 30);
+				}
+
+			}
+		});
+		btn2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				GraphicsContext gc = canvas.getGraphicsContext2D();
+				Color bkg = colorPicker.getValue();
+				Color txt = bkg.invert();
+				gc.setFill(bkg);
+				gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				List<Duple<String, Color>> colours = ColourContrast
+						.getContrastingColourNamePairs(colorPicker.getValue(), Double.parseDouble(contrast.getText()));
+
+				double s = canvas.getWidth() / 8.0;
+				for (int i = 0; i < colours.size(); i++) {
+					int x = i / 8;
+					int y = i % 8;
+					gc.setFill(colours.get(i).getSecond());
+					gc.fillRect(x * s + 10, y * s + 10, 30, 30);
+					gc.setFill(txt);
+					if (x % 2 == 0)
+						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 10);
+					else
+						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 50);
+
+				}
+
 			}
 		});
 
-		StackPane root = new StackPane();
-		root.getChildren().add(btn);
-		primaryStage.setScene(new Scene(root, 300, 250));
+		primaryStage.setScene(new Scene(root, 900, 900));
 		primaryStage.show();
 
 	}
