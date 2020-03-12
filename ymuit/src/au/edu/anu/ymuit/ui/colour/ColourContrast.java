@@ -253,7 +253,9 @@ public class ColourContrast {
 		return res;
 	}
 
-	private static List<Color> createColours64(Color bkg, double contrast) {
+	// this causes a compile error in SimpleSpaceWidget because it's called directly from there
+//	private static List<Color> createColours64(Color bkg, double contrast) {
+	public static List<Color> createColours64(Color bkg, double contrast) {
 		List<ColourItem> cList = createBigColourItems(new ColourItem(-1, "BKG", bkg), contrast * 100);
 		List<Color> result = new ArrayList<>();
 		cList.forEach((ci) -> {
