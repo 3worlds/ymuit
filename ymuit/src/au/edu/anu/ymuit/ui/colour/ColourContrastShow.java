@@ -101,6 +101,10 @@ public class ColourContrastShow extends Application {
 				GraphicsContext gc = canvas.getGraphicsContext2D();
 				Color bkg = colorPicker.getValue();
 				Color txt = bkg.invert();
+				ColourItem bkgci = new ColourItem(-1,"",bkg);
+				ColourItem txtci = new ColourItem(-1,"",txt);
+				if (bkgci.distance(txtci)<0.05)// mid point gray problem
+					txt = Color.WHITE;
 				gc.setFill(bkg);
 				gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				List<Duple<String, Color>> colours = ColourContrast

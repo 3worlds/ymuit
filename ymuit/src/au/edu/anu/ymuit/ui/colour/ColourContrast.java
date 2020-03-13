@@ -241,7 +241,7 @@ public class ColourContrast {
 					String name = qt.getNearestItem(p);
 					if (!res.containsKey(name)) {
 						ColourItem ci = colourMap.get(name);
-						// perceived luminosity threshold
+						// perceived luminosity ("L*") threshold black=0, white = 100
 						double delta = Math.abs(ci.getpLum() - bkgItem.getpLum());
 						if (delta > threshold) {
 							res.put(name, ci);
@@ -253,9 +253,7 @@ public class ColourContrast {
 		return res;
 	}
 
-	// this causes a compile error in SimpleSpaceWidget because it's called directly from there
-//	private static List<Color> createColours64(Color bkg, double contrast) {
-	public static List<Color> createColours64(Color bkg, double contrast) {
+	private static List<Color> createColours64(Color bkg, double contrast) {
 		List<ColourItem> cList = createBigColourItems(new ColourItem(-1, "BKG", bkg), contrast * 100);
 		List<Color> result = new ArrayList<>();
 		cList.forEach((ci) -> {
@@ -311,7 +309,6 @@ public class ColourContrast {
 				public int compare(ColourItem o1, ColourItem o2) {
 					return o1.getIndex().compareTo(o2.getIndex());
 				}
-
 			});
 		}
 		return result;
