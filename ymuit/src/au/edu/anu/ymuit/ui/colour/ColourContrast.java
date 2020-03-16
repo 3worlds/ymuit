@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -224,7 +225,7 @@ public class ColourContrast {
 	 */
 
 	private static Map<String, ColourItem> _getContrastingColoursMap(Color bkg, double threshold) {
-		int dim = 3; // fix at 27 colours out of 148 less those that don't pass the lum threshold
+		int dim = 4; // fix at 27 colours out of 148 less those that don't pass the lum threshold
 		Map<String, ColourItem> res = new HashMap<>();
 		double separation = 1.0 / (double) dim;
 		ColourItem bkgItem = new ColourItem(-1, "BKG", bkg);
@@ -265,7 +266,6 @@ public class ColourContrast {
 	private static List<ColourItem> createBigColourItems(ColourItem bkgItem, double threshold) {
 		Random rnd = new Pcg32();
 		rnd.setSeed(seed);
-		List<ColourItem> result = new ArrayList<>();
 		Map<String, ColourItem> lookupMap = new HashMap<>();
 		Integer name = 0;
 		Box limits = Box.boundingBox(Point.newPoint(0, 0, 0), Point.newPoint(1, 1, 1));
@@ -286,8 +286,11 @@ public class ColourContrast {
 				}
 			}
 		}
-		double separation = 1.0 / 4.0;
-		int size = 4;
+		List<ColourItem> result = new ArrayList<>();
+		// List<ColourItem> lst = new ArrayList<>();
+
+		double separation = 1.0 / 5.0;
+		int size = 5;
 		for (int x = 0; x < size; x++) {
 			double px = x * separation + separation / 2.0;
 			for (int y = 0; y < size; y++) {
@@ -303,20 +306,45 @@ public class ColourContrast {
 					}
 				}
 			}
-			result.sort(new Comparator<ColourItem>() {
-
-				@Override
-				public int compare(ColourItem o1, ColourItem o2) {
-					return o1.getIndex().compareTo(o2.getIndex());
-				}
-			});
 		}
+		// arrange in order of max distance.
+		// No good: tends to jump back to the same region every second time so we get
+		// too many alternating purple/greens etc
+//		if (!lst.isEmpty()) {
+//			result.add(lst.get(0));
+//			lst.remove(0);
+//			while (!lst.isEmpty()) {
+//				ColourItem from = result.get(result.size() - 1);
+//				int nxtIndex = -1;
+//				double maxd = 0;
+//				for (int i = 0; i < lst.size(); i++) {
+//					double d = lst.get(i).distance(from);
+//					if (d > maxd) {
+//						maxd = d;
+//						nxtIndex = i;
+//					}
+//				}
+//				result.add(lst.get(nxtIndex));
+//				lst.remove(nxtIndex);
+//			}
+//		}
+		// OR
+//		result.clear();
+//		result.addAll(lst);
+		// instead we could hard code some kind of visiting pattern
+		result.sort(new Comparator<ColourItem>() {
+
+			@Override
+			public int compare(ColourItem o1, ColourItem o2) {
+				return o1.getIndex().compareTo(o2.getIndex());
+			}
+		});
+
 		return result;
 	}
 
 	public static void main(String[] args) {
 		show();
-
 	}
 
 }
