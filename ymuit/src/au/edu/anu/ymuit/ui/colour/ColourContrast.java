@@ -3,12 +3,12 @@
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
- *       ian.davies@anu.edu.au                                            * 
+ *       ian.davies@anu.edu.au                                            *
  *                                                                        *
  *  YMUIT contains a number of classes and helper methods for working     *
  *  with java fx classes.                                                 *
  *                                                                        *
- **************************************************************************                                       
+ **************************************************************************
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
  *  YMUIT is free software: you can redistribute it and/or modify         *
@@ -19,7 +19,7 @@
  *  YMUIT is distributed in the hope that it will be useful,              *
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *  GNU General Public License for more details.                          *                         
+ *  GNU General Public License for more details.                          *
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
  *  along with YMUIT.                                                     *
@@ -33,7 +33,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -55,17 +54,17 @@ import javafx.scene.paint.Color;
  * A method of selecting a set of contrasting colours from 3d colour space. The
  * distance between colours is based on perceived difference (cf ColourItem
  * class).
- * 
+ *
  * 1) Add all javafx named colours to an indexer that are a sufficient distance
  * (3d space) from the background. They need to be from the set of named colours
  * because for css we just use names rather than colours.
- * 
+ *
  * or Generate 4096 colours (without real names).
- * 
+ *
  * 2) Divide the 3d space into n volumes and select one colour nearest to the
  * center of each volume. Then select from that list those which have a user
  * supplied difference in luminosity from the given background.
- * 
+ *
  */
 
 public class ColourContrast {
@@ -76,7 +75,7 @@ public class ColourContrast {
 	/**
 	 * Upto 64 colours from 4096 generated colours. The number will be less than 64
 	 * depending on contrast required with background.
-	 * 
+	 *
 	 * @param bkg      background colour
 	 * @param contrast (0.0 - 1.0)
 	 * @return List of Color
@@ -92,7 +91,7 @@ public class ColourContrast {
 	 * The number return depends on the background colour choice and the contrast
 	 * requested. Use these colour names to set the css style sheet of the
 	 * scene.node in question.
-	 * 
+	 *
 	 * @param bkg      background colour
 	 * @param contrast (0.0 - 1.0)
 	 * @return Array of Javafx color names for contrasting colours.
@@ -186,9 +185,9 @@ public class ColourContrast {
 	/**
 	 * From:
 	 * https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
-	 * 
+	 *
 	 * Finds all named colours in javaFx through reflection
-	 * 
+	 *
 	 * @return: map (Name, Color) of all named colours in javafx.scene.paint.Color
 	 * @throws ClassNotFoundException
 	 * @throws IllegalAccessException
@@ -217,7 +216,7 @@ public class ColourContrast {
 	 * background colour up to a maximum of maxChoices. Use these colour names to
 	 * set the css style sheet of the scene.node in question. The value is a duple
 	 * with first entry an index. This is used to maintain consistent order
-	 * 
+	 *
 	 * @param bkg        background colour
 	 * @param maxChoices maximum number of colours. The more colours requested, the
 	 *                   less contrast there will be between them.

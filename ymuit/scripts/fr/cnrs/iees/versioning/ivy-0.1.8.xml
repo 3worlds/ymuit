@@ -1,10 +1,10 @@
 <!--===================================================================================
- ant and ivy scripts for project <ymuit> version 0.1.9 (Mon Mar 30 14:05:08 CEST 2020)
+ ant and ivy scripts for project <ymuit> version 0.1.8 (Mon Sep 16 10:21:47 CEST 2019)
  author: Jacques Gignoux <jacques.gignoux@upmc.fr>
 
  CAUTION: this file is generated - DO NOT EDIT!
  If you need to change this file, edit ../version/Setup.java appropriately and run it.
- This will re-generate this file and manage version numbers properly. 
+ This will re-generate this file and manage version numbers properly.
 ===================================================================================-->
 <ivy-module version="2.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -13,7 +13,7 @@
 
 	<info	organisation="au.edu.anu.ymuit"
 			module="ymuit"
-			revision="0.1.9"
+			revision="0.1.8"
 			status="integration">
 		<license name="gpl3" url="https://www.gnu.org/licenses/gpl-3.0.txt"/>
 		<description>This module contains generic, all-purpose, basic utilities for almost any java project.</description>
@@ -31,12 +31,17 @@
 
 	<dependencies>
 		<dependency org="fr.ens.biologie" name="generics" rev="[0.1.12,)"/>
-		<dependency org="fr.cnrs.iees.uit" name="uit" rev="[0.2.0,)"/>
+		<dependency org="fr.cnrs.iees.uit" name="uit" rev="[0.1.1,)"/>
 		<dependency org="org.apache.commons" name="commons-math" rev="2.+"/>
 		<dependency org="org.openjfx" name="javafx-fxml" rev="[11,)" m:classifier="linux"/>
 		<dependency org="org.openjfx" name="javafx-controls" rev="[11,)" m:classifier="linux"/>
 		<dependency org="org.openjfx" name="javafx-graphics" rev="[11,)" m:classifier="linux"/>
 		<dependency org="org.openjfx" name="javafx-base" rev="[11,)" m:classifier="linux"/>
+<!--===================================================================================
+		<dependency org="org.openjfx" name="javafx-web" rev="11+" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-media" rev="11+" m:classifier="linux"/>
+		<dependency org="org.openjfx" name="javafx-swing" rev="11+" m:classifier="linux"/>
+===================================================================================-->
 	</dependencies>
 
 </ivy-module>
