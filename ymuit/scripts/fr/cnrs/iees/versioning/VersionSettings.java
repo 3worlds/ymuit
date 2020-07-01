@@ -86,10 +86,7 @@ public class VersionSettings {
 			{"fr.ens.biologie", "generics", "[0.1.17,)", null},
 			{"fr.cnrs.iees.uit", "uit", "[0.2.0,)", null},
 			{"org.apache.commons" ,"commons-math","[2,)", null},
-<<<<<<< HEAD
 //			{"org.apache.commons","commons-math3","[3.6.1,)",null},			
-=======
->>>>>>> branch 'master' of git@gitlab.anu.edu.au:ThreeWorlds/ymuit.git
 			{"org.openjfx", "javafx-fxml", "[11,)", "_os"},
 			{"org.openjfx", "javafx-controls", "[11,)", "_os"},
 			{"org.openjfx", "javafx-graphics", "[11,)", "_os"},
