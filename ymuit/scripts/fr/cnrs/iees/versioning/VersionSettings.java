@@ -3,12 +3,12 @@
  *                                                                        *
  *  Copyright 2018: Jacques Gignoux & Ian D. Davies                       *
  *       jacques.gignoux@upmc.fr                                          *
- *       ian.davies@anu.edu.au                                            * 
+ *       ian.davies@anu.edu.au                                            *
  *                                                                        *
  *  YMUIT contains a number of classes and helper methods for working     *
  *  with java fx classes.                                                 *
  *                                                                        *
- **************************************************************************                                       
+ **************************************************************************
  *  This file is part of  YMUIT (Yet More User-Interface Tools).          *
  *                                                                        *
  *  YMUIT is free software: you can redistribute it and/or modify         *
@@ -19,7 +19,7 @@
  *  YMUIT is distributed in the hope that it will be useful,              *
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of        *
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *  GNU General Public License for more details.                          *                         
+ *  GNU General Public License for more details.                          *
  *                                                                        *
  *  You should have received a copy of the GNU General Public License     *
  *  along with YMUIT.                                                     *
@@ -84,9 +84,9 @@ public class VersionSettings {
 	 */
 	protected static String[][] DEPS = {
 			{"fr.ens.biologie", "generics", "[0.1.17,)", null},
-			{"fr.cnrs.iees.uit", "uit", "[0.2.0,)", null},
+			{"fr.cnrs.iees.uit", "uit", "[0.2.1,)", null},
 			{"org.apache.commons" ,"commons-math","[2,)", null},
-//			{"org.apache.commons","commons-math3","[3.6.1,)",null},			
+//			{"org.apache.commons","commons-math3","[3.6.1,)",null},
 			{"org.openjfx", "javafx-fxml", "[11,)", "_os"},
 			{"org.openjfx", "javafx-controls", "[11,)", "_os"},
 			{"org.openjfx", "javafx-graphics", "[11,)", "_os"},
