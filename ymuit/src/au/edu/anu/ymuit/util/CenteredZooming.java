@@ -48,30 +48,36 @@ public class CenteredZooming {
 	};
 
 	/*
-	 * This code is mostly taken from the web - sorry can't find reference.
-	 * provides property wiring to ensure zooming stays centered over the mouse
-	 * position
+	 * This code is mostly taken from the web - sorry can't find reference. provides
+	 * property wiring to ensure zooming stays centered over the mouse position
 	 */
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
 		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
 
 		// Manage zooming
 		group.layoutBoundsProperty().addListener((observable, oldBounds, newBounds) -> {
-			scrollContent.setMinWidth(newBounds.getWidth());
-			scrollContent.setMinHeight(newBounds.getHeight());
+			double w = newBounds.getWidth();
+			double h = newBounds.getHeight();
+			scrollContent.setMinWidth(w);
+			scrollContent.setMinHeight(h);
 		});
 		scrollPane.viewportBoundsProperty().addListener((observable, oldBounds, newBounds) -> {
 			// use viewport size, if not too small for zoomTarget
-			scrollContent.setPrefSize(newBounds.getWidth(), newBounds.getHeight());
+			double w = newBounds.getWidth();
+			double h = newBounds.getHeight();
+			scrollContent.setPrefSize(w, h);
 		});
 		scrollContent.setOnScroll(event -> handleContentOnScroll(event, scrollPane, group, zoomRegion));
 
 	}
 
+	private static int count = 0;
+
 	private static void handleContentOnScroll(ScrollEvent event, ScrollPane scrollPane, Group group,
 			Region zoomRegion) {
-
 		if (event.isControlDown()) {
+			// when run from jar we get TWO msgs but only ONE when run from Eclipse
+//			System.out.println("--------------" + (++count) + "---------------");
 			event.consume();
 			final double zoomFactor = event.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
 			Bounds groupBounds = group.getLayoutBounds();
@@ -89,8 +95,11 @@ public class CenteredZooming {
 					.deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
 
 			// do the resizing
-			zoomRegion.setScaleX(zoomFactor * zoomRegion.getScaleX());
-			zoomRegion.setScaleY(zoomFactor * zoomRegion.getScaleY());
+			double zx = zoomFactor * zoomRegion.getScaleX();
+			double zy = zoomFactor * zoomRegion.getScaleY();
+//			System.out.println("zoom x & y: "+zx+", "+zy);
+			zoomRegion.setScaleX(zx);
+			zoomRegion.setScaleY(zy);
 
 			// refresh ScrollPane scroll positions & content bounds
 			scrollPane.layout();
@@ -98,10 +107,16 @@ public class CenteredZooming {
 			/**
 			 * Convert back to [0, 1] range. Values that are too large or small are
 			 * automatically corrected by ScrollPane.
+			 * I  think the guard against infinite values isNOT needed.
 			 */
 			groupBounds = group.getLayoutBounds();
-			scrollPane.setHvalue((valX + adjustment.getX()) / (groupBounds.getWidth() - viewportBounds.getWidth()));
-			scrollPane.setVvalue((valY + adjustment.getY()) / (groupBounds.getHeight() - viewportBounds.getHeight()));
+			double newHVal = (valX + adjustment.getX()) / (groupBounds.getWidth() - viewportBounds.getWidth());
+			double newVVal = (valY + adjustment.getY()) / (groupBounds.getHeight() - viewportBounds.getHeight());
+			if (!Double.isInfinite(newHVal))
+				scrollPane.setHvalue(newHVal);
+			if (!Double.isInfinite(newVVal))
+				scrollPane.setVvalue(newVVal);
+
 		}
 	}
 }
