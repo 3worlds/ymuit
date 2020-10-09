@@ -71,7 +71,7 @@ public class CenteredZooming {
 
 	}
 
-	private static int count = 0;
+//	private static int count = 0;
 
 	private static void handleContentOnScroll(ScrollEvent event, ScrollPane scrollPane, Group group,
 			Region zoomRegion) {

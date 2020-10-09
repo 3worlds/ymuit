@@ -34,9 +34,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import au.edu.anu.ymuit.ui.colour.functions.Function;
-import au.edu.anu.ymuit.ui.colour.functions.Line;
-
 class LineTest {
 
 	@Test

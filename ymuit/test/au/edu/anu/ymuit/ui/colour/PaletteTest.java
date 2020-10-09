@@ -32,8 +32,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import au.edu.anu.ymuit.ui.colour.Palette;
-import au.edu.anu.ymuit.ui.colour.PaletteFactory;
 import javafx.scene.paint.Color;
 
 /**

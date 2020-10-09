@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import au.edu.anu.ymuit.ui.colour.Band;
 import au.edu.anu.ymuit.ui.colour.functions.FunctionTypes;
 
 /**
