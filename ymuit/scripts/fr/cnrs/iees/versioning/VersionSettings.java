@@ -87,7 +87,7 @@ public class VersionSettings {
 			{"fr.cnrs.iees.uit", "uit", "[0.3.0,)", null},
 			{"org.apache.commons" ,"commons-math","[2,)", null},
 //			{"org.apache.commons","commons-math3","[3.6.1,)",null},
-			{"org.openjfx", "javafx-fxml", "[11,)", "_os"},
+//		    {"org.openjfx", "javafx-fxml", "[11,)", "_os"},
 			{"org.openjfx", "javafx-controls", "[11,)", "_os"},
 			{"org.openjfx", "javafx-graphics", "[11,)", "_os"},
 			{"org.openjfx", "javafx-base", "[11,)", "_os"},
