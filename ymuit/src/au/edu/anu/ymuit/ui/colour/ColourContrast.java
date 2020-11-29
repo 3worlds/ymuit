@@ -68,7 +68,7 @@ import javafx.scene.paint.Color;
  */
 
 public class ColourContrast {
-	private final static long seed = 0L;
+	private final static long seed = 2L;// Trial and error
 	private static Map<ColourItem, RegionIndexingTree<String>> colourQts = new HashMap<>();
 	private static Map<String, ColourItem> colourMap = new HashMap<>();
 
@@ -186,7 +186,7 @@ public class ColourContrast {
 	 * From:
 	 * https://stackoverflow.com/questions/17464906/how-to-list-all-colors-in-javafx
 	 *
-	 * Finds all named colours in javaFx through reflection
+	 * Finds all named colours in javafx through reflection
 	 *
 	 * @return: map (Name, Color) of all named colours in javafx.scene.paint.Color
 	 * @throws ClassNotFoundException
@@ -224,10 +224,13 @@ public class ColourContrast {
 	 */
 
 	private static Map<String, ColourItem> _getContrastingColoursMap(Color bkg, double threshold) {
+		Random rnd = new Pcg32();
+		rnd.setSeed(seed);
+
 		int dim = 4; // fix at 27 colours out of 148 less those that don't pass the lum threshold
 		Map<String, ColourItem> res = new HashMap<>();
 		double separation = 1.0 / (double) dim;
-		ColourItem bkgItem = new ColourItem(-1, "BKG", bkg);
+		ColourItem bkgItem = new ColourItem(rnd.nextDouble(), "BKG", bkg);
 
 		RegionIndexingTree<String> qt = getKTree(bkgItem);
 		int size = (int) (1.0 / separation);
@@ -254,7 +257,9 @@ public class ColourContrast {
 	}
 
 	private static List<Color> createColours64(Color bkg, double contrast) {
-		List<ColourItem> cList = createBigColourItems(new ColourItem(-1, "BKG", bkg), contrast * 100);
+		Random rnd = new Pcg32();
+		rnd.setSeed(seed);
+		List<ColourItem> cList = createBigColourItems(new ColourItem(rnd.nextDouble(), "BKG", bkg), contrast * 100);
 		List<Color> result = new ArrayList<>();
 		cList.forEach((ci) -> {
 			result.add(ci.getColour());
