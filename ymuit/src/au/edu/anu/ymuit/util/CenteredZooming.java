@@ -52,7 +52,7 @@ public class CenteredZooming {
 	 * property wiring to ensure zooming stays centered over the mouse position
 	 */
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
-		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
+//		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
 
 		// Manage zooming
 		group.layoutBoundsProperty().addListener((observable, oldBounds, newBounds) -> {
