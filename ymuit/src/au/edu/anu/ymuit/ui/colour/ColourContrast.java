@@ -332,7 +332,7 @@ public class ColourContrast {
 		List<ColourItem> result = new ArrayList<>();
 		// List<ColourItem> lst = new ArrayList<>();
 
-		int counter = 0;
+//		int counter = 0;
 		double separation = 1.0 / dSize; // 5*5*5 colours
 		int iSize = (int) dSize;
 		for (int x = 0; x < iSize; x++) {
