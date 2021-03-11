@@ -29,26 +29,10 @@
 
 package au.edu.anu.ymuit.ui.colour;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-import javafx.scene.paint.Color;
-
-class ColourContrastTest {
-
-	@Test
-	void test() {
-		assertNotNull(ColourContrast.getContrastingColours64(PaletteSize.veryLarge,Color.WHITE, 0.2));
-		assertNotNull(ColourContrast.getContrastingColours(PaletteSize.veryLarge,Color.WHITE, 0.2));
-		ColourContrast.main(new String[0]);
-		
-		// What to test? Check all colours contrast by >= 0.2
-//		assertNonNull(lst);
-//		lst.forEach((v) -> {
-//			System.out.println(v.getFirst());
-//		});
-
-	}
+public enum PaletteSize {
+	small,
+	medium,
+	large,
+	veryLarge;
 
 }

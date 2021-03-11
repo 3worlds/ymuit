@@ -80,8 +80,8 @@ public class ColourContrast {
 	 * @param contrast (0.0 - 1.0)
 	 * @return List of Color
 	 */
-	public static List<Color> getContrastingColours64(Color bkg, double contrast) {
-		return createColours64(bkg, contrast);
+	public static List<Color> getContrastingColours64(PaletteSize ps, Color bkg, double contrast) {
+		return createColours64(ps, bkg, contrast);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class ColourContrast {
 	 * @param contrast (0.0 - 1.0)
 	 * @return Array of Javafx color names for contrasting colours.
 	 */
-	public static List<String> getContrastingColourNames(Color bkg, double contrast) {
-		List<Duple<String, Color>> colours = getContrastingColourNamePairs(bkg, contrast);
+	public static List<String> getContrastingColourNames(PaletteSize ps,Color bkg, double contrast) {
+		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps,bkg, contrast);
 		List<String> result = new ArrayList<>();
 		colours.forEach((d) -> {
 			result.add(d.getFirst());
@@ -108,8 +108,8 @@ public class ColourContrast {
 	/**
 	 * As above but returns only the colours
 	 */
-	public static List<Color> getContrastingColours(Color bkg, double contrast) {
-		List<Duple<String, Color>> colours = getContrastingColourNamePairs(bkg, contrast);
+	public static List<Color> getContrastingColours(PaletteSize ps, Color bkg, double contrast) {
+		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps,bkg, contrast);
 		List<Color> result = new ArrayList<>();
 		colours.forEach((d) -> {
 			result.add(d.getSecond());
@@ -121,10 +121,28 @@ public class ColourContrast {
 	 * As above but returns name, colour pairs.
 	 */
 
-	public static List<Duple<String, Color>> getContrastingColourNamePairs(Color bkg, double contrast) {
+	public static List<Duple<String, Color>> getContrastingColourNamePairs(PaletteSize size,Color bkg, double contrast) {
+		int dim;
+		switch (size) {
+		case small :{
+			dim = 2;// 8 max
+			break;
+		}
+		case medium: {
+			dim = 3;
+			break;
+		}
+		case large:{
+			dim = 4;
+			break;
+		}
+		default :{
+			dim = 5;
+		}
+		}
 		List<Duple<String, Color>> result = new ArrayList<>();
 		List<Duple<String, ColourItem>> list = new ArrayList<>();
-		Map<String, ColourItem> colours = _getContrastingColoursMap(bkg, contrast * 100);
+		Map<String, ColourItem> colours = _getContrastingColoursMap(dim,bkg, contrast * 100);
 
 		colours.forEach((k, v) -> {
 			list.add(new Duple<String, ColourItem>(k, v));
@@ -223,15 +241,15 @@ public class ColourContrast {
 	 * @return Map of colour names and colours.
 	 */
 
-	private static Map<String, ColourItem> _getContrastingColoursMap(Color bkg, double threshold) {
+	private static Map<String, ColourItem> _getContrastingColoursMap(int dim, Color bkg, double threshold) {
 		Random rnd = new Pcg32();
 		rnd.setSeed(seed);
 
-		int dim = 4; // fix at 27 colours out of 148 less those that don't pass the lum threshold
 		Map<String, ColourItem> res = new HashMap<>();
 		double separation = 1.0 / (double) dim;
 		ColourItem bkgItem = new ColourItem(rnd.nextDouble(), "BKG", bkg);
 
+//		int counter = 0;
 		RegionIndexingTree<String> qt = getKTree(bkgItem);
 		int size = (int) (1.0 / separation);
 		for (int x = 0; x < size; x++) {
@@ -243,6 +261,7 @@ public class ColourContrast {
 					Point p = Point.newPoint(px, py, pz);
 					String name = qt.getNearestItem(p);
 					if (!res.containsKey(name)) {
+//						System.out.println("#" + (++counter));
 						ColourItem ci = colourMap.get(name);
 						// perceived luminosity ("L*") threshold black=0, white = 100
 						double delta = Math.abs(ci.getpLum() - bkgItem.getpLum());
@@ -256,10 +275,30 @@ public class ColourContrast {
 		return res;
 	}
 
-	private static List<Color> createColours64(Color bkg, double contrast) {
+	private static List<Color> createColours64(PaletteSize ps, Color bkg, double contrast) {
 		Random rnd = new Pcg32();
 		rnd.setSeed(seed);
-		List<ColourItem> cList = createBigColourItems(new ColourItem(rnd.nextDouble(), "BKG", bkg), contrast * 100);
+		double dSize;
+		switch (ps) {
+		case small: {
+			dSize = 2.0;// 8
+			break;
+		}
+		case medium: {
+			dSize = 3.0;// 27
+			break;
+		}
+		case large: {
+			dSize = 4.0;// 64
+			break;
+		}
+		default: {
+			dSize = 5.0;// 125
+		}
+		}
+
+		List<ColourItem> cList = createBigColourItems(dSize, new ColourItem(rnd.nextDouble(), "BKG", bkg),
+				contrast * 100);
 		List<Color> result = new ArrayList<>();
 		cList.forEach((ci) -> {
 			result.add(ci.getColour());
@@ -267,7 +306,7 @@ public class ColourContrast {
 		return result;
 	}
 
-	private static List<ColourItem> createBigColourItems(ColourItem bkgItem, double threshold) {
+	private static List<ColourItem> createBigColourItems(double dSize, ColourItem bkgItem, double threshold) {
 		Random rnd = new Pcg32();
 		rnd.setSeed(seed);
 		Map<String, ColourItem> lookupMap = new HashMap<>();
@@ -293,13 +332,14 @@ public class ColourContrast {
 		List<ColourItem> result = new ArrayList<>();
 		// List<ColourItem> lst = new ArrayList<>();
 
-		double separation = 1.0 / 5.0;
-		int size = 5;
-		for (int x = 0; x < size; x++) {
+		int counter = 0;
+		double separation = 1.0 / dSize; // 5*5*5 colours
+		int iSize = (int) dSize;
+		for (int x = 0; x < iSize; x++) {
 			double px = x * separation + separation / 2.0;
-			for (int y = 0; y < size; y++) {
+			for (int y = 0; y < iSize; y++) {
 				double py = y * separation + separation / 2.0;
-				for (int z = 0; z < size; z++) {
+				for (int z = 0; z < iSize; z++) {
 					double pz = z * separation + separation / 2.0;
 					Point p = Point.newPoint(px, py, pz);
 					String pname = tree.getNearestItem(p);
@@ -307,6 +347,7 @@ public class ColourContrast {
 					double delta = Math.abs(ci.getpLum() - bkgItem.getpLum());
 					if (delta > threshold) {
 						result.add(ci);
+//						System.out.println("#"+result.size());
 					}
 				}
 			}

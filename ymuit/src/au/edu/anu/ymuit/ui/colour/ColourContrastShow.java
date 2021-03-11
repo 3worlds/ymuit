@@ -69,7 +69,7 @@ public class ColourContrastShow extends Application {
 		Button btn = new Button("Show 1");
 		Button btn2 = new Button("Show 2");
 
-		TextField contrast = new TextField("0.1");
+		TextField contrast = new TextField("0.2");
 		final ColorPicker colorPicker = new ColorPicker(Color.WHITE);
 
 		top.getChildren().addAll(btn, btn2, contrast, colorPicker);
@@ -81,15 +81,17 @@ public class ColourContrastShow extends Application {
 				GraphicsContext gc = canvas.getGraphicsContext2D();
 				gc.setFill(colorPicker.getValue());
 				gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-				List<Color> colours = ColourContrast.getContrastingColours64(colorPicker.getValue(),
+				List<Color> colours = ColourContrast.getContrastingColours64(PaletteSize.veryLarge,colorPicker.getValue(),
 						Double.parseDouble(contrast.getText()));
 
 				double s = canvas.getWidth() / 8.0;
 				for (int i = 0; i < colours.size(); i++) {
 					int x = i / 8;
 					int y = i % 8;
+					gc.setStroke(colours.get(i));
 					gc.setFill(colours.get(i));
 					gc.fillRect(x * s + 10, y * s + 10, 30, 30);
+					gc.strokeRect(x * s + 40, y * s + 10, 30, 30);
 				}
 
 			}
@@ -108,19 +110,21 @@ public class ColourContrastShow extends Application {
 				gc.setFill(bkg);
 				gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				List<Duple<String, Color>> colours = ColourContrast
-						.getContrastingColourNamePairs(colorPicker.getValue(), Double.parseDouble(contrast.getText()));
+						.getContrastingColourNamePairs(PaletteSize.veryLarge,colorPicker.getValue(), Double.parseDouble(contrast.getText()));
 
 				double s = canvas.getWidth() / 8.0;
 				for (int i = 0; i < colours.size(); i++) {
 					int x = i / 8;
 					int y = i % 8;
 					gc.setFill(colours.get(i).getSecond());
+					gc.setStroke(colours.get(i).getSecond());
 					gc.fillRect(x * s + 10, y * s + 10, 30, 30);
+					gc.strokeRect(x * s + 40, y * s + 10, 30, 30);
 					gc.setFill(txt);
 					if (x % 2 == 0)
-						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 10);
+						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 8);
 					else
-						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 50);
+						gc.fillText(colours.get(i).getFirst(), x * s + 10, y * s + 52);
 
 				}
 
