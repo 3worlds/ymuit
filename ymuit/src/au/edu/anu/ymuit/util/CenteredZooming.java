@@ -43,13 +43,19 @@ import javafx.scene.layout.StackPane;
  * @date 4 Sep 2019
  */
 public class CenteredZooming {
+
 	private CenteredZooming() {
 	};
 
 	/*
 	 * This code is mostly taken from the web - sorry can't find reference. provides
 	 * property wiring to ensure zooming stays centered over the mouse position
+	 * 
+	 * Problem: Behaves differently for Jar compared to Eclipse on Linux. When run
+	 * from a JAR, an additional event is sent with deltaY==0.0 which must be
+	 * ignored!
 	 */
+
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
 //		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
 
@@ -66,7 +72,13 @@ public class CenteredZooming {
 			double h = newBounds.getHeight();
 			scrollContent.setPrefSize(w, h);
 		});
-		scrollContent.setOnScroll(event -> handleContentOnScroll(event, scrollPane, group, zoomRegion));
+		scrollContent.setOnScroll(event -> {
+			if (event.isControlDown() && event.getDeltaY() != 0.0) {// Most important to avoid events with delta y
+																	// =0.0!!!
+				event.consume();
+				handleContentOnScroll(event, scrollPane, group, zoomRegion);
+			}
+		});
 
 	}
 
@@ -74,48 +86,40 @@ public class CenteredZooming {
 
 	private static void handleContentOnScroll(ScrollEvent event, ScrollPane scrollPane, Group group,
 			Region zoomRegion) {
-		if (event.isControlDown()) {
-			// when run from jar we get TWO msgs but only ONE when run from Eclipse
-//			System.out.println("--------------" + (++count) + "---------------");
-			event.consume();
-			final double zoomFactor = event.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
-			Bounds groupBounds = group.getLayoutBounds();
-			final Bounds viewportBounds = scrollPane.getViewportBounds();
 
-			// calculate pixel offsets from [0, 1] range
-			double valX = scrollPane.getHvalue() * (groupBounds.getWidth() - viewportBounds.getWidth());
-			double valY = scrollPane.getVvalue() * (groupBounds.getHeight() - viewportBounds.getHeight());
-			// convert content coordinates to zoomTarget coordinates
-			Point2D posInZoomTarget = zoomRegion
-					.parentToLocal(group.parentToLocal(new Point2D(event.getX(), event.getY())));
+		// use the vertical scroll amount
+		final double zoomFactor = event.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
+		Bounds groupBounds = group.getLayoutBounds();
+		final Bounds viewportBounds = scrollPane.getViewportBounds();
 
-			// calculate adjustment of scroll position (pixels)
-			Point2D adjustment = zoomRegion.getLocalToParentTransform()
-					.deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
+		// calculate pixel offsets from [0, 1] range
+		double valX = scrollPane.getHvalue() * (groupBounds.getWidth() - viewportBounds.getWidth());
+		double valY = scrollPane.getVvalue() * (groupBounds.getHeight() - viewportBounds.getHeight());
+		// convert content coordinates to zoomTarget coordinates
+		Point2D posInZoomTarget = zoomRegion
+				.parentToLocal(group.parentToLocal(new Point2D(event.getX(), event.getY())));
 
-			// do the resizing
-			double zx = zoomFactor * zoomRegion.getScaleX();
-			double zy = zoomFactor * zoomRegion.getScaleY();
-//			System.out.println("zoom x & y: "+zx+", "+zy);
-			zoomRegion.setScaleX(zx);
-			zoomRegion.setScaleY(zy);
+		// calculate adjustment of scroll position (pixels)
+		Point2D adjustment = zoomRegion.getLocalToParentTransform()
+				.deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
 
-			// refresh ScrollPane scroll positions & content bounds
-			scrollPane.layout();
+		// do the resizing
+		double zx = zoomFactor * zoomRegion.getScaleX();
+		double zy = zoomFactor * zoomRegion.getScaleY();
+		zoomRegion.setScaleX(zx);
+		zoomRegion.setScaleY(zy);
 
-			/**
-			 * Convert back to [0, 1] range. Values that are too large or small are
-			 * automatically corrected by ScrollPane.
-			 * I  think the guard against infinite values isNOT needed.
-			 */
-			groupBounds = group.getLayoutBounds();
-			double newHVal = (valX + adjustment.getX()) / (groupBounds.getWidth() - viewportBounds.getWidth());
-			double newVVal = (valY + adjustment.getY()) / (groupBounds.getHeight() - viewportBounds.getHeight());
-			if (!Double.isInfinite(newHVal))
-				scrollPane.setHvalue(newHVal);
-			if (!Double.isInfinite(newVVal))
-				scrollPane.setVvalue(newVVal);
+		// refresh ScrollPane scroll positions & content bounds
+		scrollPane.layout();
 
-		}
+		/**
+		 * Convert back to [0, 1] range. Values that are too large or small are
+		 * automatically corrected by ScrollPane.
+		 */
+		groupBounds = group.getLayoutBounds();
+		double newHVal = (valX + adjustment.getX()) / (groupBounds.getWidth() - viewportBounds.getWidth());
+		double newVVal = (valY + adjustment.getY()) / (groupBounds.getHeight() - viewportBounds.getHeight());
+		scrollPane.setHvalue(newHVal);
+		scrollPane.setVvalue(newVVal);
 	}
 }
