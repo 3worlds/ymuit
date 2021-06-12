@@ -37,21 +37,19 @@ import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
  * Date 4 Dec. 2018
  */
 public enum PaletteTypes {
-	BLACKWHITE/*-           */(blackWhite()), //
-	WHITEBLACK/*-           */(whiteBlack()), //
-	BLUEGREENRED/*-         */(blueGreenRed()), //
-	REDGREENBLUE/*-         */(redGreenBlue()), //
-	BROWNYELLOWLIGHTBLUE/*- */(brownYellowLightBlue()), //
-	LIGHTBLUEYELLOWBROWN/*- */(lightBlueYellowBrown()), //
-	BROWNYELLOWGREEN/*-     */(brownYellowGreen()), //
-	GREENYELLOWBROWN/*-     */(greenYellowBrown()), //
-//	PURPLEYELLOWGREENRED/*- */(purpleYellowGreenRed()), //
-//	REDGREENYELLOWPURPLE/*- */(redGreenYellowPurple()), //
-	GREENWHITEBROWN/*-      */(greenWhiteBrown()), //
-	BROWNWHITEGREEN/*-      */(brownWhiteGreen()), //
-	BLUELIMERED/*-          */(blueLimeRed()), //
-	REDLIMEBLUE/*-          */(redLimeBlue()), //
-	RANDOM/*-               */(randomPalette()),//
+	BlackWhite/*-           */(blackWhite()), //
+	WhiteBlack/*-           */(whiteBlack()), //
+	BlueGreenRed/*-         */(blueGreenRed()), //
+	RedGreenBlue/*-         */(redGreenBlue()), //
+	BrownYellowLightBlue/*- */(brownYellowLightBlue()), //
+	LightBlueYellowBrown/*- */(lightBlueYellowBrown()), //
+	BrownYellowGreen/*-     */(brownYellowGreen()), //
+	GreenYellowBrown/*-     */(greenYellowBrown()), //
+	GreenWhiteBrown/*-      */(greenWhiteBrown()), //
+	BrownWhiteGreen/*-      */(brownWhiteGreen()), //
+	BlueLimeRed/*-          */(blueLimeRed()), //
+	RedLimeBlue/*-          */(redLimeBlue()), //
+	Random/*-               */(randomPalette()),//
 	;
 	private final Palette palette;
 
@@ -64,6 +62,6 @@ public enum PaletteTypes {
 	}
 
 	public static PaletteTypes getDefault() {
-		return BLUELIMERED;
+		return BrownYellowGreen;
 	}
 }
