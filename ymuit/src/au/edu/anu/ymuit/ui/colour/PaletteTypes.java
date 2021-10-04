@@ -37,19 +37,19 @@ import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
  * Date 4 Dec. 2018
  */
 public enum PaletteTypes {
-	BlackWhite/*-           */(blackWhite()), //
-	WhiteBlack/*-           */(whiteBlack()), //
-	BlueGreenRed/*-         */(blueGreenRed()), //
-	RedGreenBlue/*-         */(redGreenBlue()), //
-	BrownYellowLightBlue/*- */(brownYellowLightBlue()), //
-	LightBlueYellowBrown/*- */(lightBlueYellowBrown()), //
-	BrownYellowGreen/*-     */(brownYellowGreen()), //
-	GreenYellowBrown/*-     */(greenYellowBrown()), //
-	GreenWhiteBrown/*-      */(greenWhiteBrown()), //
-	BrownWhiteGreen/*-      */(brownWhiteGreen()), //
-	BlueLimeRed/*-          */(blueLimeRed()), //
-	RedLimeBlue/*-          */(redLimeBlue()), //
-	Random/*-               */(randomPalette()),//
+	BlackWhite/*-				*/(blackWhite()), //
+	WhiteBlack/*-				*/(whiteBlack()), //
+	BlueMauveOrange/*-			*/(blueMauveOrange()), //
+	OrangeMauveBlue/*-			*/(orangeMauveBlue()), //
+	BrownYellowLightBlue/*-		*/(brownYellowLightBlue()), //
+	LightBlueYellowBrown/*-		*/(lightBlueYellowBrown()), //
+	BrownYellowGreen/*-			*/(brownYellowGreen()), //
+	GreenYellowBrown/*-			*/(greenYellowBrown()), //
+	LightBlueYellowPurple/*-	*/(lightBlueYellowPurple()), //
+	PurpleYellowLightBlue/*-	*/(purpleYellowLightBlue()), //
+	BlueLimeRed/*-				*/(blueLimeRed()), //
+	RedLimeBlue/*-				*/(redLimeBlue()), //
+	// TODO: Many more to come
 	;
 	private final Palette palette;
 

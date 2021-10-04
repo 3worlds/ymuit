@@ -66,14 +66,14 @@ public class PaletteFactory {
 		return new Palette(red, green, blue, 1.0);
 	}
 
-	public static Palette blueGreenRed() {
+	public static Palette blueMauveOrange() {
 		Band red = new Band(0, 1, false, false, LINE3);
 		Band green = new Band(0, 1, false, false, TRIANGLE21);
 		Band blue = new Band(0, 1, true, false, POWER2);
 		return new Palette(red, green, blue, 1.0);
 	}
 
-	public static Palette redGreenBlue() {
+	public static Palette orangeMauveBlue() {
 		Band red = new Band(0, 1, true, false, LINE3);
 		Band green = new Band(0, 1, false, false, TRIANGLE21);
 		Band blue = new Band(0, 1, false, false, POWER2);
@@ -108,14 +108,14 @@ public class PaletteFactory {
 		return new Palette(red, green, blue, 1.0);
 	}
 
-	public static  Palette greenWhiteBrown() {
+	public static  Palette lightBlueYellowPurple() {
 		Band red = new Band(0, 1, false, false,INTERSECT2B);
 		Band green = new Band(0, 1, true, false,INTERSECT2B);
 		Band blue = new Band(0, 1, false, false, SINE11);
 		return new Palette(red, green, blue, 1.0);
 	}
 
-	public static  Palette brownWhiteGreen() {
+	public static  Palette purpleYellowLightBlue() {
 		Band red = new Band(0, 1, true, false, INTERSECT2B);
 		Band green = new Band(0, 1, false, false, INTERSECT2B);
 		Band blue = new Band(0, 1, false, false, SINE11);
