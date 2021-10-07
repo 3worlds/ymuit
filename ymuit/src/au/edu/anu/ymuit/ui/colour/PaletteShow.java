@@ -29,43 +29,62 @@
 
 package au.edu.anu.ymuit.ui.colour;
 
-import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
+import javafx.application.Application;
+import javafx.geometry.Side;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-/**
- * Author Ian Davies
- *
- * Date 4 Dec. 2018
- */
-public enum PaletteTypes {
-	BlackWhite/*-				*/(blackWhite()), //
-	WhiteBlack/*-				*/(whiteBlack()), //
-	BlueMauveOrange/*-			*/(blueMauveOrange()), //
-	OrangeMauveBlue/*-			*/(orangeMauveBlue()), //
-	BrownYellowLightBlue/*-		*/(brownYellowLightBlue()), //
-	LightBlueYellowBrown/*-		*/(lightBlueYellowBrown()), //
-	BrownYellowGreen/*-			*/(brownYellowGreen()), //
-	GreenYellowBrown/*-			*/(greenYellowBrown()), //
-	LightBlueYellowPurple/*-	*/(lightBlueYellowPurple()), //
-	PurpleYellowLightBlue/*-	*/(purpleYellowLightBlue()), //
-	BlueLimeRed/*-				*/(blueLimeRed()), //
-	RedLimeBlue/*-				*/(redLimeBlue()), //
-	// TODO: Many more to come
-	;
-	private final Palette palette;
+public class PaletteShow extends Application{
 
-	private PaletteTypes(Palette palette) {
-		this.palette = palette;
-	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Palettes");
+		BorderPane root = new BorderPane();
+		SplitPane splitPane = new SplitPane();
+		HBox left = new HBox();
+		BorderPane right = new BorderPane();
+		splitPane.getItems().addAll(left,right);
+//		Canvas canvas = new Canvas();
+//		left.setCenter(canvas);
+		for (PaletteTypes palette:PaletteTypes.values()) {
+			Image image = getLegend(palette.getPalette(),20,256);
+			ImageView view = new ImageView(image);
+			left.getChildren().add(view);
+		}
+		
+//		ComboBox palettes = new ComboBox();
+//		palettes.getItems().addAll(PaletteTypes.values());
+//		left.setTop(palettes);
+		root.setCenter(splitPane);
+		primaryStage.setScene(new Scene(root,1600, 900));
+		primaryStage.show();
 
-	public Palette getPalette() {
-		return palette;
-	}
-
-	public static PaletteTypes getDefault() {
-		return BrownYellowGreen;
-	}
-	public static void main(String[] args) {
-		PaletteShow.main(args);
 		
 	}
+	private WritableImage getLegend(Palette pl, int width, int height) {	
+		WritableImage image = new WritableImage(width, height);
+		PixelWriter pw = image.getPixelWriter();
+		for (int h = 0; h < height; h++) {
+			Color c = pl.getColour(height - h - 1, 0, height);
+			for (int w = 0; w < width; w++) {
+				pw.setColor(w, h, c);
+			}
+		}
+		return image;
+	}
+
+	public static void main(String[] args) {
+		launch(args);		
+	}
+
 }
