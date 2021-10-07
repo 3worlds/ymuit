@@ -30,10 +30,7 @@
 package au.edu.anu.ymuit.ui.colour;
 
 import javafx.application.Application;
-import javafx.geometry.Side;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
