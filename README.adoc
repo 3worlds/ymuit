@@ -1,0 +1,7 @@
+= The YMUIT library
+
+**Y**et **M**ore **U**ser **I**nterface **t**ools groups tools used to implement the user interface of 3Worlds, mainly color palettes and management of graphic output, which can be useful for any  https://wiki.openjdk.java.net/display/OpenJFX[javafx]-based interface.
+
+See the link:https://3worlds.github.io/ymuit/ymuit/javadoc/index.html[javadoc]
+
+Depends on: https://github.com/3worlds/omhtk[omhtk], https://github.com/3worlds/uit[uit]
