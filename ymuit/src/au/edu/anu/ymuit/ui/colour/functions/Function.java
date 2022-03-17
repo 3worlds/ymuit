@@ -34,10 +34,15 @@ package au.edu.anu.ymuit.ui.colour.functions;
  * Date 28 Nov. 2018
  *
  */
-// Functions with domain and range: 0.0..1.0
+/** Functions with domain and range: 0.0..1.0 */
 public interface Function {
 	public static final int length = 256;
 
+	/**
+	 * The value of f(x)
+	 * @param x
+	 * @return y
+	 */
 	public double ofX(double x);
 
 	default public double clamp(double x) {

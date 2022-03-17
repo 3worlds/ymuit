@@ -38,9 +38,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
 /**
- * @author Ian Davies
- *
- * @date 4 Sep 2019
+ * @author Ian Davies, 4 Sep 2019
  */
 public class CenteredZooming {
 
@@ -51,11 +49,19 @@ public class CenteredZooming {
 	 * This code is mostly taken from the web - sorry can't find reference. provides
 	 * property wiring to ensure zooming stays centered over the mouse position
 	 * 
-	 * Problem: Behaves differently for Jar compared to Eclipse on Linux. When run
-	 * from a JAR, an additional event is sent with deltaY==0.0 which must be
+	 * Problem: Behaves differently for Jar compared to running from Eclipsex. When
+	 * run from a JAR, an additional event is sent with deltaY==0.0 which must be
 	 * ignored!
 	 */
 
+	/**
+	 * Ensures zooming stays centered over the mouse position
+	 * 
+	 * @param scrollPane
+	 * @param scrollContent
+	 * @param group
+	 * @param zoomRegion
+	 */
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
 //		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
 
@@ -73,8 +79,8 @@ public class CenteredZooming {
 			scrollContent.setPrefSize(w, h);
 		});
 		scrollContent.setOnScroll(event -> {
-			if (event.isControlDown() && event.getDeltaY() != 0.0) {// Most important to avoid events with delta y
-																	// =0.0!!!
+			// Most important to avoid events with delta y=0.0!!!
+			if (event.isControlDown() && event.getDeltaY() != 0.0) {
 				event.consume();
 				handleContentOnScroll(event, scrollPane, group, zoomRegion);
 			}

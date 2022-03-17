@@ -45,7 +45,7 @@ public class Gaussian implements Function{
 	 * @return  f(x) 0.0 - 1.0
 	 */
 	@Override
-	public double ofX(double x) {
+	public final double ofX(double x) {
 		x = (x-0.5)*6;
 		double r= Math.exp(-x*x / 2.0) / d;	
 		return clamp(r*m);

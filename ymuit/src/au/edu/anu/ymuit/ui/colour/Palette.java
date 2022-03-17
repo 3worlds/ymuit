@@ -61,7 +61,7 @@ public class Palette {
 	 * @param max maximum value of v
 	 * @return colour for value v
 	 */
-	public Color getColour(double v, double min, double max) {
+	public final Color getColour(double v, double min, double max) {
 		int idx = getIndex(v, min, max);
 		return palette[idx];
 	}

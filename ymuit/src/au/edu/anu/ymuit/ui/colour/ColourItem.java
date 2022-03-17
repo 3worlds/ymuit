@@ -28,16 +28,12 @@
  **************************************************************************/
 package au.edu.anu.ymuit.ui.colour;
 
-//import org.apache.commons.math3.util.MathUtils;
-
 import fr.cnrs.iees.uit.space.Distance;
 import fr.cnrs.iees.uit.space.Point;
 import javafx.scene.paint.Color;
 
 /**
- * @author Ian Davies
- *
- * @date 11 Mar 2020
+ * @author Ian Davies, 11 Mar 2020
  */
 public class ColourItem {
 	// actual Javafx color
@@ -93,9 +89,7 @@ public class ColourItem {
 	public double distance(ColourItem to) {
 		double[] p1 = { getpRed(), getpGreen(), getpBlue() };
 		double[] p2 = { to.getpRed(), to.getpGreen(), to.getpBlue() };
-		// JG: this to remove dependency from apache.commons.math
 		return Distance.euclidianDistance(Point.newPoint(p1), Point.newPoint(p2));
-//		return MathUtils.distance(p1, p2);
 	}
 
 	// -----------------------------------------
