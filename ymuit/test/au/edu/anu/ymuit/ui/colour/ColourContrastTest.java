@@ -41,7 +41,7 @@ class ColourContrastTest {
 	void test() {
 		assertNotNull(ColourContrast.getContrastingColours64(PaletteSize.veryLarge,Color.WHITE, 0.2));
 		assertNotNull(ColourContrast.getContrastingColours(PaletteSize.veryLarge,Color.WHITE, 0.2));
-		ColourContrast.main(new String[0]);
+//		ColourContrast.main(new String[0]);
 		
 		// What to test? Check all colours contrast by >= 0.2
 //		assertNonNull(lst);
