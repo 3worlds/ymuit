@@ -39,10 +39,16 @@ public class Bessel implements Function {
 	private static final double range = 1.2171760499;
 	private double domain;
 
+	/**
+	 * Default constructor
+	 */
 	public Bessel() {
 		this(7.0 / 3.0);
 	}
 
+	/**
+	 * @param p the number of waves
+	 */
 	public Bessel(double p) {
 		domain = Math.PI * p;
 	}

@@ -30,19 +30,19 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * @author Ian Davies 2 Dec 2018
+ * <p>
+ * Bell curve symmetrical about x = 0.5
+ * </p>
  */
-// smooth curve symmetrical about x = 0.5
 public class Gaussian implements Function{
 	private static double d = Math.sqrt(2 * Math.PI);
 	private static double m = 1.0/0.4;
 
 	/** 
-	 * smooth bell curve symmetrical about x = 0.5
-	 * @param x  0.0 - 1.0
-	 * @return  f(x) 0.0 - 1.0
+	 * bell curve symmetrical about x = 0.5
+	 * @param x  0.0..1.0
+	 * @return  f(x) 0.0..1.0
 	 */
 	@Override
 	public final double ofX(double x) {

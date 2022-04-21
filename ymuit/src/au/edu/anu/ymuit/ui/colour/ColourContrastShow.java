@@ -136,6 +136,11 @@ public class ColourContrastShow extends Application {
 
 	}
 
+	/**
+	 * Launch javafx app without modules
+	 * 
+	 * @param args no args required
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

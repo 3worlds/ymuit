@@ -34,18 +34,13 @@ package au.edu.anu.ymuit.ui.colour.functions;
  *
  * Date 1 Dec. 2018
  */
-//
 public class Intersect implements Function {
 	double m1;
 	double m2;
 	double b2;
 
 	/**
-	 * Asymmetrical triangle
-	 * 
-	 * @param Slope line 1 =2, intersection = 0
-	 * @param m2    Slope line 2 = -1
-	 * @param b2    Intersection of second line = 1.5
+	 * Default constructor: slope1 = 2 slope 2 = -1
 	 */
 	public Intersect() {
 		this(2, -1, 1.5);

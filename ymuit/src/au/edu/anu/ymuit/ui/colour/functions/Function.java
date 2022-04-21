@@ -36,16 +36,24 @@ package au.edu.anu.ymuit.ui.colour.functions;
  */
 /** Functions with domain and range: 0.0..1.0 */
 public interface Function {
+	/**
+	 * The max number of colour channel values
+	 */
 	public static final int length = 256;
 
 	/**
 	 * The value of f(x)
-	 * @param x
-	 * @return y
+	 * @param x domain
+	 * @return y range
 	 */
 	public double ofX(double x);
 
-	default public double clamp(double x) {
-		return Math.min(1.0, Math.max(x, 0));
+	/**
+	 * Constrains y to be within the range 0.0..1.0
+	 * @param y range
+	 * @return clipped value of y
+	 */
+	default public double clamp(double y) {
+		return Math.min(1.0, Math.max(y, 0));
 	}
 }

@@ -33,9 +33,17 @@ import java.text.DecimalFormat;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 
+/**
+ * @author Ian Davies 21 Apr 2022
+ */
 public class Decimals {
+	/**
+	 * Create a {@link DecimalFormat} given a number of decimal places.
+	 * @param nd the number of decimal places
+	 * @return a new DecimalFormat instance
+	 */
 	public static DecimalFormat getDecimalFormat(int nd) {
 		String res = "#0";
 		if (nd > 0)
@@ -45,7 +53,11 @@ public class Decimals {
 		return new DecimalFormat(res);
 	}
 
-	public static void installDecimalListener(TextField tf) {
+	/**
+	 * Add a listener to a TextInputControl to enforce decimal entries
+	 * @param tf The control in which the listener is installed
+	 */
+	public static void installDecimalListener(TextInputControl tf) {
         tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

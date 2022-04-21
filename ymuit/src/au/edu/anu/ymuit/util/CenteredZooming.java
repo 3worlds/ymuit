@@ -46,10 +46,10 @@ public class CenteredZooming {
 	};
 
 	/*
-	 * This code is mostly taken from the web - sorry can't find reference. provides
-	 * property wiring to ensure zooming stays centered over the mouse position
+	 * This code is mostly taken from the web - sorry can't find reference. Provides
+	 * property wiring to ensure zooming stays centered over the mouse position. There is one important modification:
 	 * 
-	 * Problem: Behaves differently for Jar compared to running from Eclipsex. When
+	 * Problem: Behaves differently for Jar compared to running from IDE. When
 	 * run from a JAR, an additional event is sent with deltaY==0.0 which must be
 	 * ignored!
 	 */
@@ -57,13 +57,13 @@ public class CenteredZooming {
 	/**
 	 * Ensures zooming stays centered over the mouse position
 	 * 
-	 * @param scrollPane
-	 * @param scrollContent
-	 * @param group
-	 * @param zoomRegion
+	 * @param scrollPane The containing scroll pane
+	 * @param scrollContent The content - should be a stackpane
+	 * @param group a Group that contains the zoomRegion.
+	 * @param zoomRegion the active pane to be zoomed - usually an anchorPane
 	 */
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
-//		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel"));
+//		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel")); it's too annoying to have tool tips for this.
 
 		// Manage zooming
 		group.layoutBoundsProperty().addListener((observable, oldBounds, newBounds) -> {

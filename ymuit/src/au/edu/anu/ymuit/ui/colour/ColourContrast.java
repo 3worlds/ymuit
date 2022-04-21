@@ -51,16 +51,18 @@ import javafx.scene.paint.Color;
  * Date 2 Dec. 2018
  */
 /**
+ * <p>
  * A method of selecting a set of contrasting colours from 3d colour space. The
- * distance between colours is based on perceived difference (cf ColourItem
+ * distance between colours is based on perceived difference (@link ColourItem
  * class).
- *
+ * </p>
+ * <p>
  * 1) Add all javafx named colours to an indexer that are a sufficient distance
  * (3d space) from the background. They need to be from the set of named colours
  * because for css we just use names rather than colours.
- *
+ * </p>
  * or Generate 4096 colours (without real names).
- *
+ * <p>
  * 2) Divide the 3d space into n volumes and select one colour nearest to the
  * center of each volume. Then select from that list those which have a user
  * supplied difference in luminosity from the given background.
@@ -73,9 +75,10 @@ public class ColourContrast {
 	private static Map<String, ColourItem> colourMap = new HashMap<>();
 
 	/**
-	 * Upto 64 colours from 4096 generated colours. The number will be less than 64
+	 * Up to 64 colours from 4096 generated colours. The number will be less than 64
 	 * depending on contrast required with background.
 	 *
+	 * @param ps       palette size
 	 * @param bkg      background colour
 	 * @param contrast (0.0 - 1.0)
 	 * @return List of Color
@@ -92,12 +95,13 @@ public class ColourContrast {
 	 * requested. Use these colour names to set the css style sheet of the
 	 * scene.node in question.
 	 *
+	 * @param ps       palette size
 	 * @param bkg      background colour
 	 * @param contrast (0.0 - 1.0)
 	 * @return Array of Javafx color names for contrasting colours.
 	 */
-	public static List<String> getContrastingColourNames(PaletteSize ps,Color bkg, double contrast) {
-		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps,bkg, contrast);
+	public static List<String> getContrastingColourNames(PaletteSize ps, Color bkg, double contrast) {
+		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps, bkg, contrast);
 		List<String> result = new ArrayList<>();
 		colours.forEach((d) -> {
 			result.add(d.getFirst());
@@ -106,10 +110,20 @@ public class ColourContrast {
 	}
 
 	/**
-	 * As above but returns only the colours
+	 * Creates a list of named colours that contrast with the given background
+	 * colour and are distant in perceived colour from each other in 3d space. The
+	 * methods will return up to a maximum of 27 out of approx 148 named colours.
+	 * The number return depends on the background colour choice and the contrast
+	 * requested. Use these colour names to set the css style sheet of the
+	 * scene.node in question.
+	 *
+	 * @param ps       palette size
+	 * @param bkg      background colour
+	 * @param contrast (0.0 - 1.0)
+	 * @return Array of constrasting Javafx colors.
 	 */
 	public static List<Color> getContrastingColours(PaletteSize ps, Color bkg, double contrast) {
-		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps,bkg, contrast);
+		List<Duple<String, Color>> colours = getContrastingColourNamePairs(ps, bkg, contrast);
 		List<Color> result = new ArrayList<>();
 		colours.forEach((d) -> {
 			result.add(d.getSecond());
@@ -118,13 +132,23 @@ public class ColourContrast {
 	}
 
 	/**
-	 * As above but returns name, colour pairs.
+	 * Creates a list of color name pairs that contrast with the given background
+	 * colour and are distant in perceived colour from each other in 3d space. The
+	 * methods will return up to a maximum of 27 out of approx 148 named colours.
+	 * The number return depends on the background colour choice and the contrast
+	 * requested. Use these colour names to set the css style sheet of the
+	 * scene.node in question.
+	 *
+	 * @param size     palette size
+	 * @param bkg      background colour
+	 * @param contrast (0.0 - 1.0)
+	 * @return Array of constrasting Javafx colors.
 	 */
-
-	public static List<Duple<String, Color>> getContrastingColourNamePairs(PaletteSize size,Color bkg, double contrast) {
+	public static List<Duple<String, Color>> getContrastingColourNamePairs(PaletteSize size, Color bkg,
+			double contrast) {
 		int dim;
 		switch (size) {
-		case small :{
+		case small: {
 			dim = 2;// 8 max
 			break;
 		}
@@ -132,17 +156,17 @@ public class ColourContrast {
 			dim = 3;
 			break;
 		}
-		case large:{
+		case large: {
 			dim = 4;
 			break;
 		}
-		default :{
+		default: {
 			dim = 5;
 		}
 		}
 		List<Duple<String, Color>> result = new ArrayList<>();
 		List<Duple<String, ColourItem>> list = new ArrayList<>();
-		Map<String, ColourItem> colours = _getContrastingColoursMap(dim,bkg, contrast * 100);
+		Map<String, ColourItem> colours = _getContrastingColoursMap(dim, bkg, contrast * 100);
 
 		colours.forEach((k, v) -> {
 			list.add(new Duple<String, ColourItem>(k, v));
@@ -306,6 +330,15 @@ public class ColourContrast {
 		return result;
 	}
 
+	/**
+	 * Create a list of {@link ColourItems} evenly spaced in 3d colour space that
+	 * are sufficently different in perceived luminosity.
+	 * 
+	 * @param dSize     number of items in one dimension i.e it's a cubic space.
+	 * @param bkgItem   background colour
+	 * @param threshold minimum difference in perceived luminosity.
+	 * @return
+	 */
 	private static List<ColourItem> createBigColourItems(double dSize, ColourItem bkgItem, double threshold) {
 		Random rnd = new Pcg32();
 		rnd.setSeed(seed);
@@ -388,6 +421,11 @@ public class ColourContrast {
 		return result;
 	}
 
+	/**
+	 * Show dialog box for displaying results.
+	 * 
+	 * @param args no args required
+	 */
 	public static void main(String[] args) {
 		show();
 	}

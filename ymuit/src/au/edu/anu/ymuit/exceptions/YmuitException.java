@@ -33,27 +33,44 @@ import fr.ens.biologie.generic.Textable;
 /**
  * @author shayne.flint@anu.edu.au
  *
- * 
- * 
+ *         Policy is to make at least one exception for a library.The general
+ *         advice for exceptions is to throw early and catch late.
  */
-//NB: this was previously AotException
-//Policy is to make an exception at least for each library
-//The general advice for exceptions is to throw early and catch late.
 public class YmuitException extends RuntimeException {
 	private static final long serialVersionUID = 5550450272121018603L;
 
+	/**
+	 * Instantiate an exception on an object with a message
+	 * 
+	 * @param item    the item which caused the problem
+	 * @param message the error message
+	 */
 	public YmuitException(Textable item, String message) {
 		super("[on " + item + "]\n[" + message + "]");
 	}
 
+	/**
+	 * Instantiate an exception with a message
+	 * 
+	 * @param message the error message
+	 */
 	public YmuitException(String message) {
 		super("[" + message + "]");
 	}
 
+	/**
+	 * Exception wrapper.
+	 * @param e the exception to wrap
+	 */
 	public YmuitException(Exception e) {
 		super(e);
 	}
 
+	/**
+	 * Exception wrapper with additional information
+	 * @param message the error message
+	 * @param e the exception to wrap
+	 */
 	public YmuitException(String message, Exception e) {
 		super("[" + message + "]\n[original exception: " + e + "]");
 		e.printStackTrace();

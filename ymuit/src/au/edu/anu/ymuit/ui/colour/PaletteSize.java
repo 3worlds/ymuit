@@ -29,10 +29,25 @@
 
 package au.edu.anu.ymuit.ui.colour;
 
+/**
+ * @author Ian Davies 18 Apr 2022
+ */
 public enum PaletteSize {
+	/**
+	 * 2x2x2 (8) colour space
+	 */
 	small,
+	/**
+	 * 3x3x3 (27) colour space
+	 */
 	medium,
+	/**
+	 * 4x4x4 (64) colour space
+	 */
 	large,
+	/**
+	 * 5x5x5 (125) colour space
+	 */
 	veryLarge;
 
 }

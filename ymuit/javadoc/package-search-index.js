@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"au.edu.anu.ymuit.exceptions"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"au.edu.anu.ymuit.exceptions"}];updateSearchResults();
