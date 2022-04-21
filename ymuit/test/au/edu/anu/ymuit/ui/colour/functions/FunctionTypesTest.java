@@ -33,6 +33,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import au.edu.anu.ymuit.ui.colour.Band;
+
 class FunctionTypesTest {
 	private static double round2(double d) {
 		double result = Math.round(d * 100.0) / 100.0;
@@ -310,12 +312,13 @@ class FunctionTypesTest {
 		assertTrue(round2(f.ofX(0.8)) == 0.3);
 		
 		
-//		f = FunctionTypes.TRIANGLE22.getFunction();
+		f = FunctionTypes.INTERSECT2B.getFunction();
 //		System.out.println(round2(f.ofX(0.0)));
 //		System.out.println(round2(f.ofX(0.2)));
 //		System.out.println(round2(f.ofX(0.4)));
 //		System.out.println(round2(f.ofX(0.6)));
 //		System.out.println(round2(f.ofX(0.8)));
+		
 
 //		for (int i = 0; i < Function.length; i++) {
 //			double x = i / (double) Function.length;
