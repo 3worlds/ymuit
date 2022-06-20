@@ -31,9 +31,6 @@ package au.edu.anu.ymuit.ui.colour;
 
 import static au.edu.anu.ymuit.ui.colour.functions.FunctionTypes.*;
 
-import au.edu.anu.ymuit.ui.colour.functions.Function;
-import au.edu.anu.ymuit.ui.colour.functions.FunctionTypes;
-
 /**
  * @author Ian Davies 18 Apr 2022
  * 

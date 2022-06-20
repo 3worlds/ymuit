@@ -33,8 +33,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import au.edu.anu.ymuit.ui.colour.Band;
-
 class FunctionTypesTest {
 	private static double round2(double d) {
 		double result = Math.round(d * 100.0) / 100.0;
