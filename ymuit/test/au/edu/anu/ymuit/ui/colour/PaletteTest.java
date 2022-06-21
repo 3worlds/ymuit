@@ -46,12 +46,12 @@ class PaletteTest {
 		Palette p = PaletteFactory.blackWhite();
 		assertEquals(p.getColour(0, 0,1),Color.BLACK);
 		assertEquals(p.getColour(1, 0,1),Color.WHITE);
-		assertEquals(p.getColour(0.375, 0,1),Color.GRAY);		
+		assertEquals(p.getColour(128.0/256.0, 0,1),Color.GRAY);
 		
 		p = PaletteFactory.whiteBlack();
 		assertEquals(p.getColour(0, 0,1),Color.WHITE);
 		assertEquals(p.getColour(1, 0,1),Color.BLACK);
-		assertEquals(p.getColour(1.0-0.375, 0,1),Color.GRAY);		
+		assertEquals(p.getColour(127.0/256.0, 0,1),Color.GRAY);
 	}
 
 }
