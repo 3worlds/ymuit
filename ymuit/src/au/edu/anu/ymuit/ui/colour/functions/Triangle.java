@@ -30,9 +30,7 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * Author Ian Davies - 2 Dec. 2018
  */
 // Triangle wave 
 public class Triangle extends Sine {

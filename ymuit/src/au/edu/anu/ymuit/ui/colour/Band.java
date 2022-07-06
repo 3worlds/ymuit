@@ -40,7 +40,7 @@ import au.edu.anu.ymuit.ui.colour.functions.FunctionTypes;
  */
 
 public class Band {
-	
+
 	private double[] values;
 
 	/**
@@ -72,11 +72,12 @@ public class Band {
 
 	/**
 	 * Scales y to be within the range max - min assuming y is within 0.0 - 1.0
+	 * If the range is <=0, min is returned.
 	 * 
-	 * @param y
-	 * @param min
-	 * @param max
-	 * @return
+	 * @param y   the value to be scaled
+	 * @param min minimum of the scaled range
+	 * @param max maximum of the scaled range
+	 * @return scaled value of y (min if range<=0)
 	 */
 	private double scale(double y, double min, double max) {
 		assert (max >= min);

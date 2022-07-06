@@ -32,6 +32,8 @@ package au.edu.anu.ymuit.ui.colour;
 import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
 
 /**
+ * A list of palettes and their associated palette instance.
+ * 
  * @author Ian Davies 4 Dec. 2018
  */
 public enum PaletteTypes {
@@ -50,77 +52,72 @@ public enum PaletteTypes {
 	 */
 	WhiteBlack/*-				*/(whiteBlack()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/blueMauveOrange.png" width="300" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/blueMauveOrange.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	BlueMauveOrange/*-			*/(blueMauveOrange()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/orangeMauveBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/orangeMauveBlue.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	OrangeMauveBlue/*-			*/(orangeMauveBlue()), //
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/brownYellowLightBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/brownYellowLightBlue.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	BrownYellowLightBlue/*-		*/(brownYellowLightBlue()), //
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	LightBlueYellowBrown/*-		*/(lightBlueYellowBrown()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/brownYellowGreen.png" width="300" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/brownYellowGreen.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	BrownYellowGreen/*-			*/(brownYellowGreen()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/greenYellowBrown.png" width="300" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/greenYellowBrown.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 */
 	GreenYellowBrown/*-			*/(greenYellowBrown()), //
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/lightBlueYellowPurple.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/lightBlueYellowPurple.png" width="300" alt
+	 * ="Colour palette system"/>
 	 * 
 	 */
 	LightBlueYellowPurple/*-	*/(lightBlueYellowPurple()), //
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/purpleYellowLightBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/purpleYellowLightBlue.png" width="300" alt
+	 * ="Colour palette system"/>
 	 * 
 	 */
 	PurpleYellowLightBlue/*-	*/(purpleYellowLightBlue()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/blueLimeRed.png" width="300" alt="Colour
+	 * * <img src="{@docRoot}/../doc/images/blueLimeRed.png" width="300" alt="Colour
 	 * palette system"/>
 	 * 
 	 */
 	BlueLimeRed/*-				*/(blueLimeRed()), //
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/redLimeBlue.png" width="300" alt="Colour
+	 * * <img src="{@docRoot}/../doc/images/redLimeBlue.png" width="300" alt="Colour
 	 * palette system"/>
 	 * 
 	 */
 	RedLimeBlue/*-				*/(redLimeBlue()), //
 	// TODO: Many more to come
 	;
+
 	private final Palette palette;
 
 	private PaletteTypes(Palette palette) {
@@ -129,6 +126,7 @@ public enum PaletteTypes {
 
 	/**
 	 * The palette instance for this enum value
+	 * 
 	 * @return the palette
 	 */
 	public Palette getPalette() {
@@ -137,17 +135,20 @@ public enum PaletteTypes {
 
 	/**
 	 * The default palette (BrownYellowGreen - NDVI)
+	 * 
 	 * @return the palette
 	 */
 	public static PaletteTypes getDefault() {
 		return BrownYellowGreen;
 	}
+
 	/**
 	 * Display these palettes
+	 * 
 	 * @param args none required
 	 */
 	public static void main(String[] args) {
 		PaletteShow.main(args);
-		
+
 	}
 }

@@ -53,8 +53,7 @@ import javafx.scene.paint.Color;
 /**
  * <p>
  * A method of selecting a set of contrasting colours from 3d colour space. The
- * distance between colours is based on perceived difference (@link ColourItem
- * class).
+ * distance between colours is based on perceived difference {@link ColourItem}.
  * </p>
  * <p>
  * 1) Add all javafx named colours to an indexer that are a sufficient distance
@@ -67,6 +66,7 @@ import javafx.scene.paint.Color;
  * center of each volume. Then select from that list those which have a user
  * supplied difference in luminosity from the given background.
  *
+ * @see ColourItem
  */
 
 public class ColourContrast {

@@ -33,19 +33,21 @@ import au.edu.anu.ymuit.ui.colour.functions.Function;
 import javafx.scene.paint.Color;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * A palette of 256 colours based on a set of simple functions and their
+ * transformations contained within each Band.
+ * 
+ * @author Ian Davies - Date 2 Dec. 2018
  */
 public class Palette {
 	private Color[] palette;
 
 	/**
-	 * Creates a palette of 256 colours based on functions contained within each Band.
+	 * Creates a palette of 256 colours based on functions contained within each
+	 * Band.
 	 * 
-	 * @param red red band
-	 * @param green geen band
-	 * @param blue blue band
+	 * @param red     red band
+	 * @param green   geen band
+	 * @param blue    blue band
 	 * @param opacity (0.0 - 1.0)
 	 */
 	public Palette(Band red, Band green, Band blue, double opacity) {
@@ -55,8 +57,10 @@ public class Palette {
 	}
 
 	/**
-	 * Returns the palette colour for the value v. v is assumed to be within the range min to max
-	 * @param v value 
+	 * Returns the palette colour for the value v. v is assumed to be within the
+	 * range min to max
+	 * 
+	 * @param v   value
 	 * @param min minimum value of v
 	 * @param max maximum value of v
 	 * @return colour for value v
@@ -71,7 +75,7 @@ public class Palette {
 		double r = max - min;
 		if (r <= 0)
 			return 0;
-		double p = (v-min) / r;
+		double p = (v - min) / r;
 		double p1 = Math.round(p * (Function.length - 1));
 		return (int) p1;
 	}
