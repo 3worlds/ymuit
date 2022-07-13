@@ -30,6 +30,7 @@
 package au.edu.anu.ymuit.ui.colour;
 
 import static au.edu.anu.ymuit.ui.colour.PaletteFactory.*;
+//import fr.cnrs.iees.io.parsing.ValidPropertyTypes;
 
 /**
  * A list of palettes and their associated palette instance.
@@ -139,6 +140,15 @@ public enum PaletteTypes {
 	 * @return the palette
 	 */
 	public static PaletteTypes getDefault() {
+		return BrownYellowGreen;
+	}
+	
+//	static {
+	// There is no dependency on omugi
+//		ValidPropertyTypes;
+//	}
+	
+	public static PaletteTypes defaultValue() {
 		return BrownYellowGreen;
 	}
 
