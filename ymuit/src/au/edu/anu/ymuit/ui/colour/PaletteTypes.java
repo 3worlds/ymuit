@@ -143,12 +143,13 @@ public enum PaletteTypes {
 		return BrownYellowGreen;
 	}
 	
-//	static {
-	// There is no dependency on omugi
-//		ValidPropertyTypes;
-//	}
 	
-	public static PaletteTypes defaultValue() {
+	/**
+	 * The default palette value for this enum
+	 * 
+	 * @return the palette
+	 */
+public static PaletteTypes defaultValue() {
 		return BrownYellowGreen;
 	}
 
