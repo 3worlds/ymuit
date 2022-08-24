@@ -83,18 +83,13 @@ public class VersionSettings {
 	 *
 	 */
 	protected static String[][] DEPS = {
-			{"fr.ens.biologie", "generics", "[0.3.1,)", null},
+			{"fr.ens.biologie", "generics", "[0.4.0,)", null},
 			{"fr.cnrs.iees.uit", "uit", "[0.4.1,)", null},
-//			{"org.apache.commons" ,"commons-math","[2,)", null},
-//			{"org.apache.commons","commons-math3","[3.6.1,)",null},
-//		    {"org.openjfx", "javafx-fxml", "[11,)", "_os"},
-			{"org.openjfx", "javafx-controls", "[11,)", "_os"},
-			{"org.openjfx", "javafx-graphics", "[11,)", "_os"},
-			{"org.openjfx", "javafx-base", "[11,)", "_os"},
-			//{"org.openjfx", "javafx-web", "[11,)", "_os"},
-			//{"org.openjfx", "javafx-media", "[11,)", "_os"},
-			//{"org.openjfx", "javafx-swing", "[11,)", "_os"},
-
+			// javafx: version 17.0.4 has long term support until September 2026
+			// do not use early access builds. cf. https://gluonhq.com/products/javafx/
+			{"org.openjfx", "javafx-controls", "17.0.2", "_os"},
+			{"org.openjfx", "javafx-graphics", "17.0.2", "_os"},
+			{"org.openjfx", "javafx-base", "17.0.2", "_os"},
 	};
 
 	/** The name of the main class to put in the jar manifest, if any. This enables users to
