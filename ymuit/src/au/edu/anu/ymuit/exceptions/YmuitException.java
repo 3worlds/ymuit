@@ -36,6 +36,7 @@ import fr.ens.biologie.generic.Textable;
  *         Policy is to make at least one exception for a library.The general
  *         advice for exceptions is to throw early and catch late.
  */
+@Deprecated
 public class YmuitException extends RuntimeException {
 	private static final long serialVersionUID = 5550450272121018603L;
 
