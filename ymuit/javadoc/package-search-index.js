@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"au.edu.anu.ymuit.exceptions"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"au.edu.anu.ymuit.ui.colour"},{"l":"au.edu.anu.ymuit.ui.colour.functions"},{"l":"au.edu.anu.ymuit.util"}];updateSearchResults();
