@@ -173,13 +173,14 @@ public class ColourContrast {
 		});
 		// sort in consistent but random order (consistent because the rnd seed never
 		// varies)
-		list.sort(new Comparator<Duple<String, ColourItem>>() {
-
-			@Override
-			public int compare(Duple<String, ColourItem> o1, Duple<String, ColourItem> o2) {
-				return o1.getSecond().getIndex().compareTo(o2.getSecond().getIndex());
-			}
-		});
+		list.sort((d1,d2)->d1.getSecond().getIndex().compareTo(d2.getSecond().getIndex()));
+//		list.sort(new Comparator<Duple<String, ColourItem>>() {
+//
+//			@Override
+//			public int compare(Duple<String, ColourItem> o1, Duple<String, ColourItem> o2) {
+//				return o1.getSecond().getIndex().compareTo(o2.getSecond().getIndex());
+//			}
+//		});
 		list.forEach((v) -> {
 			result.add(new Duple<String, Color>(v.getFirst(), v.getSecond().getColour()));
 		});
@@ -410,13 +411,14 @@ public class ColourContrast {
 //		result.clear();
 //		result.addAll(lst);
 		// instead we could hard code some kind of visiting pattern
-		result.sort(new Comparator<ColourItem>() {
-
-			@Override
-			public int compare(ColourItem o1, ColourItem o2) {
-				return o1.getIndex().compareTo(o2.getIndex());
-			}
-		});
+		result.sort((c1,c2)->c1.getIndex().compareTo(c2.getIndex()));
+//		result.sort(new Comparator<ColourItem>() {
+//
+//			@Override
+//			public int compare(ColourItem o1, ColourItem o2) {
+//				return o1.getIndex().compareTo(o2.getIndex());
+//			}
+//		});
 
 		return result;
 	}
