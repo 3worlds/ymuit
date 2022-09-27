@@ -30,9 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date Dec 5, 2018
+ * A Bessel like wave function with variable number of waves.
+ * 
+ * @author Ian Davies -Dec 5, 2018
  */
 public class Bessel implements Function {
 	private static final double minimum = -0.2172268187;
@@ -56,8 +56,7 @@ public class Bessel implements Function {
 	/**
 	 * A Bessel like wave function with variable number of waves
 	 * 
-	 * @param x
-	 *            domain 0.0..1.0
+	 * @param x domain 0.0..1.0
 	 * 
 	 */
 	@Override

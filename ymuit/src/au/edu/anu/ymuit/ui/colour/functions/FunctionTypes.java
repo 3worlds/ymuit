@@ -30,15 +30,11 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- * 
- * Date 28 Nov. 2018
- */
-
-/**
  * 
  * Pre-defined parameterised functions for generating palettes. A different
  * function (or customized function) can be used for each colour channel.
+ * 
+ * @author Ian Davies -28 Nov. 2018
  */
 //Naming convention is function+integer+alpha to categorise first and second parameters
 public enum FunctionTypes {

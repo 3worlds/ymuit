@@ -33,7 +33,8 @@ import fr.cnrs.iees.uit.space.Point;
 import javafx.scene.paint.Color;
 
 /**
- * @author Ian Davies, 11 Mar 2020
+ * A class to associate a name colour and creation order (for later processing).
+ * @author Ian Davies - 11 Mar 2020
  */
 public class ColourItem {
 	// actual Javafx color
@@ -50,8 +51,6 @@ public class ColourItem {
 	private double index;
 
 	/**
-	 * A class to associate a name colour and creation order (for later processing).
-	 * 
 	 * @param index order in which colors were produced
 	 * @param name  Javafx color name. Can be null
 	 * @param clr   actual Javafx color

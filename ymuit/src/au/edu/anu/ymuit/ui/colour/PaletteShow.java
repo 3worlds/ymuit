@@ -41,6 +41,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
+ * Javafx app to display palettes for testing.
+ * 
  * @author Ian Davies 18 Apr 2022
  */
 public class PaletteShow extends Application{

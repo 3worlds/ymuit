@@ -30,9 +30,10 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies - 2 Dec. 2018
+ * Triangle wave.
+ * 
+ * @author Ian Davies - 2 Dec. 2018
  */
-// Triangle wave 
 public class Triangle extends Sine {
 	private static double twoOnPi = 2 / Math.PI;
 

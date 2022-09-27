@@ -30,11 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * Sine wave with frequency and phase
  * 
- * sine wave with frequency and phase
+ * @author Ian Davies- 2 Dec. 2018
  */
 public class Sine implements Function {
 	double phase;

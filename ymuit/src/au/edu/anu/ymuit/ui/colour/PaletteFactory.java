@@ -32,19 +32,19 @@ package au.edu.anu.ymuit.ui.colour;
 import static au.edu.anu.ymuit.ui.colour.functions.FunctionTypes.*;
 
 /**
+ * Pre-defined palettes that have been found useful.
+ * 
  * @author Ian Davies 18 Apr 2022
  * 
- * Pre-defined palettes
  */
 public class PaletteFactory {
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/brownYellowGreen.png" width="210" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/brownYellowGreen.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotBrownYellowGreen.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotBrownYellowGreen.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -56,12 +56,11 @@ public class PaletteFactory {
 	}
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/greenYellowBrown.png" width="210" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/greenYellowBrown.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotGreenYellowBrown.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotGreenYellowBrown.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * 
 	 * @return this palette
@@ -78,8 +77,8 @@ public class PaletteFactory {
 	 * <img src="{@docRoot}/../doc/images/blackAndWhite.png" width="210" alt="Colour
 	 * palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotBlackWhite.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotBlackWhite.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -95,8 +94,8 @@ public class PaletteFactory {
 	 * <img src="{@docRoot}/../doc/images/whiteAndBlack.png" width="210" alt="Colour
 	 * palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotWhiteBlack.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotWhiteBlack.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -108,12 +107,11 @@ public class PaletteFactory {
 	}
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/blueMauveOrange.png" width="210" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/blueMauveOrange.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotBlueMauveOrange.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotBlueMauveOrange.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -125,12 +123,11 @@ public class PaletteFactory {
 	}
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/orangeMauveBlue.png" width="210" alt="Colour
-	 * palette system"/>
+	 * * <img src="{@docRoot}/../doc/images/orangeMauveBlue.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotOrangeMauveBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotOrangeMauveBlue.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -143,11 +140,11 @@ public class PaletteFactory {
 
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/brownYellowLightBlue.png" width="210" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/brownYellowLightBlue.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotBrownYellowLightBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotBrownYellowLightBlue.png" width="300"
+	 * alt="Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
@@ -160,49 +157,50 @@ public class PaletteFactory {
 
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="210" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotLightBlueYellowBrown.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotLightBlueYellowBrown.png" width="300"
+	 * alt="Colour palette system"/>
 	 * 
 	 * 
 	 * @return this palette
 	 */
 	public static Palette lightBlueYellowBrown() {
-		Band red = new Band(0, 1, false, false,INTERSECT2B);
+		Band red = new Band(0, 1, false, false, INTERSECT2B);
 		Band green = new Band(0, 1, true, false, INTERSECT2B);
 		Band blue = new Band(0, 1, true, false, POWER2);
 		return new Palette(red, green, blue, 1.0);
 	}
+
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="210" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/lightBlueYellowBrown.png" width="210" alt=
+	 * "Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotLightBlueYellowPurple.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotLightBlueYellowPurple.png" width="300"
+	 * alt="Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
-	public static  Palette lightBlueYellowPurple() {
-		Band red = new Band(0, 1, false, false,INTERSECT2B);
-		Band green = new Band(0, 1, true, false,INTERSECT2B);
+	public static Palette lightBlueYellowPurple() {
+		Band red = new Band(0, 1, false, false, INTERSECT2B);
+		Band green = new Band(0, 1, true, false, INTERSECT2B);
 		Band blue = new Band(0, 1, false, false, SINE11);
 		return new Palette(red, green, blue, 1.0);
 	}
 
 	/**
 	 * *
-	 * <img src="{@docRoot}/../doc/images/purpleYellowLightBlue.png" width="210" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/purpleYellowLightBlue.png" width="210" alt
+	 * ="Colour palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotPurpleYellowLightBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotPurpleYellowLightBlue.png" width="300"
+	 * alt="Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
-	public static  Palette purpleYellowLightBlue() {
+	public static Palette purpleYellowLightBlue() {
 		Band red = new Band(0, 1, true, false, INTERSECT2B);
 		Band green = new Band(0, 1, false, false, INTERSECT2B);
 		Band blue = new Band(0, 1, false, false, SINE11);
@@ -210,34 +208,32 @@ public class PaletteFactory {
 	}
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/blueLimeRed.png" width="210" alt="Colour
+	 * * <img src="{@docRoot}/../doc/images/blueLimeRed.png" width="210" alt="Colour
 	 * palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotRedLimeBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotRedLimeBlue.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * @return this palette
 	 */
-	public static  Palette blueLimeRed() {
+	public static Palette blueLimeRed() {
 		Band red = new Band(0, 1, true, true, LOGISTIC2A);
 		Band green = new Band(0, 1, false, false, TRIANGLE31);
-		Band blue = new Band(0, 1, true, false,POWER2);
+		Band blue = new Band(0, 1, true, false, POWER2);
 		return new Palette(red, green, blue, 1.0);
 	}
 
 	/**
-	 * *
-	 * <img src="{@docRoot}/../doc/images/redLimeBlue.png" width="210" alt="Colour
+	 * * <img src="{@docRoot}/../doc/images/redLimeBlue.png" width="210" alt="Colour
 	 * palette system"/>
 	 * <p>
-	 * <img src="{@docRoot}/../doc/images/plotRedLimeBlue.png" width="300" alt="Colour
-	 * palette system"/>
+	 * <img src="{@docRoot}/../doc/images/plotRedLimeBlue.png" width="300" alt=
+	 * "Colour palette system"/>
 	 * 
 	 * 
 	 * @return this palette
 	 */
-	public static  Palette redLimeBlue() {
+	public static Palette redLimeBlue() {
 		Band red = new Band(0, 1, false, true, LOGISTIC2A);
 		Band green = new Band(0, 1, false, false, TRIANGLE31);
 		Band blue = new Band(0, 1, false, false, POWER2);

@@ -33,9 +33,14 @@ import au.edu.anu.ymuit.ui.colour.functions.Function;
 import au.edu.anu.ymuit.ui.colour.functions.FunctionTypes;
 
 /**
- * Author Ian Davies
+ * A Band is an array of colour (RG or B) values.
+ * <p>
+ * Three of these bands are used by a Palette to create a colour. A function
+ * supplies the band range values over a domain of 0.0 to 1.0. The function can
+ * be compressed between two values (min,max) and flipped around either or both
+ * the x and y axis.
  * 
- * Date 28 Nov. 2018
+ * @author Ian Davies -28 Nov. 2018
  *
  */
 
@@ -71,8 +76,8 @@ public class Band {
 	}
 
 	/**
-	 * Scales y to be within the range max - min assuming y is within 0.0 - 1.0
-	 * If the range is <=0, min is returned.
+	 * Scales y to be within the range max - min assuming y is within 0.0 - 1.0 If
+	 * the range is <=0, min is returned.
 	 * 
 	 * @param y   the value to be scaled
 	 * @param min minimum of the scaled range

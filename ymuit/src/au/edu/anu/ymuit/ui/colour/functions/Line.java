@@ -30,7 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies Date 28 Nov. 2018
+ * Straight line with slope and y intercept.
+ * 
+ * @author Ian Davies - 28 Nov. 2018
  *
  */
 public class Line implements Function {
@@ -49,10 +51,8 @@ public class Line implements Function {
 	 * Parameterised constructor.
 	 * 
 	 * 
-	 * @param m
-	 *            slope
-	 * @param b
-	 *            intercept (0.0..1.0)
+	 * @param m slope
+	 * @param b intercept (0.0..1.0)
 	 */
 	public Line(double m, double b) {
 		this.m = m;
@@ -64,8 +64,7 @@ public class Line implements Function {
 	 * 
 	 * y = mx + b
 	 * 
-	 * @param x
-	 *            0.0 - 1.0
+	 * @param x 0.0 - 1.0
 	 * @return f(x) 0.0 - 1.0
 	 */
 	@Override

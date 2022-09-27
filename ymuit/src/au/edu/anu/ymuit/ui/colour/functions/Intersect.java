@@ -30,9 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 1 Dec. 2018
+ * Two sides of a triangle implemented as to intersecting lines.
+ * 
+ * @author Ian Davies -1 Dec. 2018
  */
 public class Intersect implements Function {
 	double m1;

@@ -46,27 +46,21 @@ import fr.ens.biologie.generic.utils.Duple;
 import javafx.scene.paint.Color;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
- */
-/**
- * <p>
- * A method of selecting a set of contrasting colours from 3d colour space. The
+ * A method to select a set of contrasting colours from 3d colour space. The
  * distance between colours is based on perceived difference {@link ColourItem}.
  * </p>
  * <p>
- * 1) Add all javafx named colours to an indexer that are a sufficient distance
+ * <li>Add all javafx named colours to an indexer that are a sufficient distance
  * (3d space) from the background. They need to be from the set of named colours
- * because for css we just use names rather than colours.
- * </p>
- * or Generate 4096 colours (without real names).
+ * because for css we just use names rather than colours.Alternatively, generate
+ * 4096 colours (without real names).</li>
  * <p>
- * 2) Divide the 3d space into n volumes and select one colour nearest to the
+ * <li>Divide the 3d space into n volumes and select one colour nearest to the
  * center of each volume. Then select from that list those which have a user
- * supplied difference in luminosity from the given background.
+ * supplied difference in luminosity from the given background.</li>
  *
  * @see ColourItem
+ * @author Ian Davies- 2 Dec. 2018
  */
 
 public class ColourContrast {
@@ -173,7 +167,7 @@ public class ColourContrast {
 		});
 		// sort in consistent but random order (consistent because the rnd seed never
 		// varies)
-		list.sort((d1,d2)->d1.getSecond().getIndex().compareTo(d2.getSecond().getIndex()));
+		list.sort((d1, d2) -> d1.getSecond().getIndex().compareTo(d2.getSecond().getIndex()));
 //		list.sort(new Comparator<Duple<String, ColourItem>>() {
 //
 //			@Override
@@ -411,7 +405,7 @@ public class ColourContrast {
 //		result.clear();
 //		result.addAll(lst);
 		// instead we could hard code some kind of visiting pattern
-		result.sort((c1,c2)->c1.getIndex().compareTo(c2.getIndex()));
+		result.sort((c1, c2) -> c1.getIndex().compareTo(c2.getIndex()));
 //		result.sort(new Comparator<ColourItem>() {
 //
 //			@Override

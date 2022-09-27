@@ -47,9 +47,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * Author Ian Davies
- *
- * Date 17 Dec. 2018
+ * A small javafx app to display colours.
+ * 
+ * @author Ian Davies -17 Dec. 2018
  */
 //TODO dialog to show contrasting colours
 public class ColourContrastShow extends Application {

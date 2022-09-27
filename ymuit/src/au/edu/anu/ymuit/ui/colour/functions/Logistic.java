@@ -30,9 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * Logistic curve.
+ * 
+ * @author Ian Davies - 2 Dec. 2018
  */
 public class Logistic implements Function {
 	private double x0;// inflexion point

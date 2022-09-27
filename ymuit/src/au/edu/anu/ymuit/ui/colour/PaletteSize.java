@@ -30,6 +30,8 @@
 package au.edu.anu.ymuit.ui.colour;
 
 /**
+ * Class to ensure palette size is a perfect cube for colour space searching.
+ * 
  * @author Ian Davies 18 Apr 2022
  */
 public enum PaletteSize {

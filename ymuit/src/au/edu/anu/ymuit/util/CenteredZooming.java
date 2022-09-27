@@ -38,6 +38,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
 /**
+ * Static function to zoom in and out of a drawing pane centered on the mouse
+ * position.
+ * 
  * @author Ian Davies, 4 Sep 2019
  */
 public class CenteredZooming {
@@ -45,22 +48,13 @@ public class CenteredZooming {
 	private CenteredZooming() {
 	};
 
-	/*
-	 * This code is mostly taken from the web - sorry can't find reference. Provides
-	 * property wiring to ensure zooming stays centered over the mouse position. There is one important modification:
-	 * 
-	 * Problem: Behaves differently for Jar compared to running from IDE. When
-	 * run from a JAR, an additional event is sent with deltaY==0.0 which must be
-	 * ignored!
-	 */
-
 	/**
 	 * Ensures zooming stays centered over the mouse position
 	 * 
-	 * @param scrollPane The containing scroll pane
+	 * @param scrollPane    The containing scroll pane
 	 * @param scrollContent The content - should be a stackpane
-	 * @param group a Group that contains the zoomRegion.
-	 * @param zoomRegion the active pane to be zoomed - usually an anchorPane
+	 * @param group         a Group that contains the zoomRegion.
+	 * @param zoomRegion    the active pane to be zoomed - usually an anchorPane
 	 */
 	public static void center(ScrollPane scrollPane, StackPane scrollContent, Group group, Region zoomRegion) {
 //		Tooltip.install(zoomRegion, new Tooltip("Zoom: Ctrl+mouse wheel")); it's too annoying to have tool tips for this.

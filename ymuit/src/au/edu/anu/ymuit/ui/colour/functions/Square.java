@@ -30,11 +30,10 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * Square wave - useful for adding strips to a colour gradiant.
+ * 
+ * @author Ian Davies- 2 Dec. 2018
  */
-// Square wave - useful for adding strips to a colour gradiant
 public class Square extends Sine {
 	/**
 	 * Square wave function with starting at 0 with one cycle over domain 0..255

@@ -30,9 +30,9 @@
 package au.edu.anu.ymuit.ui.colour.functions;
 
 /**
- * Author Ian Davies
- *
- * Date 2 Dec. 2018
+ * Power function with radical.
+ * 
+ * @author Ian Davies - 2 Dec. 2018
  */
 public class Power implements Function {
 	double radical;

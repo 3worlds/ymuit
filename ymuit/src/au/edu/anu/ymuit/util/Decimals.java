@@ -36,7 +36,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextInputControl;
 
 /**
- * @author Ian Davies 21 Apr 2022
+ * @author Ian Davies - 21 Apr 2022
  */
 public class Decimals {
 	/**
