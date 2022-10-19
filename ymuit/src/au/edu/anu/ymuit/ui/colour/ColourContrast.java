@@ -30,19 +30,14 @@
 package au.edu.anu.ymuit.ui.colour;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import au.edu.anu.omhtk.rng.Pcg32;
 import fr.cnrs.iees.uit.indexing.BoundedRegionIndexingTree;
 import fr.cnrs.iees.uit.indexing.RegionIndexingTree;
 import fr.cnrs.iees.uit.space.Box;
 import fr.cnrs.iees.uit.space.Point;
-import fr.ens.biologie.generic.utils.Duple;
+import fr.cnrs.iees.omhtk.utils.Duple;
 import javafx.scene.paint.Color;
 
 /**

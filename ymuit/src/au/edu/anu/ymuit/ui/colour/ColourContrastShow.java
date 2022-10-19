@@ -30,7 +30,7 @@
 package au.edu.anu.ymuit.ui.colour;
 
 import java.util.List;
-import fr.ens.biologie.generic.utils.Duple;
+import fr.cnrs.iees.omhtk.utils.Duple;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
