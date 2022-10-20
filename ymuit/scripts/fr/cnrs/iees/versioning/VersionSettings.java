@@ -83,8 +83,8 @@ public class VersionSettings {
 	 *
 	 */
 	protected static String[][] DEPS = {
-			{"fr.cnrs.iees.omhtk", "generics", "[0.4.0,)", null},
-			{"fr.cnrs.iees.uit", "uit", "[0.4.1,)", null},
+			{"fr.cnrs.iees.omhtk", "generics", "[0.5.0,)", null},
+			{"fr.cnrs.iees.uit", "uit", "[0.4.2,)", null},
 			// javafx: version 17.0.4 has long term support until September 2026
 			// do not use early access builds. cf. https://gluonhq.com/products/javafx/
 			{"org.openjfx", "javafx-controls", "17.0.2", "_os"},
