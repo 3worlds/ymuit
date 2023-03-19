@@ -163,13 +163,6 @@ public class ColourContrast {
 		// sort in consistent but random order (consistent because the rnd seed never
 		// varies)
 		list.sort((d1, d2) -> d1.getSecond().getIndex().compareTo(d2.getSecond().getIndex()));
-//		list.sort(new Comparator<Duple<String, ColourItem>>() {
-//
-//			@Override
-//			public int compare(Duple<String, ColourItem> o1, Duple<String, ColourItem> o2) {
-//				return o1.getSecond().getIndex().compareTo(o2.getSecond().getIndex());
-//			}
-//		});
 		list.forEach((v) -> {
 			result.add(new Duple<String, Color>(v.getFirst(), v.getSecond().getColour()));
 		});
@@ -275,7 +268,6 @@ public class ColourContrast {
 					Point p = Point.newPoint(px, py, pz);
 					String name = qt.getNearestItem(p);
 					if (!res.containsKey(name)) {
-//						System.out.println("#" + (++counter));
 						ColourItem ci = colourMap.get(name);
 						// perceived luminosity ("L*") threshold black=0, white = 100
 						double delta = Math.abs(ci.getpLum() - bkgItem.getpLum());
@@ -353,9 +345,6 @@ public class ColourContrast {
 			}
 		}
 		List<ColourItem> result = new ArrayList<>();
-		// List<ColourItem> lst = new ArrayList<>();
-
-//		int counter = 0;
 		double separation = 1.0 / dSize; // 5*5*5 colours
 		int iSize = (int) dSize;
 		for (int x = 0; x < iSize; x++) {
@@ -370,44 +359,11 @@ public class ColourContrast {
 					double delta = Math.abs(ci.getpLum() - bkgItem.getpLum());
 					if (delta > threshold) {
 						result.add(ci);
-//						System.out.println("#"+result.size());
 					}
 				}
 			}
 		}
-		// arrange in order of max distance.
-		// No good: tends to jump back to the same region every second time so we get
-		// too many alternating purple/greens etc
-//		if (!lst.isEmpty()) {
-//			result.add(lst.get(0));
-//			lst.remove(0);
-//			while (!lst.isEmpty()) {
-//				ColourItem from = result.get(result.size() - 1);
-//				int nxtIndex = -1;
-//				double maxd = 0;
-//				for (int i = 0; i < lst.size(); i++) {
-//					double d = lst.get(i).distance(from);
-//					if (d > maxd) {
-//						maxd = d;
-//						nxtIndex = i;
-//					}
-//				}
-//				result.add(lst.get(nxtIndex));
-//				lst.remove(nxtIndex);
-//			}
-//		}
-		// OR
-//		result.clear();
-//		result.addAll(lst);
-		// instead we could hard code some kind of visiting pattern
 		result.sort((c1, c2) -> c1.getIndex().compareTo(c2.getIndex()));
-//		result.sort(new Comparator<ColourItem>() {
-//
-//			@Override
-//			public int compare(ColourItem o1, ColourItem o2) {
-//				return o1.getIndex().compareTo(o2.getIndex());
-//			}
-//		});
 
 		return result;
 	}
